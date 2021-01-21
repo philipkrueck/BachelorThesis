@@ -1,0 +1,74 @@
+%%%%% KAPITEL: EINIGE HINWEISE %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\chapter{Latex Tips und Tricks (To be deleted)}
+
+
+Dies ist das zweite Kapitel.
+
+
+\section{Fußnoten}
+\label{sec:fussnoten}                 % Label für den Verweis auf diese Section
+
+
+Erster Abschnitt.\footnote{Wir können eine Fußnote hinzufügen.} 
+
+
+
+\section{Verweise auf Kapitel und Abschnitte}
+
+
+Wir können einen Verweis auf Abschnitt \ref{sec:fussnoten} einfügen.
+
+
+
+\section{Tabellen}
+
+
+Wir können eine Tabelle einfügen, siehe Tabelle \ref{tab:beispieltab}.
+
+
+
+\begin{table}[hbt]
+\centering
+\begin{tabular}{lcr}
+\toprule
+                 & \multicolumn{2}{c}{Verbundene Zellen} \\
+\cmidrule{2-3}
+   Erste Spalte  & Zweite Spalte  & Dritte Spalte \\
+\midrule
+   linksbündig   & zentriert      & rechtsbündig  \\
+   ...           & ...            & ...           \\
+\bottomrule
+\end{tabular}
+\caption{Beispiel-Tabelle}
+\label{tab:beispieltab}
+\end{table}
+
+
+
+\section{Abbildungen}
+
+
+Wir können auch Abbildungen einfügen, siehe Abbildung \ref{fig:beispielabb}.
+
+
+\begin{figure}[hbt]
+\begin{center}
+\includegraphics[width=10cm]{images/hsba.png}   % für volle Breite verwendet man [width=\linewidth]
+\caption{Beispiel-Abbildung} 
+\label{fig:beispielabb}
+\end{center}
+\end{figure}
+
+
+
+\section{Literaturverweise}
+
+
+Wir können einen Artikel aus einem wissenschaftlichen Journal wie \textcite{Glove89} zitieren, ein Buch ist natürlich auch möglich (\cite{Goldb89}). Wir können auch Verweise auf Seitenzahlen einfügen: \textcite[][p. 78]{Goldb89}.
+Außerdem können wir Sammelband-Beiträge wie \textcite{Steen01} und Konferenz-Beiträge wie \textcite{Merkl00} zitieren.
+Es ist auch möglich, auf andere Quellen wie etwa Websites zu verweisen
+(zum Beispiel \cite{HSBA18}).
+
+Der Chicago-Stil für das Literaturverzeichnis ist in diesem Template bereits voreingestellt, ebenso wie der Auto-Jahr-Zitierstil.
+Die Angaben zu den zitierten Quellen müssen in einer separaten Datei gespeichert sein (diese muss die Endung .bib haben).
+Diese bib-Datei muss im Dokumentkopf angegeben werden (in diesem Template heißt sie Literatur.bib).

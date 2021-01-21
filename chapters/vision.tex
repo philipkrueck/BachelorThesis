@@ -1,0 +1,54 @@
+\chapter{Vision}
+Mobile platforms are dominated by two players - Apple and Google with their respective operating systems iOS and Android. Cumulatively, they form a duopoly in the smartphone operating systems market with a combined usage share of 100\% in 2020 according to \textcite{IDC2020}. \\To develop a mobile application for both target platforms, the corresponding development environments and technologies are utilized for each platform. This leads to a doubling of cost, development time and the need for knowledge of two different application development paradigms. This has resulted in the creation of cross platform frameworks such as Xamarin, React Native and Ionic. The premise of these frameworks is that only one code base needs to maintained while development speed increases and the app is deployable for all mobile operating systems. 
+
+Compared to native, platform specific development, these cross platform frameworks lack in terms of performance and usability as shown by \textcite{Mercado2016} and \textcite{Ebone2018}.
+
+Flutter claims to solve both of these issues. It is an open-source cross-platform UI toolkit developed by Google for building "[...] natively compiled applications for mobile, web and desktop from a single code base" (\cite{FlutterDev20}). The main value proposition of Flutter is native performance by compiling to platform specific code while also providing the ability to develop expressive and flexible UI designs.
+
+If these claims hold true, there could be shift in terms of usage of Flutter by app developers. Unfortunately, since Flutter was first released in March 2018 (\cite{FlutterReleases2020}), there are no peer reviewed articles comparing the performance or usability to native apps.
+\footnote{An extensive search for relevant articles has been conducted using Google Scholar, Sci-hub and IEEE Xplore.} 
+
+\section{Motivation}
+As a digital agency specialized on native iOS and Android development, apploft GmbH is highly interested in Flutter. The implications of using this framework could be wide ranging. The services portfolio of apploft could be extended to clients with lower budgets while not being tied to a specific operating system. 
+
+Furthermore, infrastructure setup, package development and app updates would only need to be done for one codebase.
+
+\section{Thesis Goal}
+The goal of this thesis is to evaluate whether Flutters claims on performance, and usability hold up in practice.
+
+\section{Methods}
+\label{section:methods}
+To properly compare Flutter and native, an application will be developed which has typical mobile app features including the interaction with a remote API, user authentication and authorization, different means of navigation between screens as well as continuous scrolling of remotely fetched items.
+
+Based on these characteristics, \textit{Kickdown} - an online Oldtimer car auction app was chosen. The app is already developed for iOS by apploft. 
+To verify laid out claims of the Flutter framework an exact clone is built to compare performance and usability characteristics
+
+\subsection{Performance comparison}
+To evaluate performance the typical measures of CPU, GPU and memory usage are chosen in this paper. On the one hand these metrics are the underlying causes of more ephemeral metrics such as page load speed apart from software implementation complexity. On the other hand, these metrics can be easily measured using software tools.
+
+\subsection{Usability comparison}
+This will depend on the authors speed (see \ref{section:planofattack}).
+
+\section{Scope \& Limitations}
+The feature variance of mobile applications is rather high. Features beyond those mentioned in ~\ref{section:methods} include on-device machine learning, augmented reality and more. These types of features will be intentionally excluded from the app, due to the high implementation effort which would exceed the scope of this thesis.\\
+\textit{If a usability study is conducted, N may be too small to have a statistical significance.}
+
+\section{Plan of Attack}
+\label{section:planofattack}
+The following is a list of subgoals of this thesis including accompanying deadlines.
+
+\begin{itemize}
+    \item Submit topic of thesis to committee - 15.02.21
+    \item Complete development of Flutter clone* - 26.03.21
+    \item Complete writing of all sections except for the comparison study - 26.03
+    \item Setup a usability comparison study** - 26.03.21
+    \item Complete performance comparison - 31.03.21
+    \item Complete usability study - 05.04.21
+    \item Complete writing of thesis - 08.04.21
+    \item Submit thesis - 09.04.21
+    
+\end{itemize}
+
+*It is unclear how fast the author will be able to implement the features of the app. The minimum requirement is to complete building out the \textit{offerings} screen. This is the most complex screen of the app and constitutes the main feature. It is sufficient for performance comparison as well as a usability study. However, if time permits, more of the app will be developed and comparatively evaluated. \\
+
+** This will be based on the app which the author has built at that time and an estimate of the amount of work left for the thesis. This may optionally be excluded entirely if time does not permit.

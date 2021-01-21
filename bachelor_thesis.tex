@@ -1,0 +1,48 @@
+\documentclass[11pt,a4paper]{report}
+
+\usepackage[utf8]{inputenc}          
+\usepackage[T1]{fontenc}
+
+\usepackage[english]{babel}
+\usepackage{lmodern}                   % optimized print quality
+\usepackage{booktabs}                  % for nicer tables
+\usepackage{graphicx}                  % to implement jpg images
+\usepackage[doublespacing]{setspace}   % for double line brakes
+\usepackage{geometry}                  % settings for margins
+\geometry{left=2.5cm,right=2.5cm,top=2cm,bottom=3cm}
+
+                                       % for literature
+\usepackage[authordate,backend=biber,maxcitenames=2]{biblatex-chicago}
+\usepackage{csquotes}
+\addbibresource{sources.bib}         % file with sources
+
+%%%%% END OF SETTINGS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%% TITLE PAGE %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+
+\pagenumbering{roman}                  % small roman page numbers
+
+\include{chapters/titlepage}
+
+%\include{chapters/abstract}
+
+\include{chapters/tableofcontents}
+
+\pagenumbering{arabic}
+
+\include{chapters/vision}
+
+%\include{chapters/other}
+
+\include{chapters/latextips}
+
+\printbibliography[heading=bibintoc] % print bibliography
+
+%\include{chapters/appendix}
+
+%\include{chapters/honordeclaration}
+
+\end{document}
+
