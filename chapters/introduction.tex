@@ -1,88 +1,96 @@
 \chapter{Introduction}
+\label{section:introduction}
 Mobile platforms are dominated by two players - Apple and Google with their respective operating systems iOS and Android. 
 Cumulatively, they form a duopoly in the smartphone operating systems market with a combined usage share of 
 15.2\% for iOS and 84.8\% for Android in 2020 according to \textcite{IDC2021}.
 \\To develop a mobile application for both target platforms, the corresponding development environments and technologies 
-are utilized for each platform. This leads to a doubling of cost, development time and 
+are utilized for each platform. This leads to a doubling of cost, development time, and 
 the need for knowledge of two different application development paradigms. 
-This has resulted in the creation of cross-platform (CP) frameworks such as Xamarin (\cite{Xamarin2021}), React Native (\cite{Facebook2021}) and Ionic (\cite{Ionic2021}). 
+This has resulted in the creation of cross-platform frameworks such as Xamarin (\cite{Xamarin2021}), React Native (\cite{Facebook2021}), and Ionic (\cite{Ionic2021}). 
 
 The fundamental principle behind these frameworks is a specific tech stack operating on a single code base leading to increased development speed
 while also having the ability to deploy for both operating systems.
 
-However, CP frameworks lack in terms of performance and 
-usability when compared to native technologies as shown by \textcite{Mercado2016} and \textcite{Ebone2018}.
-This insufficiency in both aspects can be explained by their inherent architectures (see section \ref{section::other_architectures}). 
-Generally, these frameworks utilize a software bridge to communicate with the underlying host platform leading to a transmission delay and thus impaired
-app performance. In addition, CP frameworks provide abstract interfaces over multiple native interfaces leading to a decreased subset of functionality
-and especially UI customizability. 
+Generally, cross-platform frameworks utilize a software bridge to communicate with the underlying host platform plugging into 
+native interfaces. During app runtime, transmission delays may occur leading to reduced execution speed. In addition, 
+cross-platform frameworks provide abstract interfaces over multiple native interfaces leading to a decreased subset of functionality
+and especially impaired UI customizability. These inherent architecture attributes (further see Section \ref{section::other_architectures}) explain
+both impeded performance (\cite{Ebone2018}) and user experience (\cite{Mercado2016}) compared to native technologies. 
 
 Flutter (\cite{FlutterDev20}) is a newly developed open-source UI toolkit developed by Google. 
-It has a nonconventional approach to CP development in that every app ships with the Flutter rendering engine. 
-Thereby, Flutter bypasses host platform communication in terms of UI rendering and deliveres a natively compiled binary 
-which can be executed by the underlying device (see section \ref{section::flutter_architecture}).
-Furthermore, the framework delivers a \textit{"[...] collection of visual, structural, platform, and interactive widgets"} (\textcite{GoogleWidgets2021}) for UI customization.
-It seems that Flutter addresses the very issues that are generally criticized about CP solutions.
+It has a nonconventional approach to cross-platform development in that every app ships with the Flutter rendering engine. 
+Thereby, Flutter bypasses host platform communication in terms of UI rendering and delivers a natively compiled binary 
+which can be executed by the underlying device (see Section \ref{section::flutter_architecture}).
+Furthermore, the framework provides a \textit{"[...] collection of visual, structural, platform, and interactive widgets"} (\textcite{GoogleWidgets2021}) for UI customization.
+It seems that Flutter addresses the very issues that are generally criticized about cross-platform solutions.
 
 Unfortunately, since Flutter was first released in March 2018 (\cite{FlutterReleases2020}), 
-there are no peer reviewed articles comparing the performance or usability to native apps.
-\footnote{A search for relevant articles has been conducted using Google Scholar, Sci-hub and IEEE Xplore.} 
+there are no peer reviewed articles comparing the performance or usability to native apps\footnote{A search for relevant articles has been conducted using Google Scholar, Sci-hub and IEEE Xplore.}. 
 
 \section{Motivation}
 As a digital agency specialized on native iOS and Android development, apploft GmbH 
 (the partnering company of this thesis) is highly interested in Flutter. 
-The implications of using this framework could be wide ranging. 
-The services portfolio of apploft could be extended to clients with lower budgets while not being tied to a specific operating system.
+The implications of using this framework could be wide ranging including the extension of the services portfolio
+to clients with lower budgets.
 For example, startups which are unsure about product market-fit and held by tight budget constraints are especially keen on reaching 
 the maximum number of potential customers with their app. Flutter could be utilized for a fast iteration of a product deployable to 
-both platforms. 
+both mobile platforms. 
 Worth noting are the benefits of serving smaller customers like startups which include higher growth potential for long-term cooperation
-and risk diversification in apploft's client portfolio.
-
-Furthermore, infrastructure setup, package development and app updates would only need to be done for one codebase.
+and risk diversification in apploft's client portfolio.\\
+The potential of Flutter goes beyond small clients. Instead of focusing on platform customization with native tooling, more effort could 
+be directed into developing unique custom features.
+Furthermore, infrastructure setup, package development and app updates would only be necessary for one codebase.\\
+The above stated possible implications are not only relevant for apploft, but mobile application developers at large.
 
 \section{Thesis Goal}
-Based on the above stated problems with CP frameworks and the potential business opportunities, the goal of this thesis is to evaluate 
+Based on the above stated problems with cross-platform frameworks and the potential business opportunities, the goal of this thesis is to evaluate 
 whether Flutter's claims on performance and usability hold up in practice.
 
-\section{Methods}
-\label{section:methods}
+%% METHODS
 To properly compare Flutter and native, an application will be developed which has
 typical mobile app features including the interaction with a remote API, different means of navigation between screens, 
-user authentication and authorization. The feature selection process is further explained in section \ref{section::feature_selection}.
+user authentication and authorization. The feature selection process is further explained in Section \ref{section::feature_selection}.
 
 Based on these characteristics, \textit{Kickdown} (\cite{Kickdown2021}) - an online car auction app - was chosen. 
 The app has already been developed for iOS by apploft.
-To verify laid out claims of the Flutter framework, an app with specific matching functionality and UX design is reproduced.8
+To verify laid out claims of the Flutter framework, an app with specific matching functionality and UX design is reproduced.
 
 \subsection{Performance comparison}
-To evaluate performance the typical measures of CPU, GPU and memory usage are chosen in this thesis. 
+To evaluate performance, the typical measures of CPU, GPU and memory usage are chosen in this thesis. 
 On the one hand, these metrics are the underlying causes of more ephemeral metrics such as page load speed. 
-On the other hand, they can be easily measured using software tools (see section \ref{section::performance_comparison_design}).
+On the other hand, they can be easily measured using software tools (see Section \ref{section::performance_comparison_design}).
 
 \subsection{Usability comparison}
 Expert interviews with employees of apploft are conducted to compare the user experience of the developed Flutter app with the iOS application.
 
 \section{Scope \& Limitations}
 The feature set of the implemented app is representative for most, but not every type of app. Therefore the results cannot be generalized to 
-every type of app.\\
-The usability study doesn't have a statistical significance due to its qualitative nature.\\
-\textit{TODO: elaborate on these points.}
+every type of possible app. However, the results should be seen as indicators of Flutters value as a cross-platform framework for the 
+archetypal mobile app.\\
+Additionally, the usability study doesn't have a statistical significance due to its qualitative nature. Nevertheless, the depth of detail
+in expert interviews is much greater compared quantitative methods, and unthought of considerations may be suggested by the interviewees.\\
+This research attribute is especially compelling given the current research state on the Flutter framework as mentioned above. 
 
 \section{Plan of Attack}
 \label{section:planofattack}
 The following is a list of subgoals of this thesis including accompanying deadlines.
 
+\subsection{App Development}
+\begin{itemize}
+    \item complete development of Flutter app* - 26.03.21
+\end{itemize}
+
+
 \subsection{Section Writing}
 \begin{itemize}
-    \item \sout{write draft of \textit{Introduction} section and discuss - 05.02.21}
-    \item write draft of \textit{Flutter} section and discuss - 19.02.21
-    \item write draft of \textit{Study Design} section and discuss - 05.03.21
-    \item write draft of \textit{Application Design} section and discuss - 19.03.21
-    \item write draft of \textit{Performance Comparison} section and discuss - 02.04.21
-    \item write draft of \textit{UX Comparison} section and discuss - 02.04.21
-    \item write draft of \textit{Summary} section and discuss - 02.04.21
-    \item write draft of \textit{Abstract} section and discuss - 02.04.21
+    \item \sout{write draft of \textit{Introduction} Section and discuss - 05.02.21}
+    \item write draft of \textit{Flutter} Section and discuss - 19.02.21
+    \item write draft of \textit{Study Design} Section and discuss - 05.03.21
+    \item write draft of \textit{Application Design} Section and discuss - 19.03.21
+    \item write draft of \textit{Performance Comparison} Section and discuss - 02.04.21
+    \item write draft of \textit{UX Comparison} Section and discuss - 02.04.21
+    \item write draft of \textit{Summary} Section and discuss - 02.04.21
+    \item write draft of \textit{Abstract} Section and discuss - 02.04.21
 \end{itemize}
 
 
@@ -112,6 +120,8 @@ This is the most complex screen of the app and constitutes the main feature.
 It is sufficient for performance comparison as well as a usability study. 
 However, if time permits, more of the app will be developed and comparatively evaluated. \\
 
+\iffalse
 \section{Following Chapter Summary}
 \textit{- TODO: Describe structure of thesis and summarize each chapter. 
 This should be somehow interwoven into introduction.}
+\fi

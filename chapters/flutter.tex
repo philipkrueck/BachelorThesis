@@ -1,15 +1,99 @@
 \chapter{Flutter}
 
-\section{Architecture}
+\section{Mobile Developement Tiers} \label{section::other_architectures}
+\subsection{Web Apps and PWAs}
+Web apps are run and rendered in the browser. 
 
-\subsection{Other Cross-Platform Framework Architectures} \label{section::other_architectures}
+- apps run in web browser\\
+- many different frameworks like Angular, React.js or Vue.js for building modern web Apps\\
+- essentially all built on top of HTML, CSS + JS which is rendered by the browser\\
+- no direct access to camera or file system\\
+- PWAs\\
+    - web apps that provide native app capabilities such as offline use, use of locally cached data, add to home screen on mobile device, 
+    Push Notifications\\
 
-\subsubsection{React Native}
+\subsection{Hybrid Apps}
+- Utilize HTML, CSS and JS to be rendered in a web view, but can also interact with native APIs through a bridge\\
+- are shippable to official stores\\
+- Ionic/Cordova\\
+% Todo: insert architecture image
 
-\subsubsection{Ionic}
+\subsection{Web Native Apps}
+- uses transpilation -> conversion from one language to another during runtime\\
+- use OEM components through a bridge\\
+- are shippable to official stores\\
+- React Native and Native Script\\
 
-\subsubsection{Xamarin}
-r
-\subsection{Flutter's Architecture} \label{section::flutter_architecture}
+\subsection{Cross Compiled Apps}
+- compiled to target code\\
+- Xamarin uses cross compilation from C\# into byte code which then uses OEM components\\
+- This should be technically slightly more performant than Web Native Apps, but works quite similar to Web Native apps\\
+- Flutter is also Cross Compiled, but is fundamentally different due to its own set of components with cross-platform in mind
+and rendering engine (see section next section).\\
+% Todo: insert architecture image
 
-\subsection{Difference to iOS development}
+\subsection{Native Mobile Applications}
+Native applications directly communicate with the OEM components and APIs which are part of the operating system and thus tightly integrated into the platform.
+Making full use of hardware and software integration, native apps yield the highest performance and user experience.
+% Todo: insert architecutre image
+
+\section{Flutter's Architecture} \label{section::flutter_architecture}
+Flutter's architecture is composed of three distinct layers: framework, engine and embedder. The framework acts as the top most layer which 
+app developers interact with. It features the widgets, animation and gestures API as well as platform specific UI components delivered through
+the Material (Android) and Cupertino (iOS) package.
+\\
+Below the framework layer lies the engine which unlike the framework isn't written in Dart, but in C and C++. Presumably, this design choice has been 
+made to easily allow the production of native binaries. This act of cross-compilation is Flutter's technical value proposition to increase execution performance as stated in 
+Section \dots. The engine layer includes Skia - a graphics rendering engine which is also used in the Chrome web browser.
+\\
+At the bottom lies the embedder layer. Its sole purpose is to integrate the Flutter application into the platform-specific environment
+by providing native plugins and event loop interoperation. 
+Additionally, app package formatting is provided in the same way native apps. The host operating is thus not able to differentiate between a Flutter and
+a natively written app.\\ 
+Flutter aims to minimize application size as it's already shipping the entire framework including the rendering engine with each app which amounts
+to approximately 4.5 mb (https://flutter.dev/docs/resources/faq). Common app platform plugin functionality like camera access or webview interaction are extracted in separate packages.
+Networking, animations or other platform agnostic functionality is also bundled in packages. 
+% Todo: insert architecture image
+
+
+\subsection{Programming Language and Compilation}
+Flutter apps are written in Dart... a language which features. It also features 
+"JIT-based fast development cycle that allows for shape changing and stateful hot reloads in a language with types, 
+plus an Ahead-of-Time compiler that emits efficient ARM code for fast startup and predictable performance of production deployments." 
+(https://flutter.dev/docs/resources/faq)
+
+
+During Flutter development, apps run in the Dart Virtual Machine. This offers stateful hot reload which allows reload changes without needing 
+to fully recompile the app leading faster development iteration.
+For release purposes, Flutter applications are compiled into native machine code including the Intel x86 and ARM instruction sets
+(https://flutter.dev/docs/resources/architectural-overview).
+
+
+\subsection{Rendering and UI State}
+Flutter apps are fundamentally composed of widgets which declare structural, stylistic and layout elements for building the user interface. 
+Each widget may have 0, 1 or multiple children which in turn create a tree structure of parent-child relationships. 
+For example, a Column which has the purpose of laying out its children vertically has both a Text and an Image as its children. Both the Text,
+and Image widgets have no children and represent the leaf nodes in the tree. The Column is an invisible structural layout element while Text and 
+Image are stylistic.
+\footnote{Technically both Text and Image do have an implicit single child widget which is created by the framework.}
+The entry point of every Flutter app is either a 'MaterialApp' or 'CupertinoApp' widget which also marks the root of the tree.
+Based on this tree structure Flutter can determine where and how elements should be drawn on screen, and instruct its graphics engine accordingly.\\
+This concept alone is not yet sufficient to enable modern mobile applications with complex UI changes or animations 
+based on asynchronous events like user interaction. 
+Widgets are mappings from state (what is state?) to a UI representation. When the state changes during runtime Flutter creates a new widget tree, 
+diffs it against the old one and then redraws only its changes to the screen.
+This declarative approach simplifies UI development in the sense that the developer does not need to keep track of UI state which can grow exponentially
+with the increase of UI components on screen. 
+
+\subsection{Method Channels}
+To utilize platform functionality like camera access, geolocation or other sensor data, Flutter communicates with the platform's native APIs via 
+method channels (see architecture diagram). Common functionality is already provided by Flutter and third party packages, but custom platform channel
+functionality may be implemented as required. (reference Flutter doucmentation...)
+
+\section{Flutter's Limitations}
+Unlike other cross-platform frameworks, Flutter doesn't use OEM components, but its own components instead (widgets).\\
+When the underlying OEM component of the host platform changes with an OS update, Flutters' framework needs to updated to resemble this new 
+functionality. Flutter always has to continuously replicate these changes in their framework layer.As Google is using Flutter itself in multiple 
+production apps (cite something), the company has an incentive to swiftly replicate OS features. Additionally, since Google also owns Android, 
+coordination may be easier and not as surprising.
+The benefit though is that once the new widget is rebuilt in Flutter it can even be shipped to older operating systems.
