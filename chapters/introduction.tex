@@ -37,91 +37,49 @@ the maximum number of potential customers with their app. Flutter could be utili
 both mobile platforms. 
 Worth noting are the benefits of serving smaller customers like startups which include higher growth potential for long-term cooperation
 and risk diversification in apploft's client portfolio.\\
-The potential of Flutter goes beyond small clients. Instead of focusing on platform customization with native tooling, more effort could 
+The potential of Flutter goes beyond acquiring small clients. Instead of focusing on platform customization with native tooling, more effort could 
 be directed into developing unique custom features.
 Furthermore, infrastructure setup, package development and app updates would only be necessary for one codebase.\\
 The above stated possible implications are not only relevant for apploft, but mobile application developers at large.
 
 \section{Thesis Goal}
-Based on the above stated problems with cross-platform frameworks and the potential business opportunities, the goal of this thesis is to evaluate 
-whether Flutter's claims on performance and usability hold up in practice.
+The aim of this thesis is derived based on the above stated problems with cross-platform frameworks (section ..) and the potential business opportunities mentioned in section.
+Specifically, Google's claim that Flutter can match "native performance" and the framework can be utilized for building "expressive and flexible UI" (cite flutter.io)
+will both serve as inductively derived hypotheses that shall be empirically verified or falsified individually by this thesis.
+
 
 %% METHODS
-To properly compare Flutter and native, an application will be developed which has
-typical mobile app features including the interaction with a remote API, different means of navigation between screens, 
-user authentication and authorization. The feature selection process is further explained in Section \ref{section::feature_selection}.
+The methodology to evaluate the stated hypotheses will be to compare common use cases between a Flutter and native mobile application.
+Typical mobile application features include the visual and interactive representation of information, horizontal and vertical scrolling, 
+communication with a remote API, different means of navigation between screens 
+as well as animations and transitions.
+The feature selection process is further explained in Section \ref{section::feature_selection}.
 
 Based on these characteristics, \textit{Kickdown} (\cite{Kickdown2021}) - an online car auction app - was chosen. 
-The app has already been developed for iOS by apploft.
-To verify laid out claims of the Flutter framework, an app with specific matching functionality and UX design is reproduced.
+The app has already been developed for iOS by apploft (link to appstore).
+To verify laid out claims of the Flutter framework, an app with a relevant specific subset of matching functionality
+and UX design is reproduced.
 
 \subsection{Performance comparison}
 To evaluate performance, the typical measures of CPU, GPU and memory usage are chosen in this thesis. 
 On the one hand, these metrics are the underlying causes of more ephemeral metrics such as page load speed. 
-On the other hand, they can be easily measured using software tools (see Section \ref{section::performance_comparison_design}).
+On the other hand, they can be easily measured using software tools as explained in Section \ref{section::performance_comparison_design}.
 
 \subsection{Usability comparison}
 Expert interviews with employees of apploft are conducted to compare the user experience of the developed Flutter app with the iOS application.
+The process is explained in Section bla.
 
 \section{Scope \& Limitations}
-The feature set of the implemented app is representative for most, but not every type of app. Therefore the results cannot be generalized to 
-every type of possible app. However, the results should be seen as indicators of Flutters value as a cross-platform framework for the 
-archetypal mobile app.\\
+The feature set of the implemented app is representative for most, but not every type of app (see Section \ref{section::feature_selection}). 
+Therefore the results cannot be generalized to every type of possible app. 
+However, the results should be seen as indicators of Flutters value as a cross-platform framework for the 
+archetypal mobile app. 
+Furthermore, the deductively chosen methodology yields the potential of finding adjacent hypothesis which may be
+further explored by other researchers.\\
 Additionally, the usability study doesn't have a statistical significance due to its qualitative nature. Nevertheless, the depth of detail
 in expert interviews is much greater compared quantitative methods, and unthought of considerations may be suggested by the interviewees.\\
 This research attribute is especially compelling given the current research state on the Flutter framework as mentioned above. 
 
-\section{Plan of Attack}
-\label{section:planofattack}
-The following is a list of subgoals of this thesis including accompanying deadlines.
-
-\subsection{App Development}
-\begin{itemize}
-    \item complete development of Flutter app* - 26.03.21
-\end{itemize}
-
-
-\subsection{Section Writing}
-\begin{itemize}
-    \item \sout{write draft of \textit{Introduction} Section and discuss - 05.02.21}
-    \item write draft of \textit{Flutter} Section and discuss - 19.02.21
-    \item write draft of \textit{Study Design} Section and discuss - 05.03.21
-    \item write draft of \textit{Application Design} Section and discuss - 19.03.21
-    \item write draft of \textit{Performance Comparison} Section and discuss - 02.04.21
-    \item write draft of \textit{UX Comparison} Section and discuss - 02.04.21
-    \item write draft of \textit{Summary} Section and discuss - 02.04.21
-    \item write draft of \textit{Abstract} Section and discuss - 02.04.21
-\end{itemize}
-
-
-\subsection{Performance Measurement}
-\begin{itemize}
-    \item prepare tooling and conceptualize measurement process - 26.02.
-    \item execute a first iteration of measurement process - 05.03.
-    \item execute a final iteration of measurement process - 26.03.
-\end{itemize}
-
-\subsection{UX Measurement}
-\begin{itemize}
-    \item prepare interview process - 26.02.
-    \item conduct a minimum of 3 interviews - 31.03.
-    \item evaluate interviews - 01.04.
-\end{itemize}
-
-\subsection{Submission}
-\begin{itemize}
-    \item topic submission - 15.02.
-    \item send out thesis for proof reading - 05.04.21
-    \item submit to examination office + register for colloquium - 09.04.
-\end{itemize}
-
-*The minimum requirement is to complete building out the \textit{offerings} screen. 
-This is the most complex screen of the app and constitutes the main feature. 
-It is sufficient for performance comparison as well as a usability study. 
-However, if time permits, more of the app will be developed and comparatively evaluated. \\
-
-\iffalse
 \section{Following Chapter Summary}
 \textit{- TODO: Describe structure of thesis and summarize each chapter. 
 This should be somehow interwoven into introduction.}
-\fi
