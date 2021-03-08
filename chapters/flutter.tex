@@ -1,10 +1,18 @@
 \chapter{Flutter}
+consider naming it theoretical background
 
+- introduce native technology as a baseline
+
+- create graphic with over of mobile development approaches
+
+- revisit sections for PWA, Hybrid apps, runtime-based and interpreted apps of Springer article
+
+or name it overview of cross-platform development approaches
 \section{Mobile Developement Tiers} \label{section::other_architectures}
 \subsection{Web Apps and Progressive Web Apps}
 Web apps are applications run and rendered in the browser. The underlying technologis are HTML, CSS and JavaScript with popular frameworks 
 used for the development process such as Angualar (ref), React.js (ref) and Vue.js (ref). Web apps rely on the Browser and an internet connection.
-They do not have direct access to hardware capabilites such as the camera or the file system.\\
+They do not have direct access to hardware capabilites such as the camera or the file system.
 Progressive Web Apps (PWAs) function similarly to web apps but provide additional capabilities such as offline use, locally cached data, 
 push notifications, and the ability to add them to the home screen.
 
@@ -15,10 +23,13 @@ Popular framework choices for building Hybrid Apps include Ionic and Cordova
 Hybrid apps unlike web apps are shippable to official stores.
 
 
+(ref: https://www.freecodecamp.org/news/a-deeply-detailed-but-never-
+definitive-guide-to-mobile-development-architecture-6b01ce3b1528)
+
 \begin{figure}
-    \includegraphics[width=\linewidth]{images/architectures/hybrid_architecture.png}
+    \includegraphics[width=\linewidth]{images/architectures/hybrid_architecture.eps}
     \caption{Hybrid architecture (image to be replaced).}
-    \label{fig:hybrid_architecture}  (ref: https://www.freecodecamp.org/news/a-deeply-detailed-but-never-definitive-guide-to-mobile-development-architecture-6b01ce3b1528/)
+    \label{fig:hybrid_architecture}
 \end{figure}
 
 \subsection{Web Native Apps}
@@ -27,7 +38,7 @@ This is achieved by using JavaScript calls to a platform bridge which transpiles
 The views are thus in Web Native Apps rendered with native technologies.
 
 \begin{figure}
-    \includegraphics[width=\linewidth]{images/architectures/native_web_app_architecture.png}
+    \includegraphics[width=\linewidth]{images/architectures/native_web_app_architecture.eps}
     \caption{Web Native and Cross Compiled Architecture (image to be replaced).}
     \label{fig:web_native_architecture}
 \end{figure}
@@ -39,7 +50,7 @@ Flutter can also be classified as a cross compiled architecture. However, Flutte
 the host platform (see \ref{fig:flutter_architecture}). These technicalities will be explained in Section \ref{section::flutter_architecture}.
 
 \begin{figure}
-    \includegraphics[width=\linewidth]{images/architectures/flutter_architecture.png}
+    \includegraphics[width=\linewidth]{images/architectures/flutter_architecture.eps}
     \caption{Flutter Architecture (image to be replaced).}
     \label{fig:flutter_architecture}
 \end{figure}
@@ -49,7 +60,7 @@ Native applications directly communicate with the OEM components and APIs which 
 Making full use of hardware and software integration, native apps yield the highest performance and user experience.
 
 \begin{figure}
-    \includegraphics[width=\linewidth]{images/architectures/native_architecture.png}
+    \includegraphics[width=\linewidth]{images/architectures/native_architecture.eps}
     \caption{Native Mobile Architecture (image to be replaced).}
     \label{fig:native_architecture}
 \end{figure}
@@ -58,23 +69,24 @@ Making full use of hardware and software integration, native apps yield the high
 Flutter's framework architecture is composed of three distinct layers: framework, engine and embedder. The framework acts as the top most layer which 
 app developers interact with. It features the widgets, animation and gestures API as well as platform specific UI components delivered through
 the Material (Android) and Cupertino (iOS) package.
-\\
+
 Below the framework layer lies the engine which unlike the framework isn't written in Dart, but in C and C++. Presumably, this design choice has been 
 made to easily allow the production of native binaries. This act of cross-compilation is Flutter's technical value proposition to increase execution performance as stated in 
 Section \ref{section:introduction}. The engine layer includes Skia - a 2D graphics rendering engine which is also used in the Chrome web browser.
-\\
+
 At the bottom lies the embedder layer. Its sole purpose is to integrate the Flutter application into the platform-specific environment
 by providing native plugins and event loop interoperation. 
 Additionally, app package formatting is provided in the same way as for native apps. 
-The host operating is thus not able to differentiate between a Flutter and a natively written app.\\ 
+The host operating is thus not able to differentiate between a Flutter and a natively written app.
 Flutter aims to minimize application size as it's already shipping the entire framework including the rendering engine with each app which amounts
 to approximately 4.5 mb (https://flutter.dev/docs/resources/faq). Common app platform plugin functionality like camera access or webview 
 interaction are extracted in separate packages. Networking, animations or other platform agnostic functionality is also bundled in packages. 
 
+(ref to include https://flutter.dev/docs/resources/architectural-overview).
 \begin{figure}
-    \includegraphics[width=\linewidth]{images/flutter_layered_architecture.png}
-    \caption{Flutter's Layered Architecture (ref to include https://flutter.dev/docs/resources/architectural-overview).}
-    \label{fig:native_architecture}
+    \includegraphics[width=\linewidth]{images/flutter_layered_architecture.eps}
+    \caption{Flutter's Layered Architecture}
+    \label{fig:flutter_layered_architecture}
 \end{figure}
 
 
@@ -95,7 +107,7 @@ and Image widgets have no children and represent the leaf nodes in the tree. The
 Image are stylistic.
 \footnote{Technically both Text and Image do have an implicit single child widget which is created by the framework.}
 The entry point of every Flutter app is either a 'MaterialApp' or 'CupertinoApp' widget which also marks the root of the tree.
-Based on this tree structure Flutter can determine where and how elements should be drawn on screen, and instruct its graphics engine accordingly.\\
+Based on this tree structure Flutter can determine where and how elements should be drawn on screen, and instruct its graphics engine accordingly.
 This concept alone is not yet sufficient to enable modern mobile applications with complex UI changes or animations 
 based on asynchronous events like user interaction. 
 Widgets are mappings from state to a UI representation. When the state changes during runtime Flutter creates a new widget tree, 
@@ -109,7 +121,7 @@ method channels (see architecture diagram). Common functionality is already prov
 functionality may be implemented as required. (reference Flutter doucmentation...)
 
 \section{Flutter's Limitations}
-Unlike other cross-platform frameworks, Flutter doesn't use OEM components, but its own components instead (widgets).\\
+Unlike other cross-platform frameworks, Flutter doesn't use OEM components, but its own components instead (widgets).
 When the underlying OEM component of the host platform changes with an OS update, Flutters' framework needs to updated to resemble this new 
 functionality. Flutter always has to continuously replicate these changes in their framework layer. As Google is using Flutter itself in multiple 
 production apps (cite something), the company has an incentive to swiftly replicate OS features. Additionally, since Google also owns Android, 

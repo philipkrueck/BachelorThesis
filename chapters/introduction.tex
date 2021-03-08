@@ -3,31 +3,30 @@
 Mobile platforms are dominated by two players - Apple and Google with their respective operating systems iOS and Android. 
 Cumulatively, they form a duopoly in the smartphone operating systems market with a combined usage share of 
 15.2\% for iOS and 84.8\% for Android in 2020 according to to the International Data Corporation (\cite{IDC2021}).
-\\To develop a mobile application for both target platforms, the corresponding development environments and technologies 
+\\To develop a mobile software application (app) for both target platforms, the corresponding development environments and technologies 
 are utilized for each platform. This leads to a doubling of cost, development time, and 
 the need for knowledge of two different application development paradigms. 
-This has resulted in the creation of cross-platform frameworks (cite literature that explains this) such as Xamarin (\cite{Xamarin2021}), React Native (\cite{Facebook2021}), and Ionic (\cite{Ionic2021}). 
+As a result cross-platform frameworks such as Xamarin (\cite{Xamarin2021}), React Native (\cite{Facebook2021}), and Ionic (\cite{Ionic2021}) have been created. 
 
 %% MOTIVATION FOR CROSS-PLATFORM FRAMEWORKS GENERALLY
 The fundamental principle behind these frameworks is a specific tech stack operating on a single code base leading to increased development speed
-while also having the ability to deploy for both operating systems.
+while also providing the ability to deploy for both mobile operating systems.
 
 %% PROBLEM WITH CROSS-PLATFORM FRAMEWORKS
-Generally, cross-platform frameworks utilize a software bridge to communicate with the underlying host platform plugging into 
-native interfaces. During app runtime, transmission delays may occur leading to reduced execution speed. In addition, 
-cross-platform frameworks provide abstract interfaces over multiple native interfaces leading to a decreased subset of functionality
+Generally, cross-platform frameworks utilize webviews or a software bridge to communicate with the underlying host platform plugging into 
+native interfaces. In both cases, transmission delays may occur during app runtime leading to reduced execution speed. In addition, 
+cross-platform frameworks deliver abstract interfaces over multiple native interfaces leading to a decreased subset of functionality
 and especially impaired UI customizability. These inherent architecture attributes (further see Section \ref{section::other_architectures}) explain
-both impeded performance (\cite{Ebone2018}) and user experience (\cite{Mercado2016}) compared to native technologies. 
-Therefore, native technologies are favored over cp frameworks for most app (cite something).
+both impeded performance (\cite{Ebone2018} and \cite{Corbalan2019}) and user experience (\cite{Mercado2016} and \cite{Angulo2014}) compared to native technologies.
 
 %% INTRODUCE FLUTTER
-However, In recent years, one particular cp technology has risen stronger than every other toolkit (cite something)
+However, over the past 2 years one particular cross-platform technology with certain distinct attributes has risen strongly in popularity (\cite{Statista2021}).
 Flutter (\cite{FlutterDev20}) is a newly developed open-source UI toolkit developed by Google. 
-It has a nonconventional approach to cross-platform development in that every app ships with the Flutter rendering engine (Section ...). 
+It has a nonconventional approach to cross-platform development in that every app ships with the frameworks rendering engine (Section ...). 
 Thereby, Flutter bypasses host platform communication in terms of UI rendering and delivers a natively compiled binary 
 which can be executed by the underlying device (see Section \ref{section::flutter_architecture}).
 Furthermore, the framework provides a \textit{"[...] collection of visual, structural, platform, and interactive widgets"} (\textcite{GoogleWidgets2021}) for UI customization.
-It seems that Flutter addresses the very issues that are generally criticized about cross-platform solutions.
+It seems that Flutter addresses the exact same issues that are generally criticized about cross-platform solutions.
 
 \section{Motivation}
 \label{section:motivation}
@@ -35,65 +34,63 @@ As a digital agency specialized on native iOS and Android development, apploft G
 (the partnering company of this thesis) is highly interested in Flutter. 
 The implications of using this framework could be wide ranging including the extension of the services portfolio
 to clients with lower budgets.
-For example, startups which are unsure about product market-fit (reference concept) and held by tight budget constraints are especially keen on reaching 
+For example, startups which are unsure about product/market fit (\cite{Andreesen2007}) and held by tight budget constraints are especially keen on reaching 
 the maximum number of potential customers with their app. Flutter could be utilized for a fast iteration of a product deployable to 
 both mobile platforms. 
 Worth noting are the benefits of serving smaller customers like startups which include higher growth potential for long-term cooperation
 and risk diversification in apploft's client portfolio.\\
-The potential of Flutter goes beyond acquiring small clients. Instead of focusing on platform customization with native tooling, more effort could 
+The potential of Flutter exceeds the acquisition of small clients. Instead of focusing on platform customization with native tooling, more effort could 
 be directed into developing unique custom features.
 Furthermore, infrastructure setup, package development and app updates would only be necessary for one codebase.\\
-Since the aforemntioned economic incencentives aren't necessarily company-specific, they are relevant for mobile application developers at large.
+Since the aforemntioned economic incentives aren't necessarily company-specific, they are relevant for mobile application developers at large.
 Scientifically, this thesis may be the basis for future work on Flutters architecture attributes and their contribution to runtime performance and UI rendering of frontend toolkits generally.
 
 \section{Problem Statement}
 Unfortunately, since Flutter was first released in March 2018 (\cite{FlutterReleases2020}), 
 there are no peer reviewed articles comparing the performance or usability to native apps\footnote{A search for relevant articles has been conducted using Google Scholar, Sci-hub and IEEE Xplore.}. 
-However, having evidence to support Flutters legitimacy as a framework compared to native technologies would be a critical factor for determining future adoption.
+This leaves an especially interesting gap in the literature, since both aspects are the topmost perceived challenges of cross-platform frameworks considered from an industry-perspective (\cite{BioernHansen2019}).
 
 \section{Thesis Objective}
 The aim of this thesis is derived based on the initially stated problems with cross-platform frameworks and the current lack of research on Flutters lofty marketing claims to solve those drawbacks.
-Specifically, Google's assertion that Flutter can match "native performance" and the framework can be utilized for building "expressive and flexible UI" (cite flutter.io)
-will both serve as inductively derived hypotheses that shall be empirically verified or falsified individually by this thesis.
+Specifically, Google's assertion that Flutter can match "native performance" and the framework can be utilized for building "expressive and flexible UI" (\cite{FlutterDev20})
+will both serve as inductively derived hypotheses that shall be empirically verified or falsified individually by this thesis:
 
 \textbf{$H_P$}: The Flutter framework yields comparable performance to native mobile frameworks for app development.
 
-\textbf{$H_U$}: The Flutter framework can be utilized to produce comparable user experiences as native UI toolkits.
+\textbf{$H_U$}: The Flutter framework can be utilized to produce comparable user experiences as native UI toolkits for mobile devices.
 
 \section{Methods}
 An architypal native mobile app has been chosen as a case study for the evaluation of both hypotheses $H_P$ and $H_U$.
-Based on typical mobile application features (as explained in Section ...) , \textit{Kickdown} (\cite{Kickdown2021}) - an online car auction app - was chosen for this thesis. 
+Based on typical mobile application features (as explained in Section \ref{section::feature_selection}), \textit{Kickdown} (\cite{Kickdown2021}) - an online car auction app - was chosen for this thesis. 
 The app has already been developed for iOS by apploft and released to the App Store in February of 2021 (link to appstore).
-For the purposes of comparison, a Flutter equivalent has been developed mimicking the relevant subset of UI and functionality of the original app. 
+For the purposes of comparison, a Flutter equivalent has been developed mimicking the relevant subset of UI and functionality of the original app (see Section \ref{section::feature_selection}). 
 Both the original and Flutter replica app are used for subsequent hypotheses testing.
 
 
 \subsection{Performance comparison}
 The assesment of the performance hypothesis $H_P$ has been conducted by profiling specific performance metrics including CPU, GPU and memory usage 
-for particular use cases flows in the original and Flutter application. 
+for particular use case flows in the original and Flutter application. 
 The profiling results have been analyzed using common statistical techniques.
-Further explaination of the measurement process is explained in Section xxx.
+A further explaination of the measurement process is detailled in Section \ref{section::performance_comparison_design}.
 
 \subsection{Usability comparison}
-The analysis of the usability hypothesis $H_U$ will be evaluated by the means of semi-structured expert interviews.
-Specifically, study participants will be asked to evaluate both the Kickdown iOS and Flutter clone application along various metrics.
-Certain methodological choices will be further explaineed in Section \dots
+The analysis of the usability hypothesis $H_U$ has been evaluated by the means of semi-structured expert interviews.
+Specifically, study participants have been be asked to evaluate both the Kickdown iOS and Flutter application clone along various metrics.
 
-Contrarily to the verification of the performance hypothesis, the usability hypothesis will not be quantitatively, but qualitatively evaluated.
-Expert interviews with employees of apploft are conducted to compare the user experience of the developed Flutter app with the iOS application.
-The process is explained in Section bla.
+A detailed explaination of the interview process is given in section \ref{section::usability_comparison_design}
 
 \section{Scope \& Limitations}
 The feature set of the implemented app is representative for most, but not every type of app (see Section \ref{section::feature_selection}). 
 Therefore the results cannot be generalized to every type of possible app. 
-However, the results should be seen as indicators of Flutters value as a cross-platform framework for the 
+However, they should be seen as indicators of Flutters value as a cross-platform framework for the 
 archetypal mobile app. 
 Furthermore, the deductively chosen methodology yields the potential of finding adjacent hypothesis which may be
 further explored by other researchers.\\
-Additionally, the usability study doesn't have a statistical significance due to its qualitative nature. Nevertheless, the depth of detail
+Additionally, the usability study doesn't provide statistical significance due to its qualitative nature. Nevertheless, the depth of detail
 in expert interviews is much greater compared quantitative methods, and unthought of considerations may be suggested by the interviewees.\\
 This research attribute is especially compelling given the current research state on the Flutter framework as mentioned above. 
 
 \section{Thesis Structure}
-\textit{- TODO: Describe structure of thesis and summarize each chapter. 
-This should be somehow interwoven into introduction.}
+\textit{- TODO: Describe structure of thesis and summarize each chapter. Do this once the other chapters are actually written.}
+%In Chapter 2, ...
+%Chapter 3 presents
