@@ -9,6 +9,10 @@
 \usepackage{booktabs}                  % for nicer tables
 \usepackage{graphicx}                  % to implement jpg images
 \usepackage[doublespacing]{setspace}   % for double line brakes
+\usepackage{hyperref}
+\hypersetup{
+    hidelinks
+}
 
 \usepackage{geometry}                  % settings for margins
 \geometry{left=2.5cm,right=2.5cm,top=2cm,bottom=3cm}
@@ -22,12 +26,10 @@
 
 \addbibresource{sources.bib}         % file with sources
 
-\setcounter{secnumdepth}{5}
-\includeonly{chapters/titlepage, chapters/tableofcontents, chapters/introduction}
+%\includeonly{chapters/titlepage, chapters/tableofcontents, chapters/introduction}
 %%%%% END OF SETTINGS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
-%%%%% TITLE PAGE %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{document}
 
 \pagenumbering{roman}                  % small roman page numbers
