@@ -49,14 +49,18 @@ Scientifically, this thesis may be the basis for future work on Flutter's archit
 To the best of the author's knowledge, there are no peer reviewed articles comparing the performance or usability to native apps\footnote{A search for relevant articles has been conducted using Google Scholar, Sci-hub and IEEE Xplore.} since Flutter was first released in March 2018 (\cite{FlutterReleases2020}), 
 This leaves an especially interesting gap in the literature, since both aspects are the topmost perceived challenges of cross-platform frameworks considered from an industry-perspective (\cite{BioernHansen2019}).
 
-\section{Thesis Objective}
+\section{Thesis Objective} \label{section::thesis_objective}
+This thesis will focus on comparing Flutter's framework technology to iOS specifically. The assumption made in this paper, is that mimicking Android-specific appearance and behavior should be rather straightforward as 
+both Flutter and Android utilize Google's \textbf{Material design} (\cite{Google2021}) for their default components.
+Additionally, testing the framework against iOS is especially interesting as it seems less likely that Flutter would be 
+able exploit system specific properties for performance optimization in Apple's closed operating system.\\
 The aim of this thesis is derived based on the initially stated problems with cross-platform frameworks and the current lack of research on Flutter's lofty marketing claims to solve those drawbacks.
 Specifically, Google's assertion that Flutter can match \textit{"native performance"} and the framework can be utilized for building \textit{"expressive and flexible UI"} (\cite{FlutterDev20})
 will both serve as inductively derived hypotheses that shall be empirically verified or falsified individually by this thesis:
 
-\textbf{$H_P$}: The Flutter framework yields comparable \textbf{performance} to native mobile frameworks for app development.
+\textbf{$H_P$}: The Flutter framework yields comparable \textbf{performance} to native iOS  app development frameworks for iPhone.
 
-\textbf{$H_U$}: The Flutter framework can be utilized to produce comparable \textbf{user experiences} as native UI toolkits for mobile devices.
+\textbf{$H_U$}: Comparable \textbf{user experiences} can be created with Flutter and native iOS frameworks for iPhone.
 
 \section{Methods}
 An architypal native mobile app has been chosen as a case study for the evaluation of both hypotheses $H_P$ and $H_U$.
