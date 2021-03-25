@@ -1,7 +1,7 @@
 \chapter{Methodology and Study Design}
-This chapter explores the employed methodology for testing both the performance hypothesis $H_P$ and the usability hypothesis $H_U$ (mentioned in Section \ref{section::thesis_objective}). 
+This chapter explores the employed methodology for testing both the performance hypothesis $H_P$ and the usability hypothesis $H_U$ (defined in Section \ref{section::thesis_objective}). 
 The goal is to explicitly show the reasoning for the chosen methods as well as provide specific method implementation details to aid transparancy about the obtained results discussed in Chapter \ref{chapter::results}.\\
-Generally, the employed methodology to achieve the research aim (Section \ref{section::thesis_objective}) is a replication of a relevant subset of functionality of an existing iOS app using Flutter. Thereby, the original app acts as a baseline with which the Flutter clone 
+Generally, the employed methodology to achieve the research objective (Section \ref{section::thesis_objective}) is to replicate a relevant subset of functionality of an existing iOS app using Flutter. Thereby, the \textbf{original app} acts as a baseline with which the \textbf{Flutter clone} 
 can be comparatively evaluated. Based in this comparison, the research question - whether the Flutter framework can match native performance and provide equivalent usability (Section \ref{section::thesis_objective}) - is answered.
 Instead of creating artificial use cases, taking advantage of an existing app provides realistic instances for performance as well as user interface testing.\\
 The first section in this chapter (Section \ref{section::feature_selection}) details the decision process for selecting the baseline testing app as well as its feature reduction for further comparison. 
@@ -12,7 +12,7 @@ usability comparison respectively.
 
 
 \section{Baseline App Testing Decision Process} \label{section::feature_selection}
-The procedure for choosing the case study app is based on a filtering process of 4 steps (i.e. opposed constraints):
+The procedure for choosing the case study app is based on a filtering process of 4 steps (i.e. application of constraints):
 \begin{enumerate}
     \item The app is built and maintained by apploft. \label{item::constraint_one}
     \item The app includes common application \textbf{features}. \label{item::constraint_two}
@@ -21,38 +21,18 @@ The procedure for choosing the case study app is based on a filtering process of
 \end{enumerate}
 The reasoning behind selecting the above filtering constraints is detailed in the following paragraphs.
 
-\paragraph*{1. Creation and Maintainance by apploft}\hfill \break
-This constraint was opposed on the filtering process such that both a contact person (apploft
-employee) is available for code specific questions. In conjuction with access to the original
-source code as a reference, functionality may be implemented similarly in the Flutter replica as to
-facilitate comparability with the baseline app. E.g. a particular algorithm could be implemented
-homogeneously in the Flutter application to produce equal runtime complexities and thus be
-retracted as a confounding variable explaining performance differences. Furthermore, access to
-the original source code provides the ability to reduce unnecessary features of the original app
-to ensure equivalent comparisons against the Flutter clone.
+\subsection*{Creation and Maintainance by apploft}
+This constraint was imposed on the filtering process such that a contact person (apploft
+employee) is available for code specific questions.\\
+Having a reference to the original source code further provides the ability of implementing the Flutter replica similarly to facilitate comparability with the baseline app.
+E.g. a particular algorithm could be implemented similarly in the Flutter application. Thereby, equivalent time and space complexities are produced and 
+algorithm implementation can be retracted as a confounding variable.\\
+Furthermore, access to the original source code provides the ability to reduce unnecessary features which are irrevalent regarding the hypotheses evaluation. This reduces the complexity of the Flutter replica.
 
-\paragraph*{2. Inclusion of Common Application Features}\hfill \break
-On the one hand, including only common features constrains the tested functionality to fit within the scope of this thesis. On the other hand, it allows for
-the ability to generalize the results to a majority of iOS applications\footnote{This assumes that the observed apps for selecting features are indicative of the archetypal iOS app.}.
-
-
-\paragraph*{3. Use of Modern iOS Frameworks}\hfill \break
-Constraining the baseline app to be built with modern iterations of iOS framework technology ensures a fair comparison 
-against the replica app built with the recently released Flutter framework.
-
-
-\paragraph*{4. Conformance to HIG}\hfill \break
-Conforming to Apple's HIG ensures the original app looks native to the iOS platform. Building a matching Flutter clone is especially 
-interesting regarding the usability hypothesis $H_U$ as it would stretch the realm of possibility for Google's framework.
-In addition, providing a recognizable UX for iOS users would keep participants in the usability study (detailed in Section \ref{section::usability_comparison_design}) focused on noticing differences instead of 
-being distracted by an ambiguous UI.\\
-\hfill \break
-\hfill \break
-
-
-Based on the above constraints, a small study was conducted looking at 15 apps developed by apploft (constraint \ref{item::constraint_one}) from 9 different iOS App Store categories. 
-The goal is to find common application features (constraint \ref{item::constraint_two}) among them.
-As for the purposes of this study, a \textbf{feature} is defined as either 
+\subsection*{Inclusion of Common Application Features}
+The goal of this thesis is to determine whether Flutter is comparable in terms of performance ($H_P$) and usability ($H_U$) for the archetypal mobile app (Section \ref{section::methods}). 
+Therefore, only features commonly appearing in iOS apps are considered for find the app for baseline testing app.\\
+For the purposes of finding the baseline app, a \textbf{feature} is defined as either
 \begin{enumerate}[label=(\alph*)]
     \item a generalizable UI component which is non-trivial, or \label{item::feature_ui}
     \item an underlying technical attribute influencing the user experience. \label{item::technical_attribute}
@@ -63,20 +43,36 @@ As for \ref{item::technical_attribute}, a technical attribute has to influence t
 For example, networking can be viewed as a \textbf{feature} if fetched data is displayed via the UI, but is not a \textbf{feature} if the sole purpose of networking within 
 an app is to extract analytics data.
 
-Furthermore, a \textbf{feature} had to appear at least twice before being added as a result (see
-Table [initial table]).\\
+
+\subsection*{3. Use of Modern iOS Frameworks}
+If this constraint were not applied on the filtering process, old iOS technology could be compared to a modernly built Flutter app. 
+Therefore, constraining the baseline app to be built with modern iterations of iOS framework technology ensures a reasonable comparison 
+against the replica app.\\
+
+
+\subsection*{4. Conformance to Human Interface Guidelines}
+Conforming to Apple's HIG ensures the original app looks native to the iOS platform.
+Since Flutter comes from Google, it probably implements the \textbf{Material Design} (\cite{Google2021}) rather well. Rebuilding an app that conforms to the Apple's design guidelines is the more interesting case.\\
+In addition, providing a recognizable UX for iOS users would keep participants in the usability study (detailed in Section \ref{section::usability_comparison_design}) focused on noticing differences instead of 
+being distracted by an ambiguous UI.\\
+\hfill \break
+
+
+Based on the above constraints, a small study was conducted looking at 15 apps developed by apploft (constraint \ref{item::constraint_one}) from 9 different iOS App Store categories. 
+The features were extracted into Table [initial table] by going through each user interface (constraint \ref{item::constraint_two}).
+Furthermore, a feature had to appear at least twice before being added as a result.\\
 Continuing the filtering process, as per constraint 2 uncommon features - features appearing
 in less than 50\% of observed apps - are excluded. This reduces the list of features to the following:
 
 \begin{itemize}
-    \item Networking
-    \item Login/Authentication
-    \item Tab navigation\footnote{...}
-    \item Stack navigation\footnote{...}
-    \item Keyboard interaction
-    \item Vertically scrolling collections\footnote{...}
-    \item Horizontally scrolling collections\footnote{...}
-    \item Webview component\footnote{...} integration
+    \item \textbf{Networking} - Interaction with a remote API.
+    \item \textbf{Login/Authentication} - User log in meachanism through a UI.
+    \item \textbf{Tab navigation} - UI component to quickly switch between different sections of app (\cite{AppleHIGTabBar2021})
+    \item \textbf{Hierarchical navigation} - Screens are opened on top of previous screens using a Stack structure (\cite{AppleHIGNavigation2021}).
+    \item \textbf{Keyboard interaction} - A UI for inputing text via a software keyboard.
+    \item \textbf{Vertically scrolling collections} - A UI collection of items scrolling vertically.
+    \item \textbf{Horizontally scrolling collections} - A UI collection of items scrolling horizontally.
+    \item \textbf{Webview component integration} - An integrated UI component in the app displaying web content (\cite{AppleHIGWebViews2021}).
 \end{itemize}
 
 Out of the 15 initially tested apps, 5 include all of the above \textbf{features} (conforming to
@@ -142,14 +138,13 @@ to test all relevant facets of the app (see Section \ref{section:feature_present
     \item \textbf{image gallery:} The image gallery of a posting is opened from the detail view of a posting and the first 10 images are viewed by swiping.
 \end{itemize}
 For each \textbf{user action}, the average of all values over time is recorded. This process is then
-repeated 3 times and averaged. The exact number of experiment repitions was chosen as a
+repeated 3 times and averaged. The exact number of experiment repetitions was chosen as a
 tradeoff between marginal accuracy increase and additional experiment execution time.\\
 Furthermore, 2 testing rounds are devised on separate devices. The iPhone 12 and iPhone
 SE are chosen as the upper and lower bounds of hardware performance respectively. The lower
 bound is defined in this case as per Apples recommendation to set the deployment target to the
 current operating system version (iOS 14 at time of writing) minus one (iOS 13) which lists the
-iPhone SE as the oldest supported device (\cite{Apple2021}). iOS 13 is also the deployment
-target of the original Kickdown app.\\
+iPhone SE as the oldest supported device (\cite{Apple2021}).\\
 To reduce measurement bias, the device is restarted before each measurement to ensure that all
 irrelevant background processes are cancelled.
 
