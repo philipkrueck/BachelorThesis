@@ -1,4 +1,4 @@
-\chapter{Methodology and Study Design}
+\chapter{Methodology and Study Design} \label{chapter::study_design}
 This chapter explores the employed methodology for testing both the performance hypothesis $H_P$ and the usability hypothesis $H_U$ (defined in Section \ref{section::thesis_objective}). 
 The goal is to explicitly show the reasoning for the chosen methods as well as provide specific method implementation details to aid transparancy about the obtained results discussed in Chapter \ref{chapter::results}.\\
 Generally, the employed methodology to achieve the research objective (Section \ref{section::thesis_objective}) is to replicate a relevant subset of functionality of an existing iOS app using Flutter. Thereby, the \textbf{original app} acts as a baseline with which the \textbf{Flutter clone} 
@@ -100,7 +100,7 @@ Directly benchmarking system resources provides insight whether the Flutter fram
 compute resources efficiently under typically imposed load settings. Furthermore, system
 benchmarking metrics are the underlying cause of more ephemeral measures for testing the
 system load itself, e.g. page load time. In addition, the chosen compute resources (explained
-in Subsection \ref{subsection::selected_measurement_variables}) are easily measured using software tooling (Subsection ...) which aids the
+in Subsection \ref{subsection::selected_measurement_variables}) are easily measured using software tooling (Subsection \ref{subsection::profiling_tooling}) which aids the
 traceability as well as reproducibility of this particular study methodology.
 
 \subsection{Selected Performance Measurement Variables} \label{subsection::selected_measurement_variables}
@@ -108,7 +108,7 @@ The following paragraphs introduce the selected performance measurement variable
 a brief definition is given as well as the reasoning for including the particular metric in
 this study with regards to evalutating the performance hypothesis (Section \ref{section::thesis_objective}).
 
-\paragraph*{CPU Utilization}\hfill \break
+\paragraph*{CPU Utilization}\label{paragraph::cpu_utilization}\hfill \break
 CPU utilization is defined as the CPU time (\cite{FSF1988}) of a task
 divided by its overall capacity expressed as a percentage. The CPU as well as its integrated GPU\footnote{The GPU is an integrated chip within the System-on-a-Chip (SoC) architecture (\cite{Martin2001}) for all
 iPhone processing units (\cite{WikiChip2020}).}
@@ -117,14 +117,14 @@ indicator of insufficient processing power of the executed task. Therefore, test
 directly assesses whether Flutter’s framework processing requirements for UI rendering can be
 fulfilled given the testing hardware (see Subsection \ref{subsection::measurement_process}).
 
-\paragraph*{Frames per Second}\hfill \break
+\paragraph*{Frames per Second}\label{paragraph::fps}\hfill \break
 Frames per Second (FPS) describes the rate at which the system, and in particular, the GPU
 completes rendering individual frames. The FPS rate directly determines the smoothness of UI
 animations and transitions (\cite{Google2020}).
 
-\paragraph*{Memory Utilization}\hfill \break
-Memory utilization is the percentage of available memory capacity used for a specific task. A
-High level of memory usage "[...] affects the performance of actual running tasks, as well as
+\paragraph*{Memory Utilization}\label{paragraph::memory_utilization}\hfill \break
+Memory utilization is the percentage of available memory capacity used for a specific task. 
+A high level of memory usage "[...] affects the performance of actual running tasks, as well as
 interactive responsiveness" (\cite{Ljubuncic2015}).
 
 \subsection{Measurment Process} \label{subsection::measurement_process}
@@ -133,7 +133,7 @@ which are executed and tested on both the iOS and Flutter app separately. These 
 to test all relevant facets of the app (see Section \ref{section:feature_presentation}) and ensure a necessary load on the system:
 \begin{itemize}
     \item \textbf{app start:} The app is freshly installed on the test device, opened and idle until the visible postings are loaded.
-    \item \textbf{scrolling:} On the postings overview screen, the posting cards are scrolled fully to the bottom and subsequently back to the beginning.
+    \item \textbf{scrolling:} On the postings overview screen, the posting cards are vertically scrolled fully to the bottom and subsequently back to the top.
     \item \textbf{detail view:} From the postings overview, the first posting is tapped to navigate to the detail view. Afterwards the back button is tapped to navigate back to the overview.
     \item \textbf{image gallery:} The image gallery of a posting is opened from the detail view of a posting and the first 10 images are viewed by swiping.
 \end{itemize}
@@ -141,18 +141,18 @@ For each \textbf{user action}, the average of all values over time is recorded. 
 repeated 3 times and averaged. The exact number of experiment repetitions was chosen as a
 tradeoff between marginal accuracy increase and additional experiment execution time.\\
 Furthermore, 2 testing rounds are devised on separate devices. The iPhone 12 and iPhone
-SE are chosen as the upper and lower bounds of hardware performance respectively. The lower
+6s are chosen as the upper and lower bounds of hardware performance respectively. The lower
 bound is defined in this case as per Apples recommendation to set the deployment target to the
 current operating system version (iOS 14 at time of writing) minus one (iOS 13) which lists the
-iPhone SE as the oldest supported device (\cite{Apple2021}).\\
-To reduce measurement bias, the device is restarted before each measurement to ensure that all
+iPhone SE as the oldest supported device (\cite{Apple2021}). iOS 13 is also the minimum deployment target for the Kickdown app.\\
+To reduce measurement confounders, the device is restarted before each measurement use case to ensure that all
 irrelevant background processes are cancelled.
 
 \subsection{Profiling Tools} \label{subsection::profiling_tooling}
 \textbf{Xcode Instruments} (\cite{Apple2019}) - a part of the \textbf{Xcode} IDE tool set - are used for profiling the individual metrics. It provides multiple preconfigured
 profiling trace instruments.
-For the purposes of this thesis, the \textbf{Time Profiler} tool (see Figure ...) is used for CPU (ref ...), the \textbf{Core Animation} tool (see Figure ...) for FPS (ref ...), and 
-\textbf{Allocations} tool (see Figure ...) for memory usage (ref ...) quantification (see ) over time.
+For the purposes of this thesis, the \textbf{Time Profiler} tool (see Figure ...) is used for CPU (see Paragraph \ref{paragraph::cpu_utilization}), the \textbf{Core Animation} tool (see Figure ...) for FPS (see Paragraph \ref{paragraph::fps}), and 
+\textbf{Allocations} tool (see Figure ...) for memory usage (see Paragraph \ref{paragraph::memory_utilization}) quantification over time.
 
 
 \subsection{Evaluation Process} \label{subsection::evaluation_process}
@@ -174,24 +174,25 @@ fluidity). Therefore the results of the performance comparison (Section \ref{sec
 Utilizing a mixed approach as a study methodology combining both the quantitative performance comparison and a qualitative method will draw upon the strengths of both approaches. 
 
 %%% Why I'm using expert interviews %%%
-Specifically, semi structured interviews with subject matter experts (Cf. Vgl. Liebold/Trinczek 2009, S. 32 ff.) are conducted to evaluate the baseline application
+Specifically, semi structured interviews with subject matter experts (Cf. \cite{Liebold2009}) are conducted to evaluate the baseline application
 with the Flutter replica by asking the participants for differences between the two apps (further explained in Subsection \ref{subsection::interview_guideline}). This methodology has the
 advantage of covering predetermined topics relevant to the research question while also allowing spontaneous discussion possibly leading to novel insights.\\
 Furthermore, expert interviews are an especially useful approach for scientific explorations
 with no or scant preexisting theory (cf. \cite{Experts2009}).
 
 %%% Number of interviews conducted %%%
-The number of interviews conducted is limited as soon as no new perspectives seem to emerge from performing further interviews (Cf. ...).
+The number of interviews conducted is limited as soon as no new perspectives seem to emerge from performing further interviews. This is based on the fact that the method of expert interviews 
+aims to provide a breadth of perspectives on a given topic unlike specific quantitative anaylses (Cf. \cite{Liebold2009}).
 
 
 \subsection{Interview Preliminaries and Technicalities}
 The interviews are conducted with employees of apploft. They qualify as subject matter experts in the sense that they have been working in the mobile app industry for multiple years. They come from variety
 of professional backgrounds including UX and UI design, project management as well as software engineering. Furthermore, some interviewees have actually worked on the original app itself. This diversity 
-among the study participants is especially relevant in order to explore a breadth of perspectives (Cf. ...). 
+among the study participants is especially relevant in order to explore a breadth of perspectives. 
 The interviews are moderated and recorded by the author with a single interviewee per interview.
 For the comparison, the interviewees receive QR codes with which both apps may be downloaded. Behind each distributed code is a downloadable IPA (iOS App Store Package) binary executable file hosted by an HTTP server.
 These work exactly the same as any other apps downloaded from the iOS App Store.
-Due to the ongoing Covid-19 pandemic, the interviews are conducted through video calls and the interviewees are asked to share their iPhone screen via Quicktime player (cite ...).
+Due to the ongoing Covid-19 pandemic, the interviews are conducted through video calls and the interviewees are asked to share their iPhone screen via Quicktime player (\cite{Apple2014}).
 
 \subsection{Interview Guideline} \label{subsection::interview_guideline}
 %% Goal %%%
@@ -200,22 +201,24 @@ The interview guideline (see Appendix ...) is based on finding out perceptual di
 %% Use Cases %%
 Just like the performance comparison, use cases associated with particular UI features form the basis for the evaluation: 
 \begin{itemize}
-    \item \dots
-    \item \dots
+    \item \textbf{App Start and Scroll Behavior} - \dots
+    \item \textbf{Detail Transition, Modal Transition, Textfield interaction} - \dots
+    \item \textbf{Horizontal Scrolling} - \dots
+    \item \textbf{Switch Interaction} - \dots
 \end{itemize}
 The interviewees are asked to perform a particular use case for app A and app B. Then they are asked to detail differences between the two apps.
-Asking this open-ended question aims at receiving as much information possible about perceptual differences (Helfferich 2011, 182-185).
+Asking this open-ended question aims at receiving as much information possible about perceptual differences (Cf. \cite[182--185]{Helferrich2011}).
 Subsequently, the participant is asked to determine which of the two apps felt more natural (i.e. had a better UX). A determined tertiary response of: "A", "B" or "same" is expected. 
 The goal of this question is to get overall impression of the usability. \\
 Both questions are asked after each use case execution of the participant. 
 To maintain a high participant engagement during interviews, use cases are described in a more captivating way, e.g. "Please find the blue Mercedes SUV in Kickdown A [Wait until participant has found it.]. Now, 
 please look for the black BMW convertible in the other app.". 
-After each use case, the ordering of app A and B is swapped. E.g. if the first case starts with A, the second starts with B. This choice is made as to avoid recency bias (cite ...).
+After each use case, the ordering of app A and B is swapped. E.g. if the first case starts with A, the second starts with B. This choice is made as to avoid recency bias (Cf. \cite{Atkinson1968}).
 Furthermore, the ordering is also swapped after each interview. In this way, participant X starts with app A while participant Y starts with B.
 Finally, after the last use case, the participant is asked to answer the two questions with regard to the entire application.
 
 
 \subsection{Interview Evaluation}
-The videos from the interviews are transcribed into a textual format and further processed using \textbf{interview coding} (cite ..). Thereby, each interview is categorized into semantic themes. These themes among
+The videos from the interviews are transcribed into a textual format and further processed using \textbf{interview coding}. Thereby, each interview is categorized into semantic themes. These themes among
 all interviews are then merged into an overall theme structure - also known as code structure. This code structure is forms the basis for the evaluation of the usability hypothesis $H_U$. 
 % Todo: Further research this topic.
