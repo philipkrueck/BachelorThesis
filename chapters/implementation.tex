@@ -1,26 +1,27 @@
 \chapter{Application Design and Implementation} \label{chapter::implementation}
-- what is the exact Flutter version that I've been using?
-
-\section{Kickdown Feature Presentation} \label{section:feature_presentation}
-Here I will present what the original features of the Kickdown app are
-
-
--> think of use specific instances where it is interesting to detail the implementation of the Flutter app 
-    - image gallery
-s
+This thesis does not use the engineering method (see \cite{Ertas1996}) for evaluating the hypotheses (Section \ref{section::thesis_objective}) and thus application design and implementation will be explained from a perspective of
+a necessary requirement to execute both the performance and UX comparison (detailed in Chapter\ref{chapter::study_design}).
+Naturally, software implementation complexity may impede performance if unscalable algorithms or memory-inefficient datastructures are chosen.
+Therefore, the goal from a development perspective was to implement the Flutter app as closely as possible to the original app in order to facilitate a fair comparison between both apps.\\
+Firstly, general implementation differences resulting from Flutter's declarative nature are explained and contrasted to UIKit's imperative approach.
+Secondly, the usage of the Cupertino package and its UI components in the clone application is inspected. 
+Finally, the Image Gallery architecture is examined as a particularly difficult section of the app in both implementations.\\
 
 
-\section{Flutter Implementation}
+\section{Technicalities}
+- what is the exact Flutter version that I've been using?\\
+- what is the exact Dart version that I've been using?
 
-- Thesis is not an [Ingenieurswissenschaftliche Arbeit] and thus application design and implementation will be explained from a perspective
-a necessary requirement to execute both the performance and UX comparison.
-- goal from development perspective was to get implement Flutter as close as possible to the original app in terms of UI
-- used as many out of the box cupertino widgets as possible for implementation
-- only deviated from above guideline when absolutely necessary
-- this was the case when implementing the following features
-- image gallery (zooming ability), image caching, custom modal iOS 13 presentation)s
-- Naturally, software implementation complexity may impede performance if unscalable algorithms or memory-inefficient datastructures are chosen.
-In order to prevent this bias to be introduced into the experiment, the Flutter app was implemented as closely as possible to the original iOS app. Todo: explain in what way.
+\section{Declarative vs. Imperative UI}
 
-- should I explain the general app architecture which was used?(MVVM + Services)
+
+\section{Flutter UI Component Usage}
+- used as many out of the box cupertino widgets as possible for implementation\\
+- only deviated from above guideline when absolutely necessary\\
+    - this was the case for the more view UI which had to be custom built from many smaller Flutter widgets.\\
+    - this was also the case for the image gallery which is explained in next section
+
+
+\section{Image Gallery Architecture}
+- image gallery (zooming ability), image caching
 

@@ -1,6 +1,33 @@
 
 \documentclass[11pt,a4paper]{report}
 
+\usepackage{listings}
+\usepackage{color}
+\usepackage{graphicx}
+
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+
+\lstset{frame=tb,
+  language=Java,
+  aboveskip=3mm,
+  belowskip=3mm,
+  showstringspaces=false,
+  columns=flexible,
+  basicstyle={\small\ttfamily},
+  numbers=none,
+  numberstyle=\tiny\color{gray},
+  keywordstyle=\color{blue},
+  commentstyle=\color{dkgreen},
+  stringstyle=\color{mauve},
+  breaklines=true,
+  breakatwhitespace=true,
+  tabsize=3,
+  literate=%
+    {€}{\euro}1%
+}
+
 \usepackage[utf8]{inputenc}          
 \usepackage[T1]{fontenc}
 
@@ -11,6 +38,8 @@
 \usepackage[doublespacing]{setspace}   % for double line brakes
 \usepackage{hyperref}
 \usepackage{enumitem}
+\usepackage{textcomp}
+\usepackage{eurosym}
 \hypersetup{
     hidelinks
 }
@@ -27,7 +56,7 @@
 
 \addbibresource{sources.bib}         % file with sources
 
-\includeonly{chapters/flutter}
+%\includeonly{chapters/implementation}
 %%%%% END OF SETTINGS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
