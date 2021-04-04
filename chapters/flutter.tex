@@ -118,9 +118,9 @@ The entry point of every Flutter app is either a \textbf{MaterialApp} or \textbf
 Based on this tree structure Flutter can determine where and how elements should be drawn on screen, and instruct its graphics engine accordingly.
 This concept alone is not yet sufficient to enable modern mobile applications with complex UI changes or animations 
 based on asynchronous events like user interaction. 
-Widgets are mappings from state to a UI representation. When the state changes during runtime Flutter creates a new widget tree, 
-diffs it against the old one and then redraws only its changes to the screen.
-This declarative approach simplifies UI development in the sense that the developer does not need to keep track of UI state which can grow exponentially
+Widgets are mappings from state to a UI representation using the abstraction of \textbf{RenderObjects}. When the state changes during runtime Flutter creates a new RenderObject tree, 
+diffs it against the old one, and then redraws only its changes to the screen.
+This reactive approach simplifies UI development in the sense that the developer does not need to keep track of UI state which can grow exponentially
 with the increase of UI components on screen. 
 
 \begin{figure}
@@ -180,4 +180,4 @@ Additionaly, Google is also the creator of \textbf{Material Design} (\cite{Googl
 Furthermore, since every Flutter app ships with the Skia rendering engine, the app size may be larger than natively written apps.
 However, as Dart code is compiled to machine code eventually, the marginal size increase for further features should be similar between both native 
 and Flutter apps.
-The size of the rendering engine is approximately 4.5 mb (according to \cite{FlutterFAQ2021}).
+The size of the rendering engine is approximately 4.5 mb (according to \cite{FlutterFAQ2021}).ƒ
