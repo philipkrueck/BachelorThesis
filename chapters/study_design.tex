@@ -4,18 +4,18 @@ The goal is to explicitly show the reasoning for the chosen methods as well as p
 Generally, the employed methodology to achieve the research objective (Section \ref{section::thesis_objective}) is to replicate a relevant subset of functionality of an existing iOS app using Flutter. Thereby, the \textbf{original app} acts as a baseline with which the \textbf{Flutter clone} 
 can be comparatively evaluated. Based in this comparison, the research question - whether the Flutter framework can match native performance and provide equivalent usability (Section \ref{section::thesis_objective}) - is answered.
 Instead of creating artificial use cases, taking advantage of an existing app provides realistic instances for performance as well as user interface testing.\\
-The first section in this chapter (Section \ref{section::feature_selection}) details the decision process for selecting the baseline testing app as well as its feature reduction for further comparison. 
+The first section in this chapter (Section \ref{section::facet_selection}) details the decision process for selecting the baseline testing app as well as its feature reduction for further comparison. 
 The subsequent two sections (Sections \ref{section::performance_comparison_design} and \ref{section::usability_comparison_design}) explore the specific methods and reasoning for the performance and 
 usability comparison respectively.
 
 
 
 
-\section{Baseline App Testing Decision Process} \label{section::feature_selection}
+\section{Baseline App Testing Decision Process} \label{section::facet_selection}
 The procedure for choosing the case study app is based on a filtering process of 4 steps (i.e. application of constraints):
 \begin{enumerate}
     \item The app is built and maintained by apploft. \label{item::constraint_one}
-    \item The app includes common application \textbf{features}. \label{item::constraint_two}
+    \item The app includes common application \textbf{facets}. \label{item::constraint_two}
     \item The app uses modern iOS framework technologies. \label{item::constraint_three}
     \item The app conforms to the human interface guidelines (HIG) by Apple (\cite{Apple2021a}). \label{item::constraint_four}
 \end{enumerate}
@@ -31,16 +31,16 @@ Furthermore, access to the original source code provides the ability to reduce u
 
 \subsection*{Inclusion of Common Application Features}
 The goal of this thesis is to determine whether Flutter is comparable in terms of performance ($H_P$) and usability ($H_U$) for the archetypal mobile app (Section \ref{section::methods}). 
-Therefore, only features commonly appearing in iOS apps are considered for find the app for baseline testing app.\\
-For the purposes of finding the baseline app, a \textbf{feature} is defined as either
+Therefore, only facets commonly appearing in iOS apps are considered for finding the baseline testing app.\\
+For the purposes of finding the baseline app, a \textbf{facet} is defined as either
 \begin{enumerate}[label=(\alph*)]
-    \item a generalizable UI component which is non-trivial, or \label{item::feature_ui}
+    \item a generalizable UI component which is non-trivial, or \label{item::facet_ui}
     \item an underlying technical attribute influencing the user experience. \label{item::technical_attribute}
 \end{enumerate}
 
-Trivial UI components \ref{item::feature_ui} such as buttons or text weren't considered \textbf{features} as they are omnipresent throughout every app.
+Trivial UI components \ref{item::facet_ui} such as buttons or text weren't considered \textbf{facets} as they are omnipresent throughout every app.
 As for \ref{item::technical_attribute}, a technical attribute has to influence the user experience to be incorporated as the purpose of this thesis is testing Flutter's value as a UI framework (see Section \ref{section::thesis_objective}).
-For example, networking can be viewed as a \textbf{feature} if fetched data is displayed via the UI, but is not a \textbf{feature} if the sole purpose of networking within 
+For example, networking can be viewed as a \textbf{facet} if fetched data is displayed via the UI, but is not a \textbf{facet} if the sole purpose of networking within 
 an app is to extract analytics data.
 
 
@@ -59,10 +59,10 @@ being distracted by an ambiguous UI.\\
 
 
 Based on the above constraints, a small study was conducted looking at 15 apps developed by apploft (constraint \ref{item::constraint_one}) from 9 different iOS App Store categories. 
-The features were extracted into Table [initial table] by going through each user interface (constraint \ref{item::constraint_two}).
-Furthermore, a feature had to appear at least twice before being added as a result.\\
-Continuing the filtering process, as per constraint 2 uncommon features - features appearing
-in less than 50\% of observed apps - are excluded. This reduces the list of features to the following:
+The factes were extracted into Table [initial table] by going through each user interface (constraint \ref{item::constraint_two}).
+Furthermore, a facet had to appear at least twice before being added as a result.\\
+Continuing the filtering process, as per constraint 2 uncommon facets - facets appearing
+in less than 50\% of observed apps - are excluded. This reduces the list of facets to the following:
 
 \begin{itemize}
     \item \textbf{Networking} - Interaction with a remote API.
@@ -75,7 +75,7 @@ in less than 50\% of observed apps - are excluded. This reduces the list of feat
     \item \textbf{Webview component integration} - An integrated UI component in the app displaying web content (\cite{AppleHIGWebViews2021}).
 \end{itemize}
 
-Out of the 15 initially tested apps, 5 include all of the above \textbf{features} (conforming to
+Out of the 15 initially tested apps, 5 include all of the above \textbf{facets} (conforming to
 constraint 1 and 2) (see Table [table after applying constraint 2]). Kickdown (see Section ...) is chosen among the remaining 
 contestants for the baseline testing app. It was most recently released (Feb 2021) and is therefore built with modern iOS technologies (constraint \ref{item::constraint_three})
 and complies to the most recent iteration of the \textbf{Human Interface Guidelines} (constraint \ref{item::constraint_four}).
@@ -84,15 +84,50 @@ and complies to the most recent iteration of the \textbf{Human Interface Guideli
 
 % Todo: include the filtering process using a funnel analogy
 
-The login and signup mechanism - although a common \textbf{feature} - is removed from the original
+The login and signup mechanism - although a common \textbf{facet} - is removed from the original
 app for baseline testing. This is due to the fact that textfield and button interaction as well
 as networking is already present in other parts of the app and would yield no further insight
 regarding the hypotheses evaluation.\\
 The Flutter app is implemented as closely as possible to the original application to avoid an
 asymmetrical comparison as detailed in Section \ref{section::implementation}.
 
+\afterpage{
+    \clearpage
+    \thispagestyle{empty}
+    \begin{landscape}
+        \begin{center}
+            \begin{table}[!htp]
+                \caption{Generated by Spread-LaTeX}\label{tab: }
+                \tiny
+                \begin{tabular}{lrrrrrrrrrrrr}\toprule
+                \textbf{} & & &\textbf{Login/} & &\textbf{Tab} &\textbf{Stack} &\textbf{Keyboard} &\textbf{Vertically Scrolling} &\textbf{Horizontally Scrolling} &\textbf{Webview} &\textbf{Camera} \\
+                \textbf{App} &\textbf{category} &\textbf{Networking} &\textbf{Authentication} &\textbf{Maps} &\textbf{Navigation} &\textbf{Navigation} &\textbf{Interaction} &\textbf{Collection} &\textbf{Collection} &\textbf{Components} &\textbf{Interaction} \\\midrule
+                bonprix &shopping &1 &1 & &1 &1 &1 &1 &1 &1 & \\
+                couponplatz &shopping &1 &1 &1 &1 &1 &1 &1 &1 &1 & \\
+                Fernsehlotterie &lifestyle &1 & & &1 &1 &1 &1 &1 &1 & \\
+                Gerolsteiner TrinkCheck &health & & &1 & &1 & &1 & &1 & \\
+                Hexal Pollenflug &weather &1 & & &1 &1 &1 &1 & &1 & \\
+                HIPP Baby &health &1 &1 &1 &1 &1 &1 &1 & &1 &1 \\
+                Hipp Bio &food &1 & & & &1 & &1 & &1 &1 \\
+                Hipp Buddies app &family & & & & &1 & &1 &1 & & \\
+                Hipp Windel &shopping &1 & & &1 &1 & &1 &1 &1 &1 \\
+                Kickdown &shopping &1 &1 & &1 &1 &1 &1 &1 &1 & \\
+                Lotto Nds. &entertainment &1 &1 & &1 &1 &1 &1 &1 &1 & \\
+                Kulturpunkte &travel &1 & &1 & &1 & &1 & & & \\
+                Servus TV &entertainment &1 &1 & &1 &1 &1 &1 &1 &1 & \\
+                Starcook &food &1 &1 & & &1 &1 &1 &1 &1 &1 \\
+                Zeit Online &news &1 &1 & & &1 &1 &1 & &1 & \\
+                \midrule
+                \cellcolor[HTML]{A8A8A8} &\cellcolor[HTML]{A8A8A8}9 &\cellcolor[HTML]{A8A8A8}\textbf{13} &\cellcolor[HTML]{A8A8A8}\textbf{8} &\cellcolor[HTML]{A8A8A8}\textbf{4} &\cellcolor[HTML]{A8A8A8}\textbf{9} &\cellcolor[HTML]{A8A8A8}\textbf{15} &\cellcolor[HTML]{A8A8A8}\textbf{10} &\cellcolor[HTML]{A8A8A8}\textbf{15} &\cellcolor[HTML]{A8A8A8}\textbf{9} &\cellcolor[HTML]{A8A8A8}13 &\cellcolor[HTML]{A8A8A8}4 \\
+                \bottomrule
+                \end{tabular}
+            \end{table}   
+        \end{center}
+    \end{landscape}
+}
+
 \subsection{Kickdown App Feature Presentation} \label{section:kickdown_feature_presentation}
-Here I will present what the original features of the Kickdown app are
+Here I will present what the original features of the Kickdown app.
 
 \section{Performance Comparison} \label{section::performance_comparison_design}
 The methodology chosen to test the performance hypthesis HP (Section \ref{section::thesis_objective}) is a quantitative
@@ -116,21 +151,22 @@ CPU utilization is defined as the CPU time (\cite{FSF1988}) of a task
 divided by its overall capacity expressed as a percentage. The CPU as well as its integrated GPU\footnote{The GPU is an integrated chip within the System-on-a-Chip (SoC) architecture (\cite{Martin2001}) for all
 iPhone processing units (\cite{WikiChip2020}).}
 are responsible for graphics rendering related computations. Generally, high CPU usage is an
-indicator of insufficient processing power of the executed task. Therefore, testing CPU utilization
+indicator of insufficient processing power to perform the executed task. Therefore, testing CPU utilization
 directly assesses whether Flutter’s framework processing requirements for UI rendering can be
 fulfilled given the testing hardware (see Subsection \ref{subsection::measurement_process}).
 
 \paragraph*{Frames per Second}\label{paragraph::fps}\hfill \break
-Frames per Second (FPS) describes the rate at which the system, and in particular, the GPU
+Frames per Second (FPS) describes the rate at which the system, and in particular the GPU,
 completes rendering individual frames. The FPS rate directly determines the smoothness of UI
 animations and transitions (\cite{Google2020}).
 
 \paragraph*{Memory Utilization}\label{paragraph::memory_utilization}\hfill \break
 Memory utilization is the percentage of available memory capacity used for a specific task. 
-A high level of memory usage "[...] affects the performance of actual running tasks, as well as
-interactive responsiveness" (\cite{Ljubuncic2015}).
+A high level of memory usage negatively impacts performance of running tasks as well as interactive responsiveness (\cite{Ljubuncic2015}).
 
 \subsection{Measurment Process} \label{subsection::measurement_process}
+To reduce measurement confounders, the device is restarted before each individual measurement to ensure that all
+irrelevant background processes are cancelled.\\
 The measurement process for the individual metrics is further split into specific user actions
 which are executed and tested on both the iOS and Flutter app separately. These were chosen
 to test all relevant facets of the app (see Section \ref{section:feature_presentation}) and ensure a necessary load on the system:
@@ -147,9 +183,7 @@ Furthermore, 2 testing rounds are devised on separate devices. The iPhone 12 and
 6s are chosen as the upper and lower bounds of hardware performance respectively. The lower
 bound is defined in this case as per Apples recommendation to set the deployment target to the
 current operating system version (iOS 14 at time of writing) minus one (iOS 13) which lists the
-iPhone SE as the oldest supported device (\cite{Apple2021}). iOS 13 is also the minimum deployment target for the Kickdown app.\\
-To reduce measurement confounders, the device is restarted before each measurement use case to ensure that all
-irrelevant background processes are cancelled.
+iPhone 6s as the oldest supported device (\cite{Apple2021}). iOS 13 is also the minimum deployment target for the Kickdown app.\\
 
 \subsection{Profiling Tools} \label{subsection::profiling_tooling}
 \textbf{Xcode Instruments} (\cite{Apple2019}) - a part of the \textbf{Xcode} IDE tool set - are used for profiling the individual metrics. It provides multiple preconfigured
@@ -177,32 +211,34 @@ fluidity). Therefore the results of the performance comparison (Section \ref{sec
 Utilizing a mixed approach as a study methodology combining both the quantitative performance comparison and a qualitative method will draw upon the strengths of both approaches. 
 
 %%% Why I'm using expert interviews %%%
-Specifically, semi structured interviews with subject matter experts (Cf. \cite{Liebold2009}) are conducted to evaluate the baseline application
+Specifically, \textit{semi structured interviews with subject matter experts} (see \cite{Liebold2009}) are conducted to evaluate the baseline application
 with the Flutter replica by asking the participants for differences between the two apps (further explained in Subsection \ref{subsection::interview_guideline}). This methodology has the
 advantage of covering predetermined topics relevant to the research question while also allowing spontaneous discussion possibly leading to novel insights.\\
 Furthermore, expert interviews are an especially useful approach for scientific explorations
 with no or scant preexisting theory (cf. \cite{Experts2009}).
 
 %%% Number of interviews conducted %%%
-The number of interviews conducted is limited as soon as no new perspectives seem to emerge from performing further interviews. This is based on the fact that the method of expert interviews 
-aims to provide a breadth of perspectives on a given topic unlike specific quantitative anaylses (Cf. \cite{Liebold2009}).
+As soon as no new perspectives seem to emerge during interviews, no further interviews will be conducted.
+This is based on the fact that the method of expert interviews 
+aims to provide a breadth of perspectives on a given topic unlike specific quantitative anaylses (see \cite{Liebold2009}).
 
 
 \subsection{Interview Preliminaries and Technicalities}
-The interviews are conducted with employees of apploft. They qualify as subject matter experts in the sense that they have been working in the mobile app industry for multiple years. They come from variety
+The interviews are conducted with employees of apploft. They qualify as subject matter experts in the sense that they have been working in the mobile app industry for multiple years. They come from a variety
 of professional backgrounds including UX and UI design, project management as well as software engineering. Furthermore, some interviewees have actually worked on the original app itself. This diversity 
 among the study participants is especially relevant in order to explore a breadth of perspectives. 
-The interviews are moderated and recorded by the author with a single interviewee per interview.
+Due to the ongoing Covid-19 pandemic, the interviews are conducted through video calls, and the interviewees are asked to share their iPhone screen via Quicktime player (\cite{Apple2014}).
+The moderation and recording is facilitated by the author.
 For the comparison, the interviewees receive QR codes with which both apps may be downloaded. Behind each distributed code is a downloadable IPA (iOS App Store Package) binary executable file hosted by an HTTP server.
 These work exactly the same as any other apps downloaded from the iOS App Store.
-Due to the ongoing Covid-19 pandemic, the interviews are conducted through video calls and the interviewees are asked to share their iPhone screen via Quicktime player (\cite{Apple2014}).
+Both apps are blindly distributed to the participants as "Kickdown A" and "Kickdown B" in order to remove confirmation bias as a confounder (see \cite{Tversky1974}).
 
 \subsection{Interview Guideline} \label{subsection::interview_guideline}
 %% Goal %%%
-The interview guideline (see Appendix ...) is based on finding out perceptual differences between the iOS baseline and Flutter replica app. 
+The interview guideline (see Appendix \cite{section::interview_guideline}) is based on finding out perceptual differences between the iOS baseline and Flutter replica app.
 
 %% Use Cases %%
-Just like the performance comparison, use cases associated with particular UI features form the basis for the evaluation: 
+Just like the performance comparison, use cases associated with particular UI facets form the basis for the evaluation:
 \begin{itemize}
     \item \textbf{App Start and Scroll Behavior} - \dots
     \item \textbf{Detail Transition, Modal Transition, Textfield interaction} - \dots
@@ -211,7 +247,7 @@ Just like the performance comparison, use cases associated with particular UI fe
 \end{itemize}
 The interviewees are asked to perform a particular use case for app A and app B. Then they are asked to detail differences between the two apps.
 Asking this open-ended question aims at receiving as much information possible about perceptual differences (Cf. \cite[182--185]{Helferrich2011}).
-Subsequently, the participant is asked to determine which of the two apps felt more natural (i.e. had a better UX). A determined tertiary response of: "A", "B" or "same" is expected. 
+Subsequently, the participant is asked to determine which of the two apps felt more natural (i.e. had a better UX). A determined trivalent response of: "A", "B" or "same" is expected. 
 The goal of this question is to get overall impression of the usability. \\
 Both questions are asked after each use case execution of the participant. 
 To maintain a high participant engagement during interviews, use cases are described in a more captivating way, e.g. "Please find the blue Mercedes SUV in Kickdown A [Wait until participant has found it.]. Now, 
@@ -223,5 +259,5 @@ Finally, after the last use case, the participant is asked to answer the two que
 
 \subsection{Interview Evaluation}
 The videos from the interviews are transcribed into a textual format and further processed using \textbf{interview coding}. Thereby, each interview is categorized into semantic themes. These themes among
-all interviews are then merged into an overall theme structure - also known as code structure. This code structure is forms the basis for the evaluation of the usability hypothesis $H_U$. 
+all interviews are then merged into an overall theme structure - also known as code structure. This code structure forms the basis for the evaluation of the usability hypothesis $H_U$. 
 % Todo: Further research this topic.

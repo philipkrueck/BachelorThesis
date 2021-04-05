@@ -4,6 +4,11 @@
 \usepackage{color}
 \usepackage{graphicx}
 
+\usepackage{booktabs, multirow} % for borders and merged ranges
+\usepackage{soul}% for underlines
+\usepackage[table]{xcolor} % for cell colors
+\usepackage{changepage,threeparttable} % for wide tables
+
 \usepackage[utf8]{inputenc}          
 \usepackage[T1]{fontenc}
 
@@ -16,6 +21,11 @@
 \usepackage{enumitem}
 \usepackage{textcomp}
 \usepackage{eurosym}
+\usepackage{pdflscape}
+\usepackage{afterpage}
+\usepackage{capt-of}% or use the larger `caption` package
+
+
 \hypersetup{
     hidelinks
 }
@@ -82,7 +92,7 @@
 
 \addbibresource{sources.bib}         % file with sources
 
-\includeonly{chapters/implementation}
+\includeonly{chapters/study_design, chapters/appendix}
 %%%%% END OF SETTINGS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 

@@ -5,8 +5,8 @@ Naturally, software implementation complexity may impede performance if unscalab
 Therefore, the goal from a development perspective is to implement the Flutter clone as closely as possible to the baseline application in order to facilitate a fair comparison between both apps.\\
 Further, it is important to note that the clone app was built with Flutter version 1.22.6 and Dart 2.10.5 whereas the baseline app is built with iOS 13.0 UIKit and Swift 5.0.\\
 Firstly, general implementation differences resulting from Flutter's declarative nature are explained and contrasted to UIKit's imperative approach in Section \ref{section::declarative_vs_imperative_ui}.
-Secondly, \textbf{constant widget precompilation} is explained as a performance optimization of the Flutter clone (see Section \ref{section::constant_widget_precompilation}).
-Finally, the usage of the Cupertino package and its UI components is inspected (Section \ref{section::flutter_ui_component_usage}). 
+Secondly, \textbf{constant widget precompilation} is introduced as a performance optimization of the Flutter clone (see Section \ref{section::constant_widget_precompilation}).
+Finally, the reasoning behind using Cupertino package UI components and a selected deviation from this guideline are explored in Section \ref{section::flutter_ui_component_usage}. 
 
 
 \section{Implications of Flutter's Declarative UI Paradigm} \label{section::declarative_vs_imperative_ui}
@@ -74,9 +74,9 @@ This occurs due to the widget subtree diffing calcualation performed for each st
 
 \subsection{Partial View Rebuilding}
 In order to minimize the amount of computation coordinated to the framework, the Flutter clone makes use of \textbf{Partial View Rebuilds}. 
-Instead diffing the entire view tree, the framework only recomputes parts of the UI that are actually affected by the state change. 
+Instead of diffing the entire view tree, the framework only recomputes parts of the UI that are actually affected by the state change. 
 This can be achieved by pushing the state to the leaves of the tree (see \cite{StatefulWidgetPerformance2021}).
-For example, each Posting has an associated countdown label UI element (see ...) which needs to calculate its remaining time based on an end date received from the \textit{Kickdown} API every second.
+For example, each Posting has an associated countdown label UI element (see [reference to feature description]) which needs to calculate its remaining time based on an end date received from the \textit{Kickdown} API every second.
 By associating a state object - holding the remaining time - with the \textbf{CountdownLabel} widget itself rather than the entire or unnecessarily large parts of the view hierarchy, Flutter's internal diffing algorithm runs on a substantially smaller tree data structure.
 
 \section{Constant Widget Precompilation} \label{section::constant_widget_precompilation}
@@ -85,7 +85,7 @@ Marking instances with this keyword makes them into immutable compile-time const
 Thereby, \code{const} widgets are only built once if part of a \code{StatefulWidget} reducing build cycle times leading to higher frame rates (FPS).\\
 Furthermore, instances are \textbf{canonicalized} making multiple instances the same underlying instance in order to save memory (see \cite{DartConstDocumentation}).\\
 Additionally, this reduces instance tracking and deallocation work for the \textbf{Dart garbage collector} (see \cite{DartGarbageCollector2021}).\\
-The process of marking appropriate instances as \code{const} was facilitated by using the \code{prefer\_const\_constructor} (see \cite{ConstLinterRule2021}) linter rule for the Dart Static Analyzer (\cite{DartCodeAnalysis2021}). 
+The process of marking appropriate instances as \code{const} was facilitated by using the \code{prefer\_const\_constructor} linter rule (see \cite{ConstLinterRule2021}) for the Dart Static Analyzer (\cite{DartCodeAnalysis2021}). 
 
 
 
@@ -93,17 +93,20 @@ The process of marking appropriate instances as \code{const} was facilitated by 
 As mentioned in Section \ref{section::flutter_architecture}, Flutter uses the Cupertino package (\cite{CupertinoPackageDocumentation2021}) to resemble native iOS UI components from the HIG.
 These out-of-the-box components are used where possible as a best practice to map elements of the original app to the Flutter clone. 
 Application elements such as the tab and navigation bar as well as switch controls and page transitions are implemented using Cupertino widgets.\\
-The \textbf{More Screen}'s table view of the application could not be implemented as easily as in the baseline application.
+The \textbf{More Screen}'s table view of the application could not be implemented as easily as in the baseline application as no equivalent Cupertino widgets are available at the time of writing.
 
 \subsection{More Section Custom Widget Composition Implementation}
-The baseline iOS application uses a \textbf{UICollectionView} component of the UIKit framework in order to build out the More screen.
-The collection view component offers the ability to easily create rows and sections backed by data source. 
-Furthermore, insets, dividers, detail icons as well as tap interaction UI feedback are easily implemented. 
-Contrarily, using Flutter there is no equivalent widget for creating the desired UI outcome and a custom implementation is written instead. 
+The baseline iOS application uses a \code{UICollectionView} component of the UIKit framework in order to build out the More screen.
+It is an "[...] object that manages an ordered collection of data items and presents them using customizable layouts" (\cite{UICollectionView2021}).
+Thereby, the collection view component offers the ability to easily create rows and sections backed by a data source. 
+Furthermore, insets, dividers, detail icons as well as tap interaction UI feedback are easily implemented.\\
+Contrarily, using Flutter there is no equivalent widget for effortlessly creating the desired UI outcome and a custom implementation is written instead.
 A simplified version of the code can be seen in Listing \ref{lst:fluttter_more_view_implementation}.
-A \textbf{SliverList} which is a scrollable UI area that places children in a linear array is used to layout the individual cells.
-Each cell is represented by a \textbf{CupertinoListTile} which is responsible for adding text and a trailing widget to each cell as well as adding appropriate dividers and section insets.
-Furthermore, it implements a custom \code{GestureDetector} which highlights the cell when the user taps down on the cell and triggers an anonymous callback.
+A \code{SliverList} which is a scrollable UI area that places children in a linear array (see \cite{SliverList2021}) is used to layout the individual cells.
+Each cell is represented by a \textbf{CupertinoListTile} which is responsible for adding text and a trailing widget to each cell as well as inserting appropriate dividers and section insets based on the original app specification.
+Furthermore, it implements a custom \code{GestureDetector} (see \cite{GestureDetector2021}) which highlights the cell when the user taps down on the cell and triggers an anonymous callback.
+The callback is used to open webviews using a \code{SFSafariViewController} (\cite{SFSafariViewController2021}) platform method channel (see Section \ref{subsection::method_channels}).
+
 
 \begin{minipage}{\linewidth}
     \begin{lstlisting}[caption={Simplified Flutter More View Implementation}\label{lst:fluttter_more_view_implementation}]
