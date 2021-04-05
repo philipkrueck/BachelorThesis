@@ -16,14 +16,14 @@ while also providing the ability to deploy for both mobile operating systems.
 Generally, cross-platform frameworks utilize webviews\footnote{Webviews are UI component in both iOS and Android to display web content such as \textit{HTML}, \textit{CSS} and \textit{JavaScript}} or a software bridge to communicate with the underlying host platform plugging into 
 native interfaces. In both cases, communication channel delays may occur during app runtime leading to reduced execution speed. In addition, 
 cross-platform frameworks deliver abstract interfaces over multiple native interfaces leading to a decreased subset of functionality
-and especially impaired UI customizability. These inherent architecture attributes (further see Section \ref{section::other_architectures}) explain
+and especially impaired UI customizability. These inherent architecture attributes (further examined in Section \ref{section::other_architectures}) explain
 both impeded performance (\cite{Ebone2018} and \cite{Corbalan2019}) and user experience (\cite{Mercado2016} and \cite{Angulo2014}) compared to native technologies.
 
 %% INTRODUCE FLUTTER
 However, over the past 2 years one particular cross-platform technology with certain distinct attributes has risen strongly in popularity (\cite{Statista2021}):
 Flutter (\cite{FlutterDev20}) is a newly developed open-source UI toolkit by Google. 
-It has a nonconventional approach to cross-platform development in that every app ships with the framework's rendering engine (Section ...). 
-Thereby, Flutter bypasses host platform communication by avoiding the underlying system app SDK for terms of UI rendering.
+It has a nonconventional approach to cross-platform development in that every app ships with the framework's rendering engine (Section \ref{section::flutter_architecture}). 
+Thereby, Flutter bypasses host platform communication by avoiding the underlying system app SDK for UI rendering.
 Flutter apps are compiled in native binary format which can be directly executed by the mobile computing device (see Section \ref{section::flutter_architecture}).
 Furthermore, the framework provides a \textit{"[...] collection of visual, structural, platform, and interactive widgets"} (\textcite{GoogleWidgets2021}) for UI customization.
 It seems that Flutter addresses the exact same issues that are generally criticized about cross-platform solutions.
@@ -39,14 +39,14 @@ the maximum number of potential customers with their app. Flutter could be utili
 both mobile platforms. 
 Worth noting are the benefits of serving smaller customers like startups which include higher growth potential for long-term cooperation
 and risk diversification in apploft's client portfolio.\\
-The possible updside of implementing Flutter exceeds the acquisition of small clients. Instead of focusing on platform customization with native tooling, more effort could 
+The possible upside of implementing Flutter exceeds the acquisition of small clients. Instead of focusing on platform customization with native tooling, more effort could 
 be directed into developing unique custom features.
 Furthermore, infrastructure setup, package development and app updates would only be necessary for one codebase.\\
 Since the aforementioned economic incentives aren't necessarily company-specific, they are relevant for mobile application developers at large.
 Scientifically, this thesis may be the basis for future work on Flutter's architecture attributes and their contribution to runtime performance and UI rendering of frontend toolkits, in general.
 
 \section{Problem Statement}
-To the best of the author's knowledge, there are no peer reviewed articles comparing the performance or usability to native apps\footnote{A search for relevant articles has been conducted using Google Scholar, Sci-hub and IEEE Xplore.} since Flutter was first released in March 2018 (\cite{FlutterReleases2020}), 
+To the best of the author's knowledge, there are no peer reviewed articles comparing the performance or usability to native apps\footnote{A search for relevant articles has been conducted using Google Scholar, Sci-hub and IEEE Xplore.} since Flutter was first released in March 2018 (\cite{FlutterReleases2020}).
 This leaves an especially interesting gap in the literature, since both aspects are the topmost perceived challenges of cross-platform frameworks considered from an industry-perspective (\cite{BioernHansen2019}).
 
 \section{Thesis Objective} \label{section::thesis_objective}
