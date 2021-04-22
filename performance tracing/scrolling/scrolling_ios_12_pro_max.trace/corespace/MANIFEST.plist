@@ -4,7 +4,6 @@
 <dict>
 	<key>compressed-paths</key>
 	<array>
-		<string>currentRun/core/stores/indexed-store-12</string>
 		<string>run3/core/stores/indexed-store-0</string>
 		<string>run3/core/stores/indexed-store-1</string>
 		<string>run3/core/stores/indexed-store-2</string>
@@ -12,23 +11,20 @@
 		<string>run3/core/stores/indexed-store-4</string>
 		<string>run3/core/stores/indexed-store-5</string>
 		<string>run3/core/stores/indexed-store-6</string>
-		<string>currentRun/core/stores/indexed-store-2</string>
 		<string>run3/core/stores/indexed-store-7</string>
-		<string>currentRun/core/stores/indexed-store-5</string>
 		<string>run3/core/stores/indexed-store-8</string>
 		<string>run3/core/stores/indexed-store-9</string>
-		<string>currentRun/core/stores/indexed-store-8</string>
 		<string>run2/core/stores/indexed-store-0</string>
 		<string>run2/core/stores/indexed-store-1</string>
 		<string>run2/core/stores/indexed-store-2</string>
-		<string>run2/core/stores/indexed-store-3</string>
 		<string>run1/core/table-manager</string>
-		<string>run2/core/stores/indexed-store-4</string>
-		<string>run2/core/uniquing</string>
-		<string>run2/core/uniquing</string>
-		<string>run2/core/uniquing</string>
-		<string>run2/core/stores/indexed-store-5</string>
+		<string>run2/core/stores/indexed-store-3</string>
 		<string>run3/core/table-manager</string>
+		<string>run2/core/uniquing</string>
+		<string>run2/core/uniquing</string>
+		<string>run2/core/uniquing</string>
+		<string>run2/core/stores/indexed-store-4</string>
+		<string>run2/core/stores/indexed-store-5</string>
 		<string>run2/core/stores/indexed-store-6</string>
 		<string>run2/core/stores/indexed-store-7</string>
 		<string>run2/core/stores/indexed-store-8</string>
@@ -37,25 +33,19 @@
 		<string>run1/core/stores/indexed-store-0</string>
 		<string>run1/core/core-config</string>
 		<string>run1/core/stores/indexed-store-1</string>
-		<string>currentRun/core/stores/indexed-store-11</string>
 		<string>run1/core/stores/indexed-store-2</string>
 		<string>run1/core/stores/indexed-store-3</string>
 		<string>run1/core/stores/indexed-store-4</string>
-		<string>run1/core/stores/indexed-store-5</string>
-		<string>currentRun/core/stores/indexed-store-14</string>
-		<string>run1/core/stores/indexed-store-6</string>
 		<string>run1/core/stores/indexed-store-10</string>
-		<string>run1/core/stores/indexed-store-7</string>
-		<string>run1/core/stores/indexed-store-8</string>
-		<string>run1/core/stores/indexed-store-12</string>
-		<string>run1/core/stores/indexed-store-9</string>
-		<string>run1/core/stores/indexed-store-13</string>
-		<string>currentRun/core/stores/indexed-store-0</string>
+		<string>run1/core/stores/indexed-store-5</string>
+		<string>run1/core/stores/indexed-store-6</string>
 		<string>run1/core/stores/indexed-store-11</string>
+		<string>run1/core/stores/indexed-store-7</string>
+		<string>run1/core/stores/indexed-store-12</string>
+		<string>run1/core/stores/indexed-store-8</string>
+		<string>run1/core/stores/indexed-store-13</string>
+		<string>run1/core/stores/indexed-store-9</string>
 		<string>run1/core/stores/indexed-store-14</string>
-		<string>currentRun/core/stores/indexed-store-3</string>
-		<string>currentRun/core/stores/indexed-store-6</string>
-		<string>currentRun/core/stores/indexed-store-9</string>
 		<string>run3/core/stores/indexed-store-10</string>
 		<string>run3/core/stores/indexed-store-11</string>
 		<string>run3/core/stores/indexed-store-12</string>
@@ -64,18 +54,13 @@
 		<string>currentRun/core/uniquing</string>
 		<string>currentRun/core/uniquing</string>
 		<string>currentRun/core/uniquing</string>
-		<string>currentRun/core/stores/indexed-store-10</string>
-		<string>currentRun/core/stores/indexed-store-13</string>
-		<string>run3/core/uniquing</string>
-		<string>run3/core/uniquing</string>
-		<string>run3/core/uniquing</string>
-		<string>run1/core/uniquing</string>
-		<string>run1/core/uniquing</string>
-		<string>run1/core/uniquing</string>
 		<string>run2/core/core-config</string>
-		<string>currentRun/core/stores/indexed-store-1</string>
-		<string>currentRun/core/stores/indexed-store-4</string>
-		<string>currentRun/core/stores/indexed-store-7</string>
+		<string>run1/core/uniquing</string>
+		<string>run1/core/uniquing</string>
+		<string>run1/core/uniquing</string>
+		<string>run3/core/uniquing</string>
+		<string>run3/core/uniquing</string>
+		<string>run3/core/uniquing</string>
 		<string>run2/core/stores/indexed-store-10</string>
 		<string>run2/core/stores/indexed-store-11</string>
 		<string>run2/core/stores/indexed-store-12</string>
@@ -85,7 +70,6 @@
 	</array>
 	<key>paths</key>
 	<array>
-		<string>currentRun/core/stores/indexed-store-12</string>
 		<string>run3/core/stores/indexed-store-0</string>
 		<string>run3/core/stores/indexed-store-1</string>
 		<string>run3/core/stores/indexed-store-2</string>
@@ -93,21 +77,18 @@
 		<string>run3/core/stores/indexed-store-4</string>
 		<string>run3/core/stores/indexed-store-5</string>
 		<string>run3/core/stores/indexed-store-6</string>
-		<string>currentRun/core/stores/indexed-store-2</string>
 		<string>run3/core/stores/indexed-store-7</string>
-		<string>currentRun/core/stores/indexed-store-5</string>
 		<string>run3/core/stores/indexed-store-8</string>
 		<string>run3/core/stores/indexed-store-9</string>
-		<string>currentRun/core/stores/indexed-store-8</string>
 		<string>run2/core/stores/indexed-store-0</string>
 		<string>run2/core/stores/indexed-store-1</string>
 		<string>run2/core/stores/indexed-store-2</string>
-		<string>run2/core/stores/indexed-store-3</string>
 		<string>run1/core/table-manager</string>
-		<string>run2/core/stores/indexed-store-4</string>
-		<string>run2/core/uniquing</string>
-		<string>run2/core/stores/indexed-store-5</string>
+		<string>run2/core/stores/indexed-store-3</string>
 		<string>run3/core/table-manager</string>
+		<string>run2/core/uniquing</string>
+		<string>run2/core/stores/indexed-store-4</string>
+		<string>run2/core/stores/indexed-store-5</string>
 		<string>run2/core/stores/indexed-store-6</string>
 		<string>run2/core/stores/indexed-store-7</string>
 		<string>run2/core/stores/indexed-store-8</string>
@@ -116,39 +97,28 @@
 		<string>run1/core/stores/indexed-store-0</string>
 		<string>run1/core/core-config</string>
 		<string>run1/core/stores/indexed-store-1</string>
-		<string>currentRun/core/stores/indexed-store-11</string>
 		<string>run1/core/stores/indexed-store-2</string>
 		<string>run1/core/stores/indexed-store-3</string>
 		<string>run1/core/stores/indexed-store-4</string>
-		<string>run1/core/stores/indexed-store-5</string>
-		<string>currentRun/core/stores/indexed-store-14</string>
-		<string>run1/core/stores/indexed-store-6</string>
 		<string>run1/core/stores/indexed-store-10</string>
-		<string>run1/core/stores/indexed-store-7</string>
-		<string>run1/core/stores/indexed-store-8</string>
-		<string>run1/core/stores/indexed-store-12</string>
-		<string>run1/core/stores/indexed-store-9</string>
-		<string>run1/core/stores/indexed-store-13</string>
-		<string>currentRun/core/stores/indexed-store-0</string>
+		<string>run1/core/stores/indexed-store-5</string>
+		<string>run1/core/stores/indexed-store-6</string>
 		<string>run1/core/stores/indexed-store-11</string>
+		<string>run1/core/stores/indexed-store-7</string>
+		<string>run1/core/stores/indexed-store-12</string>
+		<string>run1/core/stores/indexed-store-8</string>
+		<string>run1/core/stores/indexed-store-13</string>
+		<string>run1/core/stores/indexed-store-9</string>
 		<string>run1/core/stores/indexed-store-14</string>
-		<string>currentRun/core/stores/indexed-store-3</string>
-		<string>currentRun/core/stores/indexed-store-6</string>
-		<string>currentRun/core/stores/indexed-store-9</string>
 		<string>run3/core/stores/indexed-store-10</string>
 		<string>run3/core/stores/indexed-store-11</string>
 		<string>run3/core/stores/indexed-store-12</string>
 		<string>run3/core/stores/indexed-store-13</string>
 		<string>run3/core/stores/indexed-store-14</string>
 		<string>currentRun/core/uniquing</string>
-		<string>currentRun/core/stores/indexed-store-10</string>
-		<string>currentRun/core/stores/indexed-store-13</string>
-		<string>run3/core/uniquing</string>
-		<string>run1/core/uniquing</string>
 		<string>run2/core/core-config</string>
-		<string>currentRun/core/stores/indexed-store-1</string>
-		<string>currentRun/core/stores/indexed-store-4</string>
-		<string>currentRun/core/stores/indexed-store-7</string>
+		<string>run1/core/uniquing</string>
+		<string>run3/core/uniquing</string>
 		<string>run2/core/stores/indexed-store-10</string>
 		<string>run2/core/stores/indexed-store-11</string>
 		<string>run2/core/stores/indexed-store-12</string>

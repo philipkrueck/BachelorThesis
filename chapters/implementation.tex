@@ -76,7 +76,7 @@ This occurs due to the widget subtree diffing calcualation performed for each st
 In order to minimize the amount of computation coordinated to the framework, the Flutter clone makes use of \textbf{Partial View Rebuilds}. 
 Instead of diffing the entire view tree, the framework only recomputes parts of the UI that are actually affected by the state change. 
 This can be achieved by pushing the state to the leaves of the tree (see \cite{StatefulWidgetPerformance2021}).
-For example, each Posting has an associated countdown label UI element (see [reference to feature description]) which needs to calculate its remaining time based on an end date received from the \textit{Kickdown} API every second.
+For example, each Posting has an associated countdown label UI element (as seen on the app overview in Figure \ref{fig:kickdown_overview_screen}) which needs to calculate its remaining time based on an end date received from the \textit{Kickdown} API every second.
 By associating a state object - holding the remaining time - with the \textbf{CountdownLabel} widget itself rather than the entire or unnecessarily large parts of the view hierarchy, Flutter's internal diffing algorithm runs on a substantially smaller tree data structure.
 
 \section{Constant Widget Precompilation} \label{section::constant_widget_precompilation}

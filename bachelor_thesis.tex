@@ -30,6 +30,14 @@
     hidelinks
 }
 
+\newlength\mystoreparindent
+\newenvironment{myparindent}[1]{%
+\setlength{\mystoreparindent}{\the\parindent}
+\setlength{\parindent}{#1}
+}{%
+\setlength{\parindent}{\mystoreparindent}
+}
+
 \usepackage{geometry}                  % settings for margins
 \geometry{left=2.5cm,right=2.5cm,top=2cm,bottom=3cm}
 
@@ -92,8 +100,10 @@
 
 \addbibresource{sources.bib}         % file with sources
 
-\includeonly{chapters/titlepage, chapters/tableofcontents, chapters/introduction, chapters/flutter, chapters/study_design, chapters/implementation, chapters/appendix}
-%%%%% END OF SETTINGS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\includeonly{chapters/results}
+
+%\includeonly{chapters/titlepage, chapters/tableofcontents, chapters/introduction, chapters/flutter, chapters/study_design, chapters/implementation, chapters/appendix}
+%%%%% END OF SETTINGS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%x
 
 
 \begin{document}

@@ -11,8 +11,9 @@ usability comparison respectively.
 
 
 
-\section{Baseline App Testing Decision Process} \label{section::facet_selection}
-The procedure for choosing the case study app is based on a filtering process of 4 steps (i.e. application of constraints):
+\section{Baseline App Selection Process} \label{section::facet_selection}
+The procedure for choosing the case study app is based on a 4 step filtering process. Each step may be viewed as a constraint
+applied upon possible apps progressively reducing the number of potential baseline testing apps:
 \begin{enumerate}
     \item The app is built and maintained by apploft. \label{item::constraint_one}
     \item The app includes common application \textbf{facets}. \label{item::constraint_two}
@@ -43,7 +44,6 @@ As for \ref{item::technical_attribute}, a technical attribute has to influence t
 For example, networking can be viewed as a \textbf{facet} if fetched data is displayed via the UI, but is not a \textbf{facet} if the sole purpose of networking within 
 an app is to extract analytics data.
 
-
 \subsection*{Use of Modern iOS Frameworks}
 If this constraint were not applied on the filtering process, old iOS technology could be compared to a modernly built Flutter app. 
 Therefore, constraining the baseline app to be built with modern iterations of iOS framework technology ensures a reasonable comparison 
@@ -57,7 +57,6 @@ In addition, providing a recognizable UX for iOS users would keep participants i
 being distracted by an ambiguous UI.\\
 \hfill \break
 
-
 Based on the above constraints, a small study was conducted looking at 15 apps developed by apploft (constraint \ref{item::constraint_one}) from 9 different iOS App Store categories. 
 The factes were extracted into Table \ref{tab::initial_table} by going through each user interface (constraint \ref{item::constraint_two}).
 Furthermore, a facet had to appear at least twice before being added as a result.\\
@@ -68,11 +67,11 @@ in less than 50\% of observed apps - are excluded. This reduces the list of face
     \item \textbf{Networking} - Interaction with a remote API.
     \item \textbf{Login/Authentication} - User log in meachanism through a UI.
     \item \textbf{Tab navigation} - UI component to quickly switch between different sections of app (\cite{AppleHIGTabBar2021})
-    \item \textbf{Hierarchical navigation} - Screens are opened on top of previous screens using a Stack structure (\cite{AppleHIGNavigation2021}).
-    \item \textbf{Keyboard interaction} - A UI for inputing text via a software keyboard.
-    \item \textbf{Vertically scrolling collections} - A UI collection of items scrolling vertically.
-    \item \textbf{Horizontally scrolling collections} - A UI collection of items scrolling horizontally.
-    \item \textbf{Webview component integration} - An integrated UI component in the app displaying web content (\cite{AppleHIGWebViews2021}).
+    \item \textbf{Hierarchical navigation} - Screens opened on top of previous screens using a Stack structure (\cite{AppleHIGNavigation2021}).
+    \item \textbf{Keyboard interaction} - UI for inputing text via a software keyboard.
+    \item \textbf{Vertically scrolling collections} - UI collection of items scrolling vertically.
+    \item \textbf{Horizontally scrolling collections} - UI collection of items scrolling horizontally.
+    \item \textbf{Webview component integration} - Integrated UI component for displaying web content (\cite{AppleHIGWebViews2021}).
 \end{itemize}
 
 Out of the 15 initially tested apps, 5 include all of the above \textbf{facets} (conforming to
@@ -80,16 +79,13 @@ constraint 1 and 2) (see Table \ref{tab::filtered_table}). Kickdown (see Section
 contestants for the baseline testing app. It was most recently released (Feb 2021) and is therefore built with modern iOS technologies (constraint \ref{item::constraint_three})
 and complies to the most recent iteration of the \textbf{Human Interface Guidelines} (constraint \ref{item::constraint_four}).
 
-% Todo: write about Kickdown having the smallest code base.
-
-% Todo: include the filtering process using a funnel analogy
-
+\subsection{Clone Application Feature Reduction and Implementation} \label{subsection::clone_app_feature_reduction}
 The login and signup mechanism - although a common \textbf{facet} - is removed from the original
 app for baseline testing. This is due to the fact that textfield and button interaction as well
 as networking is already present in other parts of the app and would yield no further insight
 regarding the hypotheses evaluation.\\
 The Flutter app is implemented as closely as possible to the original application to avoid an
-asymmetrical comparison as detailed in Section \ref{section::implementation}.
+asymmetrical comparison as detailed in Chapter \ref{chapter::implementation}.
 
 \afterpage{
     \clearpage
@@ -100,8 +96,8 @@ asymmetrical comparison as detailed in Section \ref{section::implementation}.
                 \caption{Initial Facet Extraction for apploft's Apps}\label{tab::initial_table}
                 \tiny
                 \begin{tabular}{lrrrrrrrrrrrr}\toprule
-                \textbf{} & & &\textbf{Login/} & &\textbf{Tab} &\textbf{Stack} &\textbf{Keyboard} &\textbf{Vertically Scrolling} &\textbf{Horizontally Scrolling} &\textbf{Webview} &\textbf{Camera} \\
-                \textbf{App} &\textbf{category} &\textbf{Networking} &\textbf{Authentication} &\textbf{Maps} &\textbf{Navigation} &\textbf{Navigation} &\textbf{Interaction} &\textbf{Collection} &\textbf{Collection} &\textbf{Components} &\textbf{Interaction} \\\midrule
+                \textbf{} & & &\cellcolor[HTML]{A8A8A8}\textbf{Login/} & &\cellcolor[HTML]{A8A8A8}\textbf{Tab} &\cellcolor[HTML]{A8A8A8}\textbf{Stack} &\cellcolor[HTML]{A8A8A8}\textbf{Keyboard} &\cellcolor[HTML]{A8A8A8}\textbf{Vertically Scrolling} &\cellcolor[HTML]{A8A8A8}\textbf{Horizontally Scrolling} &\textbf{Webview} &\textbf{Camera} \\
+                \textbf{App} &\textbf{category} &\cellcolor[HTML]{A8A8A8}\textbf{Networking} &\cellcolor[HTML]{A8A8A8}\textbf{Authentication} &\textbf{Maps} &\cellcolor[HTML]{A8A8A8}\textbf{Navigation} &\cellcolor[HTML]{A8A8A8}\textbf{Navigation} &\cellcolor[HTML]{A8A8A8}\textbf{Interaction} &\cellcolor[HTML]{A8A8A8}\textbf{Collection} &\cellcolor[HTML]{A8A8A8}\textbf{Collection} &\textbf{Components} &\textbf{Interaction} \\\midrule
                 bonprix &shopping &1 &1 & &1 &1 &1 &1 &1 &1 & \\
                 couponplatz &shopping &1 &1 &1 &1 &1 &1 &1 &1 &1 & \\
                 Fernsehlotterie &lifestyle &1 & & &1 &1 &1 &1 &1 &1 & \\
@@ -160,7 +156,8 @@ The application is divided into two main sections via tab navigation: the overvi
 On the overview, the user has the ability to scroll through all current offerings. Each offering is shown as a card with a hero image 
 and some basic information including the title, location, current price and remaining time.\\
 Tapping on a posting card brings up a detail view (Figure \ref{fig:kickdown_detail_screen}) for the respective posting.
-Besides inspecting detailed information about the particular posting, the user has the option of viewing additional photos in the image gallery (Figure \ref{fig:kickdown_gallery_view}) and placing a bid via a bottom sheet (Figure \ref{fig:kickdown_bid_preparation_screen}).
+Besides inspecting detailed information about the particular posting, the user has the option of viewing additional photos in the image gallery (Figure \ref{fig:kickdown_gallery_view}) and placing a bid via a bottom sheet (Figure \ref{fig:kickdown_bid_preparation_screen}).\\
+The More screen lets the user login, turn on analytics tracking or open informational webviews such as the data privacy or imprint.
 
 
 
@@ -213,7 +210,7 @@ Besides inspecting detailed information about the particular posting, the user h
 
 
 \section{Performance Comparison} \label{section::performance_comparison_design}
-The methodology chosen to test the performance hypthesis HP (Section \ref{section::thesis_objective}) is a quantitative
+The methodology chosen to empirically test the performance hypthesis HP (Section \ref{section::thesis_objective}) is a quantitative
 measurement of computational resources during app runtime. Measurements are performed for
 specific load conditions (i.e use cases). In the process, the original app acts as an empirical
 baseline for testing the Flutter replica against.\\
@@ -222,7 +219,8 @@ compute resources efficiently under typically imposed load settings. Furthermore
 benchmarking metrics are the underlying cause of more ephemeral measures for testing the
 system load itself, e.g. page load time. In addition, the chosen compute resources (explained
 in Subsection \ref{subsection::selected_measurement_variables}) are easily measured using software tooling (Subsection \ref{subsection::profiling_tooling}) which aids the
-traceability as well as reproducibility of this particular study methodology.
+objectivity, reliability and validity of this particular study methodology.
+Finally, the data is statistically evaluated in order to make inferences about the hypothesis.
 
 \subsection{Selected Performance Measurement Variables} \label{subsection::selected_measurement_variables}
 The following paragraphs introduce the selected performance measurement variables. Concretely,
@@ -252,7 +250,7 @@ To reduce measurement confounders, the device is restarted before each individua
 irrelevant background processes are cancelled.\\
 The measurement process for the individual metrics is further split into specific user actions
 which are executed and tested on both the iOS and Flutter app separately. These were chosen
-to test all relevant facets of the app (see Section \ref{section:feature_presentation}) and ensure a necessary load on the system:
+to test all relevant facets of the app (see Section \ref{section:kickdown_feature_presentation}) and ensure a sufficient load on the system:
 \begin{itemize}
     \item \textbf{app start:} The app is freshly installed on the test device, opened and idle until the visible postings are loaded.
     \item \textbf{scrolling:} On the postings overview screen, the posting cards are vertically scrolled fully to the bottom and subsequently back to the top.
@@ -262,7 +260,7 @@ to test all relevant facets of the app (see Section \ref{section:feature_present
 For each \textbf{user action}, the average of all values over time is recorded. This process is then
 repeated 3 times and averaged. The exact number of experiment repetitions was chosen as a
 tradeoff between marginal accuracy increase and additional experiment execution time.\\
-Furthermore, 2 testing rounds are devised on separate devices. The iPhone 12 and iPhone
+Furthermore, 2 testing rounds are devised on separate devices. The iPhone 12 Pro and iPhone
 6s are chosen as the upper and lower bounds of hardware performance respectively. The lower
 bound is defined in this case as per Apples recommendation to set the deployment target to the
 current operating system version (iOS 14 at time of writing) minus one (iOS 13) which lists the
@@ -374,15 +372,15 @@ Both apps are blindly distributed to the participants as "Kickdown A" and "Kickd
 
 \subsection{Interview Guideline} \label{subsection::interview_guideline}
 %% Goal %%%
-The interview guideline (see Appendix \cite{section::interview_guideline}) is based on finding out perceptual differences between the iOS baseline and Flutter replica app.
+The interview guideline (see Appendix \ref{section::interview_guideline}) is based on finding out perceptual differences between the iOS baseline and Flutter replica app.
 
 %% Use Cases %%
 Just like the performance comparison, use cases associated with particular UI facets form the basis for the evaluation:
 \begin{itemize}
-    \item \textbf{App Start and Scroll Behavior} - \dots
-    \item \textbf{Detail Transition, Modal Transition, Textfield interaction} - \dots
-    \item \textbf{Horizontal Scrolling} - \dots
-    \item \textbf{Switch Interaction} - \dots
+    \item \textbf{App Start and Scroll Behavior}
+    \item \textbf{Detail Transition, Modal Transition, Textfield interaction}
+    \item \textbf{Horizontal Scrolling}
+    \item \textbf{Switch Interaction}
 \end{itemize}
 The interviewees are asked to perform a particular use case for app A and app B. Then they are asked to detail differences between the two apps.
 Asking this open-ended question aims at receiving as much information possible about perceptual differences (Cf. \cite[182--185]{Helferrich2011}).
@@ -396,7 +394,7 @@ Furthermore, the ordering is also swapped after each interview. In this way, par
 Finally, after the last use case, the participant is asked to answer the two questions with regard to the entire application.
 
 
-\subsection{Interview Evaluation}
+\subsection{Interview Evaluation} \label{section::interview_evaluation}
 The videos from the interviews are transcribed into a textual format and further processed using \textbf{interview coding}. Thereby, each interview is categorized into semantic themes. These themes among
 all interviews are then merged into an overall theme structure - also known as code structure. This code structure forms the basis for the evaluation of the usability hypothesis $H_U$. 
 % Todo: Further research this topic.

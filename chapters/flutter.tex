@@ -99,7 +99,7 @@ The host operating is thus not able to differentiate between a Flutter and a nat
 
 
 \subsection{Programming Language and Compilation}
-Flutter apps are written in Dart - a compiled multiparadigm programming language syntactically similar to Java (see \cite{DartLanguage2021}).\\
+Flutter apps are written in \textbf{Dart} - a compiled multiparadigm programming language syntactically similar to Java (see \cite{DartLanguage2021}).\\
 During Flutter development, apps run in the Dart Virtual Machine using Just-In-Time (JIT) compilation (\cite{DartLanguage2021}). 
 This offers stateful \textbf{hot reload} which allows reloading the UI after code changes without needing to fully recompile the app leading to faster development cycles.\\
 For release purposes, Flutter applications are Ahead-of-Time (AOT) compiled into native machine code including the Intel x86 and ARM CPU instruction sets in order to optimize production performance
@@ -120,6 +120,7 @@ This concept alone is not yet sufficient to enable modern mobile applications wi
 based on asynchronous events like user interaction. 
 Widgets are mappings from state to a UI representation using the abstraction of \textbf{RenderObjects}. When the state changes during runtime Flutter creates a new RenderObject tree, 
 diffs it against the old one, and then redraws only its changes to the screen.
+RenderObjects are analogous to the \textbf{Virtual DOM} diffing of React.js.
 This reactive approach simplifies UI development in the sense that the developer does not need to keep track of UI state which can grow exponentially
 with the increase of UI components on screen. 
 
@@ -131,15 +132,15 @@ with the increase of UI components on screen.
 \end{figure}
 
 \begin{figure}[htbp]
-    \begin{tabular}{p{0.5\textwidth}p{0.5\textwidth}}
-        \begin{minipage}{.5\textwidth}
+    \begin{tabular}{p{0.4\textwidth}p{0.6\textwidth}}
+        \begin{minipage}{.4\textwidth}
         \centering
         \includegraphics[width=\linewidth]{images/Kickdown_overview_info_ui_tree.eps}
         \caption{Widget Tree Structure Visualization of Code Snippet \ref{lst:code_snippet}}
         \label{fig:kickdown_overview_info_ui_tree}
         \end{minipage}
         &
-        \begin{minipage}{.5\textwidth}
+        \begin{minipage}{.6\textwidth}
             \begin{lstlisting}[caption={Simplified Flutter Code for UI Layout shown in Fig. \ref{fig:kickdown_overview_info_ui}}\label{lst:code_snippet}]
             Column(
                 children: [
@@ -180,4 +181,4 @@ Additionaly, Google is also the creator of \textbf{Material Design} (\cite{Googl
 Furthermore, since every Flutter app ships with the Skia rendering engine, the app size may be larger than natively written apps.
 However, as Dart code is compiled to machine code eventually, the marginal size increase for further features should be similar between both native 
 and Flutter apps.
-The size of the rendering engine is approximately 4.5 mb (according to \cite{FlutterFAQ2021}).ƒ
+The size of the rendering engine is approximately 4.5 mb (according to \cite{FlutterFAQ2021}).
