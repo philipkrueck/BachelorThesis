@@ -1,16 +1,20 @@
-\chapter{Summary}
-- What are my key findings? What is their significance and implications
-
-\subsection{apploft}
-- Byproduct of analysis was the development of a decision guide when choosing
-between the development of a native and Flutter mobile app
-
-On Android the performance would be expected to be even more similar or even better since apple is a company that controls the entire hardware software stack and is known for optimizing performance through this control.
-Therefore, on Android where the hardware manufacturer doesn't control the OS, the performance of Flutter may be even better when compared to iOS.
-
-- maybe point to future research into Flutter
-- Reference back to goal in introduction
-- What are the limitations of my research
-- Future Research questions
-- Outlook
-- kritische Reflexion + Ausblick
+\chapter{Summary} \label{chapter::summary}
+The aim of this thesis was to evaluate whether apps built with the Flutter framework yield comparable performance and usability.
+As presented in Section \ref{subsection::hypothesis_evaluation}, the Flutter clone application had similar system requirements in terms of CPU, memory and GPU usage. This likely enables the 
+comparable animation fluidity (see Section \ref{subsection::usability_hypothesis_evaluation}) tested in the usability study of this thesis. Furthermore, Flutter allows for the creation of iOS interfaces while the animations for
+screen transitions aren't easily reproducible with Flutter. 
+Therefore, both hypothesis $H_P$ and $H_U$ (laid out in Section \ref{section::thesis_objective}) can be verified in the sense that both performance and usability are comparable with Flutter, but not exactly the same due to small differences summarized above and specifically elaborated on in Chapter \ref{chapter::results}.
+Ideally, a statistical significance test would have been conducted in order to find out whether the
+use of Flutter is statistically significant for determining the performance differences. However,
+the sample size of n = 3 for each user action, phone, framework combination is too low to have a
+representative outcome. In future research, testing and measurement could be automated using
+capture replay technology and transferred into an evaluable data representation.
+Therefore, it would be useful to conduct a similar study with a larger sample size. 
+Besides validating the findings of this thesis in terms of performance and usability, comparing development time complexity for building common user interfaces
+would be an interesting future research persuit. Thereby, the business implications mentioned in Section \ref{section:motivation} can be more easily quantified and the choice when to use Flutter 
+properly weighed against building native apps.
+The general formalization of a decision process for choosing a UI framework technology for mobile applications is an interesting future research endevour based on this thesis.
+Specific data patterns described in this thesis, may be empirically verified or falsified by future research.
+For example, the assumption that Flutter has a fixed amount of memory allocated for each app due to the rendering engine requirements has a slow memory growth may be empirically tested. 
+The memory growth seen throughout the use cases in this thesis is slower than on iOS suggesting that there is a break-even point.
+The implications for this specific assumption are therefore interesting regarding large and complex applications which might then be more memory-efficient than native iOS apps.

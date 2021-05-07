@@ -47,14 +47,13 @@ an app is to extract analytics data.
 \subsection*{Use of Modern iOS Frameworks}
 If this constraint were not applied on the filtering process, old iOS technology could be compared to a modernly built Flutter app. 
 Therefore, constraining the baseline app to be built with modern iterations of iOS framework technology ensures a reasonable comparison 
-against the replica app.\\
+against the replica app.
 
-
-\subsection*{Conformance to Human Interface Guidelines}
+\subsection*{Conformance to Human Interface Guideline}
 Conforming to Apple's HIG ensures the original app looks native to the iOS platform.
-Since Flutter comes from Google, it probably implements the \textbf{Material Design} (\cite{Google2021}) rather well. Rebuilding an app that conforms to the Apple's design guidelines is the more interesting case.\\
+Since Flutter comes from Google, it probably implements the \textbf{Material Design} (\cite{Google2021}) rather well. Rebuilding an app that conforms to Apple's design guidelines is the more interesting case.\\
 In addition, providing a recognizable UX for iOS users would keep participants in the usability study (detailed in Section \ref{section::usability_comparison_design}) focused on noticing differences instead of 
-being distracted by an ambiguous UI.\\
+being distracted by an ambiguous UI.
 \hfill \break
 
 Based on the above constraints, a small study was conducted looking at 15 apps developed by apploft (constraint \ref{item::constraint_one}) from 9 different iOS App Store categories. 
@@ -66,8 +65,8 @@ in less than 50\% of observed apps - are excluded. This reduces the list of face
 \begin{itemize}
     \item \textbf{Networking} - Interaction with a remote API.
     \item \textbf{Login/Authentication} - User log in meachanism through a UI.
-    \item \textbf{Tab navigation} - UI component to quickly switch between different sections of app (\cite{AppleHIGTabBar2021})
-    \item \textbf{Hierarchical navigation} - Screens opened on top of previous screens using a Stack structure (\cite{AppleHIGNavigation2021}).
+    \item \textbf{Tab navigation} - UI component to quickly switch between different sections of an app (\cite{AppleHIGTabBar2021}).
+    \item \textbf{Hierarchical navigation} - Screens opened on top of previous screens using a stack structure (\cite{AppleHIGNavigation2021}).
     \item \textbf{Keyboard interaction} - UI for inputing text via a software keyboard.
     \item \textbf{Vertically scrolling collections} - UI collection of items scrolling vertically.
     \item \textbf{Horizontally scrolling collections} - UI collection of items scrolling horizontally.
@@ -75,7 +74,7 @@ in less than 50\% of observed apps - are excluded. This reduces the list of face
 \end{itemize}
 
 Out of the 15 initially tested apps, 5 include all of the above \textbf{facets} (conforming to
-constraint 1 and 2) (see Table \ref{tab::filtered_table}). Kickdown (see Section ...) is chosen among the remaining 
+constraint 1 and 2) (see Table \ref{tab::filtered_table}). Kickdown (see Section \ref{section:kickdown_feature_presentation}) is chosen among the remaining 
 contestants for the baseline testing app. It was most recently released (Feb 2021) and is therefore built with modern iOS technologies (constraint \ref{item::constraint_three})
 and complies to the most recent iteration of the \textbf{Human Interface Guidelines} (constraint \ref{item::constraint_four}).
 
@@ -159,10 +158,6 @@ Tapping on a posting card brings up a detail view (Figure \ref{fig:kickdown_deta
 Besides inspecting detailed information about the particular posting, the user has the option of viewing additional photos in the image gallery (Figure \ref{fig:kickdown_gallery_view}) and placing a bid via a bottom sheet (Figure \ref{fig:kickdown_bid_preparation_screen}).\\
 The More screen lets the user login, turn on analytics tracking or open informational webviews such as the data privacy or imprint.
 
-
-
-
-
 \begin{figure}[htbp]
     \begin{tabular}{p{0.33\textwidth}p{0.33\textwidth}p{0.33\textwidth}}
         \begin{minipage}{.33\textwidth}
@@ -206,9 +201,6 @@ The More screen lets the user login, turn on analytics tracking or open informat
     \end{tabular}
 \end{figure}
 
-
-
-
 \section{Performance Comparison} \label{section::performance_comparison_design}
 The methodology chosen to empirically test the performance hypthesis $H_P$ (Section \ref{section::thesis_objective}) is a quantitative
 measurement of computational resources during app runtime. Measurements are performed for
@@ -218,7 +210,7 @@ Directly benchmarking system resources provides insight whether the Flutter fram
 compute resources efficiently under typically imposed load settings. Furthermore, system
 benchmarking metrics are the underlying cause of more ephemeral measures for testing the
 system load itself, e.g. page load time. In addition, the chosen compute resources (explained
-in Subsection \ref{subsection::selected_measurement_variables}) are easily measured using software tooling (Subsection \ref{subsection::profiling_tooling}) which aids the
+in Section \ref{subsection::selected_measurement_variables}) are easily measured using software tooling (Section \ref{subsection::profiling_tooling}) which aids the
 objectivity, reliability and validity of this particular study methodology.
 Finally, the data is statistically evaluated in order to make inferences about the hypothesis.
 
@@ -229,18 +221,17 @@ this study with regards to evalutating the performance hypothesis (Section \ref{
 
 \paragraph*{CPU Utilization}\label{paragraph::cpu_utilization}\hfill \break
 CPU utilization is defined as the CPU time (\cite{FSF1988}) of a task
-divided by its overall capacity expressed as a percentage. The CPU as well as its integrated GPU\footnote{The GPU is an integrated chip within the System-on-a-Chip (SoC) architecture (\cite{Martin2001}) for all
-iPhone processing units (\cite{WikiChip2020}).}
-are responsible for graphics rendering related computations. Generally, high CPU usage is an
-indicator of insufficient processing power to perform the executed task. Therefore, testing CPU utilization
-directly assesses whether Flutter’s framework processing requirements for UI rendering can be
-fulfilled given the testing hardware (see Subsection \ref{subsection::measurement_process}).
+divided by its overall capacity expressed as a percentage. 
+The CPU is partly responsible for rendering related calculations.
+For example, Flutter's tree diffing algorithm is handled on the CPU.
+Therefore, testing CPU utilization assesses whether Flutter's framework processing requirements for rendering related calculations can be fulfilled on the testing hardware (Section \ref{subsection::measurement_process}).
 
-\paragraph*{Frames per Second}\label{paragraph::fps}\hfill \break
-TODO: REWRITE GPU USAGE
-Frames per Second (FPS) describes the rate at which the system, and in particular the GPU,
-completes rendering individual frames. The FPS rate directly determines the smoothness of UI
-animations and transitions (\cite{Google2020}).
+\paragraph*{GPU Utilization}\label{paragraph::fps}\hfill \break
+GPU utilization is the GPU equivalent of CPU utilization mentioned in \ref{paragraph::cpu_utilization}.
+The GPU is a specialized processing chip optimized graphics computation.
+The CPU and GPU are tightly integrated on iPhones which make use of the System-on-a-Chip architecture (\cite{Martin2001}, \cite{WikiChip2020}).
+Therefore a strong correspondence between CPU and GPU usage should be observed in the study. 
+Nonetheless, testing GPU utilization by itself is a valuable metric for determining Flutter's graphic specific processing needs.
 
 \paragraph*{Memory Utilization}\label{paragraph::memory_utilization}\hfill \break
 Memory utilization is the percentage of available memory capacity used for a specific task. 
@@ -332,7 +323,7 @@ For each profiling tool a graph shows the particular metric quantified over time
 
 \subsection{Evaluation Process} \label{subsection::evaluation_process}
 To better understand the data gathered, it is subsequently examined using exploratory data
-analysis (EDA) (\cite{Tukey1977}). \textit{To be continued a bit...}
+analysis (EDA) (\cite{Tukey1977}).
 
 
 \section{User Experience Comparison} \label{section::usability_comparison_design}
@@ -350,7 +341,7 @@ Utilizing a mixed approach as a study methodology combining both the quantitativ
 
 %%% Why I'm using expert interviews %%%
 Specifically, \textit{semi structured interviews with subject matter experts} (see \cite{Liebold2009}) are conducted to evaluate the baseline application
-with the Flutter replica by asking the participants for differences between the two apps (further explained in Subsection \ref{subsection::interview_guideline}). This methodology has the
+with the Flutter replica by asking the participants for differences between the two apps (further explained in Section \ref{subsection::interview_guideline}). This methodology has the
 advantage of covering predetermined topics relevant to the research question while also allowing spontaneous discussion possibly leading to novel insights.\\
 Furthermore, expert interviews are an especially useful approach for scientific explorations
 with no or scant preexisting theory (see \cite{Experts2009}).

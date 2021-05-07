@@ -1,76 +1,20 @@
 \chapter{Application Design and Implementation} \label{chapter::implementation}
-This thesis does not use the \textbf{engineering method} (see \cite{Ertas1996}) as a scientific approach for evaluating the hypotheses (declared in Section \ref{section::thesis_objective}).
-Thus application design and implementation will be explored from a perspective of a necessary requirement to conduct both the performance and UX comparison (Chapter \ref{chapter::study_design}) in this chapter.\\
+The methodology utilized to achieve the research objective (see Section \ref{section::thesis_objective}) is to comparatively evaluate a Flutter replica application against an existing native iOS app (detailed in Chapter \ref{chapter::study_design}).
+Thus application design and implementation of the replica will be explored from a perspective of a necessary requirement to conduct both the performance and UX comparison (Sections \ref{section::performance_comparison_design} and \ref{section::usability_comparison_design}) in this chapter.\\
 Naturally, software implementation complexity may impede performance if unscalable algorithms or memory-inefficient datastructures are chosen.
 Therefore, the goal from a development perspective is to implement the Flutter clone as closely as possible to the baseline application in order to facilitate a fair comparison between both apps.\\
-Further, it is important to note that the clone app was built with Flutter version 1.22.6 and Dart 2.10.5 whereas the baseline app is built with iOS 13.0 UIKit and Swift 5.0.\\
-Firstly, general implementation differences resulting from Flutter's declarative nature are explained and contrasted to UIKit's imperative approach in Section \ref{section::declarative_vs_imperative_ui}.
+Consequently, this chapter does not aim to describe the implementation techniques utilized in both apps, but rather contrast selected parts which may affect the outcome of the performance and usability study\footnote{The inclined reader has the opportunity to read through the attached source code of both apps.}.
+Firstly, the specfic framework and programming language versions are mentioned.
 Secondly, \textbf{constant widget precompilation} is introduced as a performance optimization of the Flutter clone (see Section \ref{section::constant_widget_precompilation}).
-Finally, the reasoning behind using Cupertino package UI components and a selected deviation from this guideline are explored in Section \ref{section::flutter_ui_component_usage}. 
+Finally, the reasoning behind using Cupertino package UI components and a selected deviation from this guideline are explored in Section \ref{section::flutter_ui_component_usage}.
 
+\section{Framework and Programming Language Versions}
+Preliminarly, it is important to note that the clone app was built with Flutter version 1.22.6 and Dart 2.10.5 whereas the baseline app is built with iOS 13.0 UIKit and Swift 5.0.
+The underlying implementation of both frameworks and programming languages may potentially affect the system resource usage and therefore also the performance and usability of each app.
 
-\section{Implications of Flutter's Declarative UI Paradigm} \label{section::declarative_vs_imperative_ui}
-Flutter and UIKit are distinct technologies for building UI as they utilize the declarative and imperative programming paradigm respectively. 
-These paradigms fundamentally determine how UI code is written when using the corresponding framework.\\
-
-\subsection{UIKit's imperative UI Programming Paradigm}
-The imperative UI programming paradigm is characterized by explicit instructions to the framework to achieve a desired user interface.\\
-For example, centering a piece of text on screen in UIKit takes a considerable amount of instructions as can be seen in Listing \ref{lst:code_snippet_uikit_centering}.
-Firstly a \code{UIViewController} is subclassed which manages the entire view hierarchy of the particular screen (\cite{UIViewControllerDocumentation2021}). 
-Furthermore, a \code{UILabel} - \textit{"[...] a view that displays one or more lines of informational text"} (\textcite{UILabelDocumentation2021}) - is created via a closure (see \cite{ClosureDocumentation2021}) for that parent view controller.
-Inside the closure the \code{text} property is explicitly set after initialization and the label's \code{translatesAutoresizingMaskIntoConstraints} property is set to \code{false} in order for the label to be positioned and sized programmatically.
-Once the view hierarchy for the view controller is loaded into memory, the \code{viewDidLoad} function is called by the system (see \cite{viewDidLoadDocumentation2021}).
-Subsequently, the label is added as a subview and centered horizontally and vertically in the view controller's view based on \textbf{Auto Layout} (\cite{AutoLayoutDocumentation2016}) constraints.\\
-
-\begin{minipage}{\linewidth}
-    \begin{lstlisting}[caption={iOS UIKit Example of Centering Text on a Screen}\label{lst:code_snippet_uikit_centering}]
-        import UIKit
-    
-        class InitialViewController: UIViewController {
-            private let customTextLabel: UILabel = {
-                let label = UILabel()
-                label.text = "Custom Text"
-                label.translatesAutoresizingMaskIntoConstraints = false
-                return label
-            }()
-    
-            override func viewDidLoad() {
-                super.viewDidLoad()
-                view.backgroundColor = UIColor.white
-                view.addSubview(customTextLabel)
-                customTextLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-                customTextLabel.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
-            }
-        }
-    \end{lstlisting}
-\end{minipage}
-
-\subsection{Flutter's Declarative UI Programming Paradigm}
-Contrarily, Flutter's code structure can be more directly mapped to actual user interface elements with its declarative widget composition paradigm.\\
-The same example of centering a piece of text on screen can be written declaratively with Flutter as shown in Listing \ref{lst:code_snippet_flutter_centering}.
-A widget representing the screen is created by subclassing \code{StatelessWidget} (see \cite{StatelessWidgetDocumentation2021}). 
-Unlike \code{StatefulWidget}s (see \cite{StatefulWidgetDocumentation2021}), \code{StatelessWidget}s do not hold any mutable state and can't change during runtime based on state changes. 
-\code{StatelessWidget}s have a required \code{build} method which return any widget child relationships. The method is called 
-once by the system to mount the widget's subtree structure into the global widget tree (explained in \ref{subsection::rendering_ui_state}).
-Concretely, a \code{Center} with a \code{Text} is returned in order to display centered text in the UI.\\
-
-\subsection{Advantages and Disadvantages of the Declarative Paradigm}
-The advantages of using the declarative approach include the entire description of intent in one place and abstraction of details into
-a clean interface outsourcing implementation complexity to the framework (see \cite{FlutterDeclarative2021}).\\
-However, while Flutter's declarative apprach may be more intuitive for the human mind, it might also introduce a slight performance overhead.
-This occurs due to the widget subtree diffing calcualation performed for each state change in \code{StatefulWidget} subtrees (explained in Subsection \ref{subsection::rendering_ui_state}).\\
-
-\begin{minipage}{\linewidth}
-    \begin{lstlisting}[caption={Flutter Example of Centering Text on a Screen}\label{lst:code_snippet_flutter_centering}]
-        import "package:flutter/widgets.dart";
-        class InitialPage extends StatelessWidget {
-            @override
-            Widget build(BuildContext context) {
-                return Center(child: Text("Custom Text"));
-            }
-        }
-    \end{lstlisting}
-\end{minipage}
+\section{Flutter App Performance Optimizations}
+This section outlines 2 particularly interesting performance optimizations which were implemented in the Flutter application. Both optimizations
+do not correspond to the original app as they are Flutter specific.
 
 \subsection{Partial View Rebuilding}
 In order to minimize the amount of computation coordinated to the framework, the Flutter clone makes use of \textbf{Partial View Rebuilds}. 
@@ -79,28 +23,26 @@ This can be achieved by pushing the state to the leaves of the tree (see \cite{S
 For example, each Posting has an associated countdown label UI element (as seen on the app overview in Figure \ref{fig:kickdown_overview_screen}) which needs to calculate its remaining time based on an end date received from the \textit{Kickdown} API every second.
 By associating a state object - holding the remaining time - with the \textbf{CountdownLabel} widget itself rather than the entire or unnecessarily large parts of the view hierarchy, Flutter's internal diffing algorithm runs on a substantially smaller tree data structure.
 
-\section{Constant Widget Precompilation} \label{section::constant_widget_precompilation}
-As part of general performance optimization of the Flutter clone, Dart's \code{const} constructor is used where possible throughout the codebase.\\
+\subsection{Constant Widget Precompilation} \label{section::constant_widget_precompilation}
+As part of general performance optimization of the Flutter clone, Dart's \code{const} constructor is used where possible throughout the codebase.
 Marking instances with this keyword makes them into immutable compile-time constants.
-Thereby, \code{const} widgets are only built once if part of a \code{StatefulWidget} reducing build cycle times leading to higher frame rates (FPS).\\
-Furthermore, instances are \textbf{canonicalized} making multiple instances the same underlying instance in order to save memory (see \cite{DartConstDocumentation}).\\
+Thereby, \code{const} widgets are only built once if part of a \code{StatefulWidget} reducing build cycle times leading to higher frame rates (FPS).
+Furthermore, instances are \textbf{canonicalized} by the compiler making multiple instances the same underlying instance in order to save memory (see \cite{DartConstDocumentation}).\\
 Additionally, this reduces instance tracking and deallocation work for the \textbf{Dart garbage collector} (see \cite{DartGarbageCollector2021}).\\
 The process of marking appropriate instances as \code{const} was facilitated by using the \code{prefer\_const\_constructor} linter rule (see \cite{ConstLinterRule2021}) for the Dart Static Analyzer (\cite{DartCodeAnalysis2021}). 
 
-
-
 \section{Flutter UI Component Usage} \label{section::flutter_ui_component_usage}
-As mentioned in Section \ref{section::flutter_architecture}, Flutter uses the Cupertino package (\cite{CupertinoPackageDocumentation2021}) to resemble native iOS UI components from the HIG.
+As mentioned in Section \ref{section::flutter_architecture}, Flutter uses the Cupertino package (\cite{CupertinoPackageDocumentation2021}) to resemble native iOS UI components from Apple's Human Interface Guidelines.
 These out-of-the-box components are used where possible as a best practice to map elements of the original app to the Flutter clone. 
 Application elements such as the tab and navigation bar as well as switch controls and page transitions are implemented using Cupertino widgets.\\
-The \textbf{More Screen}'s table view of the application could not be implemented as easily as in the baseline application as no equivalent Cupertino widgets are available at the time of writing.
+The \textbf{More Screen}'s table view (see Fig. \ref{fig:kickdown_more_screen}) of the application could not be implemented as easily as in the baseline application as no equivalent Cupertino widgets are available at the time of writing.
 
-\subsection{More Section Custom Widget Composition Implementation}
+\subsection{More Screen Custom Widget Composition Implementation}
 The baseline iOS application uses a \code{UICollectionView} component of the UIKit framework in order to build out the More screen.
 It is an "[...] object that manages an ordered collection of data items and presents them using customizable layouts" (\cite{UICollectionView2021}).
 Thereby, the collection view component offers the ability to easily create rows and sections backed by a data source. 
 Furthermore, insets, dividers, detail icons as well as tap interaction UI feedback are easily implemented.\\
-Contrarily, using Flutter there is no equivalent widget for effortlessly creating the desired UI outcome and a custom implementation is written instead.
+Contrarily, using Flutter there is no equivalent widget for effortlessly creating the desired UI outcome and a custom implementation has been written instead.
 A simplified version of the code can be seen in Listing \ref{lst:fluttter_more_view_implementation}.
 A \code{SliverList} which is a scrollable UI area that places children in a linear array (see \cite{SliverList2021}) is used to layout the individual cells.
 Each cell is represented by a \textbf{CupertinoListTile} which is responsible for adding text and a trailing widget to each cell as well as inserting appropriate dividers and section insets based on the original app specification.
@@ -144,7 +86,3 @@ The callback is used to open webviews using a \code{SFSafariViewController} (\ci
         );
     \end{lstlisting}
 \end{minipage}
-
-
-
-\textit{@Jan: Ist das so ausreichend vom Umfang des Implementation chapters? Ich könnte hier gefühlt unendlich viel schreiben. Aber eigentlich will ich nur dem Leser zeigen, dass die Apps in ihrer Implementierung vergleichbar sind für die Vergleichsstudie.}

@@ -1,12 +1,13 @@
-\chapter{Flutter}
+\chapter{Flutter} \label{chapter::flutter}
 Firstly, this chapter contextualizes Flutter's unique approach within mobile development (Section~\ref{section::other_architectures}). 
 Secondly, it presents an architectural overview of the framework (Section \ref{section::flutter_architecture}). 
-Both explorations provide the reader with the necessary background knowledge in order to understand implementation choices of the clone application (detailed in Chapter \ref{chapter::implementation}) 
+Finally, selected architectural features of the Flutter framework will be explained in more detail.
+All three explorations provide the reader with the necessary background knowledge in order to understand implementation choices of the clone application (detailed in Chapter \ref{chapter::implementation}) 
 as well as particular eloborations in the study results (Chapter \ref{chapter::results}).
 
 \section{Mobile Development Approaches} \label{section::other_architectures}
 The following subsections depict the individual mobile development approaches (derived from \cite{Heitkoetter2013} and \cite{Cunha2018}).
-Each technique can be placed along a spectrum of being built with web technologies on one and native technologies on the other end (see Figure \ref{fig::mobile_development_approach_spectrum}).\\
+Each technique can be placed along a spectrum of being built with web technologies on one end and native technologies on the other end (see Figure \ref{fig::mobile_development_approach_spectrum}).\\
 Generally, a higher reliance on native over web technologies corresponds to improved performance and usability as shown by \textcite{Heitkoetter2013}.
 
 \begin{figure}
@@ -19,14 +20,14 @@ Generally, a higher reliance on native over web technologies corresponds to impr
 
 \subsection{Web App and Progressive Web App Approach} \label{subsection::web_apps}
 Web apps are run and rendered in the browser. The underlying technologies are HTML, CSS and JavaScript with popular frameworks 
-used for the development process such as Angualar (\cite{Angular2021}), React.js (\cite{React2021}) and Vue.js (\cite{Vue2021}). 
-Relying on the Browser and an internet connection, they do not have access to hardware capabilites or the file system.\\
-Progressive Web Apps (PWAs) function similarly to web apps but provide additional capabilities such as offline use, locally cached data, 
+used for the development process such as Angular (\cite{Angular2021}), React.js (\cite{React2021}) and Vue.js (\cite{Vue2021}). 
+Relying on the Browser and an internet connection, web apps do not have access to hardware capabilites or the file system.\\
+Progressive Web Apps (PWAs; \cite{MozillaFoundation2021}) function similarly to web apps but provide additional capabilities such as offline use, locally cached data, 
 and push notifications. However, the feature set of PWAs is limited to the functionality exposed through the underlying browser.
 
 \subsection{Hybrid Approach}
-Hybrid Apps utilize the same technologies as web apps (see Subsection \ref{subsection::web_apps}), but they are rendered in a platform web view (see Figure \ref{fig:hybrid_architecture}). Additionally they provide the ability to 
-interact with native APIs such as GPS and sensor data through a platform bridge (see Figure \ref{fig:hybrid_architecture}).
+Hybrid Apps utilize the same technologies as web apps, but they are rendered in a platform web view (see Figure \ref{fig:hybrid_architecture}). Additionally they provide the ability to 
+interact with native services such as location, audio and GPS data through a JavaScript platform bridge (see Figure \ref{fig:hybrid_architecture}).
 Unlike web apps, hybrid apps are shippable through official stores.
 Popular framework choices for building Hybrid Apps include Ionic (\cite{Ionic2021}) and Cordova (\cite{Cordova2020}).
 
@@ -38,10 +39,10 @@ Popular framework choices for building Hybrid Apps include Ionic (\cite{Ionic202
 \end{figure}
 
 \subsection{Web Native Approach} \label{subsection::web_native_apps}
-Web Native Apps utilize the OEM components instead of web views for UI rendering while primarily using JavaScript.
+Web Native Apps utilize the OEM components instead of web views for UI rendering.
 This is achieved by using a platform bridge for the transpilation of JavaScript into native platform code allowing for OS level user interface component employment
 and system services calls. 
-Favored frameworks for building web native apps include React Native (\cite{ReactNative2021}) and Native Script (\cite{NativeScript2021}).
+Favored frameworks for building web native apps include React Native~(\cite{ReactNative2021}) and Native Script (\cite{NativeScript2021}).
 
 \begin{figure}
     \centering
@@ -51,10 +52,9 @@ Favored frameworks for building web native apps include React Native (\cite{Reac
 \end{figure}
 
 \subsection{Cross Compiled Approach} \label{subsection::cross_compiled_approach}
-Generally, cross compiled apps take advantage of UI components and services from the underlying host platform similar to web native apps (see Subsection \ref{subsection::web_native_apps} and Figure \ref{fig:web_native_architecture}).
+Generally, cross compiled apps take advantage of UI components and services from the underlying host platform similar to web native apps (see Section \ref{subsection::web_native_apps} and Figure \ref{fig:web_native_architecture}).
 The OS plugin mechanism works by executing generated byte or machine code on the target device from a compiled language such as C\# (used for Xamarin, \cite{Xamarin2021}).\\
-Flutter may be classified as a cross compilation based approach. However, it uniquely leaves the UI rendering process to its \textbf{Skia} graphics engine.
-The framework's architecture and technicalities are further explained in Section \ref{section::flutter_architecture}.
+Flutter may be classified as a cross compilation based approach. However, it uniquely leaves the UI rendering process to its \textbf{Skia} graphics engine (further explained in Section \ref{section::flutter_architecture}).
 
 \begin{figure}
     \centering
@@ -68,6 +68,10 @@ The native approach is facilitated by the platform vendor and characterized by o
 Separate technology stacks as well as programming languages are used for implementing apps natively. 
 iOS supports Swift and Objective-C whereas Android supports Kotlin, Java and C++.
 
+\subsection{Summary}
+The Flutter framework is classfied as a \textbf{Cross-Compiled} Mobile Development Approach. Thereby, Flutter is categorically the closest to 
+native mobile development as can be seen in Fig. \ref{fig::mobile_development_approach_spectrum}.
+However, Flutter is distinct from other cross-compiled approaches in its technical architecture which is explained in the following section.
 
 
 \begin{figure}
@@ -78,17 +82,22 @@ iOS supports Swift and Objective-C whereas Android supports Kotlin, Java and C++
 \end{figure}
 
 \section{Flutter Framework Architecture} \label{section::flutter_architecture}
-Flutter's architecture is composed of three distinct layers: \textbf{framework}, \textbf{engine} and \textbf{embedder}. 
+Flutter's architecture is composed of three distinct layers: \textbf{framework}, \textbf{engine} and \textbf{embedder} (see Fig. \ref{fig:flutter_architecture}).
+\paragraph*{Framework:}
 The framework is the top most layer which app developers interact with. It features animation and gesture APIs as well as structural and preconfigured platform specific UI components delivered through
-the \textbf{Material} (Android) and \textbf{Cupertino} (iOS) package.\\
+the \textbf{Material} (Android) and \textbf{Cupertino} (iOS) package.
+\paragraph*{Engine:}
 Below the framework layer lies the engine which is written in C and C++ allowing for the production of native binaries. 
 This act of cross-compilation is Flutter's technical value proposition to increase execution performance as stated in 
-Subsection \ref{subsection::cross_compiled_approach}. The engine layer includes \textbf{Skia} - a 2D graphics rendering engine which is also used by the Chrome, Mozilla Firefox and Android (\cite{Skia2021}).
-Furthermore, Dart runtime management, system event interaction as well as platform channel services (described in \ref{subsection::method_channels}) are part of the engine layer.\\
+Section \ref{subsection::cross_compiled_approach}. The engine layer includes \textbf{Skia} - a 2D graphics rendering engine which is also used by the Chrome, Mozilla Firefox and Android (\cite{Skia2021}).
+Furthermore, Dart runtime management (Dart is Flutter's programming language explained in Section \ref{section::programming_language}), system event interaction as well as platform channel services (described in \ref{subsection::method_channels}) are part of the engine layer.
+\paragraph*{Embedder:}
 The Embedder is the lowest layer of Flutter's architecture. Its sole purpose is to integrate the Flutter application into the platform-specific environment
 by providing native plugins, thread setup and event loop interoperation.
 Additionally, app package formatting is provided in the same way as for native apps. 
 The host operating is thus not able to differentiate between a Flutter and a natively written app.
+\paragraph{}
+The following sections will go more into depth on particularly interesting parts of Flutter's architecture.
 
 \begin{figure}
     \centering
@@ -97,10 +106,14 @@ The host operating is thus not able to differentiate between a Flutter and a nat
     \label{fig:flutter_layered_architecture}
 \end{figure}
 
+\section{Presentation of Selected Flutter Features}
+This Section explores selected specific features of the previously presented Flutter framework architecture (Section \ref{section::flutter_architecture}).
+The aim is to give the reader a more detailed background knowledge of relevant features to contextualize this thesis as well as understand implementation decisions (Chapter \ref{chapter::implementation}) and the results presented in Chapter \ref{chapter::study_design}.
 
-\subsection{Programming Language and Compilation}
+
+\subsection{Programming Language and Compilation} \label{section::programming_language}
 Flutter apps are written in \textbf{Dart} - a compiled multiparadigm programming language syntactically similar to Java (see \cite{DartLanguage2021}).\\
-During Flutter development, apps run in the Dart Virtual Machine using Just-In-Time (JIT) compilation (\cite{DartLanguage2021}). 
+During Flutter development, apps run in the Dart Virtual Machine utilize Just-In-Time (JIT) compilation (\cite{DartLanguage2021}). 
 This offers stateful \textbf{hot reload} which allows reloading the UI after code changes without needing to fully recompile the app leading to faster development cycles.\\
 For release purposes, Flutter applications are Ahead-of-Time (AOT) compiled into native machine code including the Intel x86 and ARM CPU instruction sets in order to optimize production performance
 (see \cite{FlutterArchitecture2021}).
@@ -163,15 +176,79 @@ with the increase of UI components on screen.
     \end{tabular}
 \end{figure}
 
+\subsection{Implications of Flutter's Declarative UI Paradigm} \label{section::declarative_vs_imperative_ui}
+Flutter and UIKit are distinct technologies for building UI as they utilize the declarative and imperative programming paradigm respectively. 
+These paradigms fundamentally determine how UI code was written in the Kickdown original and clone application.\\
+The two approaches are detailed by using the example of centering a piece of text which is used in multiple places in the Kickdown app.
+
+\subsubsection{UIKit's imperative UI Programming Paradigm}
+The imperative UI programming paradigm is characterized by explicit instructions to the framework to achieve a desired user interface.\\
+To center text, UIKit takes a considerable amount of instructions as can be seen in Listing \ref{lst:code_snippet_uikit_centering}.
+Firstly a \code{UIViewController} is subclassed which manages the entire view hierarchy of the particular screen (\cite{UIViewControllerDocumentation2021}). 
+Furthermore, a \code{UILabel} - \textit{"A view that displays one or more lines of informational text"} (\cite[l.1]{UILabelDocumentation2021}) - is created via a closure (see \cite{ClosureDocumentation2021}) for that parent view controller.
+Inside the closure the \code{text} property is explicitly set after initialization and the label's \code{translatesAutoresizingMaskIntoConstraints} property is set to \code{false} in order for the label to be positioned and sized programmatically.
+Once the view hierarchy for the view controller is loaded into memory, the \code{viewDidLoad} function is called by the system (see \cite{viewDidLoadDocumentation2021}).
+Subsequently, the label is added as a subview and centered horizontally and vertically in the view controller's view based on \textbf{Auto Layout} (\cite{AutoLayoutDocumentation2016}) constraints.\\
+
+\begin{minipage}{\linewidth}
+    \begin{lstlisting}[caption={iOS UIKit Example of Centering Text on a Screen}\label{lst:code_snippet_uikit_centering}]
+        import UIKit
+    
+        class InitialViewController: UIViewController {
+            private let customTextLabel: UILabel = {
+                let label = UILabel()
+                label.text = "Custom Text"
+                label.translatesAutoresizingMaskIntoConstraints = false
+                return label
+            }()
+    
+            override func viewDidLoad() {
+                super.viewDidLoad()
+                view.backgroundColor = UIColor.white
+                view.addSubview(customTextLabel)
+                customTextLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+                customTextLabel.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
+            }
+        }
+    \end{lstlisting}
+\end{minipage}
+
+\begin{minipage}{\linewidth}
+    \begin{lstlisting}[caption={Flutter Example of Centering Text on a Screen}\label{lst:code_snippet_flutter_centering}]
+        import "package:flutter/widgets.dart";
+        class InitialPage extends StatelessWidget {
+            @override
+            Widget build(BuildContext context) {
+                return Center(child: Text("Custom Text"));
+            }
+        }
+    \end{lstlisting}
+\end{minipage}
+
+\subsubsection{Flutter's Declarative UI Programming Paradigm}
+Contrarily, Flutter's code structure can be more directly mapped to actual user interface elements with its declarative widget composition paradigm.\\
+The same example of centering a piece of text on screen can be written declaratively with Flutter as shown in Listing \ref{lst:code_snippet_flutter_centering}.
+A widget representing the screen is created by subclassing \code{StatelessWidget} (see \cite{StatelessWidgetDocumentation2021}). 
+Unlike \code{StatefulWidget}s (see \cite{StatefulWidgetDocumentation2021}), \code{StatelessWidget}s do not hold any mutable state and can't change during runtime based on state changes. 
+\code{StatelessWidget}s have a required \code{build} method which return any widget child relationships. The method is called 
+once by the system to mount the widget's subtree structure into the global widget tree (explained in Section \ref{subsection::rendering_ui_state}).
+Concretely, a \code{Center} with a \code{Text} is returned in order to display centered text in the UI.\\
+
+\subsubsection{Advantages and Disadvantages of the Declarative Paradigm}
+The advantages of using the declarative approach include the entire description of intent in one place and abstraction of details into
+a clean interface outsourcing implementation complexity to the framework (see \cite{FlutterDeclarative2021}).\\
+However, while Flutter's declarative apprach may be more intuitive for the human mind, it might also introduce a slight performance overhead.
+This occurs due to the widget subtree diffing calcualation performed for each state change in \code{StatefulWidget} subtrees (explained in Section \ref{subsection::rendering_ui_state}).\\
+
 \subsection{Platform Specific Method Channels} \label{subsection::method_channels}
 To utilize platform-specific APIs such as camera access, geolocation or other sensor data, Flutter communicates with the platform's native APIs via 
-a method channel (see Figure \ref{fig:flutter_architecture}). 
+a method channel in accordance with the cross-compiled reference architecture introduced in Section \ref{subsection::cross_compiled_approach}. 
 This internal channel is used to execute code written in a host specific language. Thereby, Dart may be used to call Swift or Objective-C on iOS, and Kotlin or Java on Android (see \cite{PlatformChannel2021}).
 Common functionalities are already provided by Flutter or third party packages (\cite{PubDev2021}). Additionally, custom platform integrations may be 
 implemented as required.
 
 \subsection{Flutter's Architectural Limitations}
-As explained in Subsection \ref{subsection::rendering_ui_state}, Flutter renders its own widgets rather than using OEM components unlike other mobile development frameworks (mentioned in Section \ref{section::other_architectures}). 
+As explained in Section \ref{subsection::rendering_ui_state}, Flutter renders its own widgets rather than using OEM components unlike other mobile development frameworks (mentioned in Section \ref{section::other_architectures}). 
 When an underlying OEM component of the host platform changes with an OS update, Flutters' framework needs to be updated to resemble this new 
 functionality. 
 Thus, Flutter's \textit{framework layer} (see Section \ref{section::flutter_architecture}) needs to continuously replicate vendor specific UI changes.
