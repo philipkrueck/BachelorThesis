@@ -1,9 +1,9 @@
 
 \chapter{Results} \label{chapter::results}
 This chapter focuses on the evaluation of the chosen empirical methods and relates back to the originally proposed research question (Section \ref{section::thesis_objective}).
-Specifically, the executed performance profiling results for both apps
-along the chosen metrics (see Section \ref{subsection::selected_measurement_variables}) are comparatively evaluated in order to test the validity of the performance hypothesis $H_P$ (Section \ref{section::methods}).
-Furthermore, the conducted expert interviews are analysed using the process of interview coding (see Section \ref{section::interview_evaluation}) to corroborate the usability hypothesis $H_U$ (Section \ref{section::methods}).
+First, the executed performance profiling traces for both apps along the chosen metrics (see Section \ref{subsection::selected_measurement_variables}) and use cases (see Section \ref{subsection::measurement_process}) 
+are comparatively evaluated in order to test the validity of the performance hypothesis $H_P$ (Section \ref{section::methods}).
+Second, the interviews with subject matter experts are analysed using the interview coding process (see Section \ref{section::interview_evaluation}) to corroborate the usability hypothesis $H_U$ (Section \ref{section::methods}).
 
 \section{Performance Comparison} \label{section::performance_comparison}
 This section presents and contextualizes the performance tracing results based on the benchmarking process for the selected metrics (detailed in Section \ref{section::performance_comparison_design}).
@@ -11,7 +11,7 @@ The section concludes with inferences of the results on the performance hypothes
 
 \subsection{General Observations}
 In most cases, the iPhone 6s consumes less system resources than the iPhone 12 Pro Max (see Section \ref{section::performance_tracing_results}).
-The iPhone 12 Pro Max has a considerably larger screen (6.7 inches vs. 4.7 inches) and a higher pixel density than the 6S (458 pixels/inch vs 326 pixels/inch; \cite{Apple2021d}, \cite{Apple2021c}) naturally requiring more system resources for rendering.
+However, the iPhone 12 Pro Max has a considerably larger screen (6.7 inches vs. 4.7 inches) and a higher pixel density than the 6S (458 pixels/inch vs 326 pixels/inch; \cite{Apple2021d}, \cite{Apple2021c}), which requires more system resources for rendering.
 
 
 \subsection{CPU usage} \label{section::cpu_usage}
@@ -19,15 +19,15 @@ For both the Flutter and original iOS app, the iPhone 12 Pro Max uses more CPU p
 CPU usage is greater than 100\%. This doesn't mean that the processing unit is overloaded as the measured CPU usage is in relation to a single core.
 The iPhone 12 Pro Max has 2 high performance cores and 4 smaller battery optimized cores. Based on the task, the operating system delegates tasks to either a high performance or a 
 battery optimized core.
-Whereas the iPhone 6s simply has 2 equally clocked cores for typical parallel work.
-In terms of CPU usage, it would be errorprone to combine values from the two different phones into a single metric. Therefore, the following metrics are calculated for the two iPhones separately.\\
+The iPhone 6s simply has 2 equally clocked cores for typical parallel work.
+In terms of CPU usage, it would be incorrect to combine values from the two different phones into a single metric. Therefore, the following metrics are calculated for the two iPhones separately.\\
 Overall, the Flutter clone uses more CPU resources during every single test case when averaged over time (see Fig. \ref{fig:avg_cpu_usage_summary}) on both test hardware devices.
 On average, the Flutter clone uses 43\% more CPU power when testing on the iPhone 12 Pro Max while it uses 17\% more on the iPhone 6s.\\
 During the \textit{detail view transition}, the Flutter clone has the most similar CPU performance with an additional 19\% (12 Pro Max) and 14\% (6s) respectively compared to the original iOS app.
 
 The standard deviation of the averaged CPU usage between the use cases lies between 6 and 17\% meaning that the CPU requirement for the typical use cases is similar.
-Contrarily, when looking at the at each individual use case for the averaged run, the CPU usage deviation is very high in every case (app start: 48.17\%, detail transition: 53.16\%, image gallery: 51.90\%, scrolling: 52.12\%).
-This should be mostly due to the fact that the CPU has different load requirements based on the current executed task which may be executed in milliseconds after which it may be idle if no other task is in the queue.
+In contrast, when looking at the at each individual use case for the averaged run, the CPU usage deviation is very high in every case (app start: 48.17\%, detail transition: 53.16\%, image gallery: 51.90\%, scrolling: 52.12\%).
+This is mostly due to the fact that the CPU has different load requirements based on the current executed task, which may be executed in milliseconds after which it may be idle if no other task is in the queue.
 
 \begin{figure}[!h]
     \centering
@@ -37,15 +37,15 @@ This should be mostly due to the fact that the CPU has different load requiremen
 \end{figure}
 
 \subsection{Memory Usage}
-The memory usage grows quite steadily throughout the execution of each user action (as can be seen in Figures \ref{fig:avg_memory_usage_app_start}, \ref{fig:avg_memory_usage_detail_view}, \ref{fig:avg_memory_usage_image_gallery} and \ref{fig:avg_memory_usage_scrolling}) as opposed to the CPU usage (Section \ref{section::cpu_usage}).
-When starting the application, a required amount of information is loaded into memory and 
-as the use case is performed more information (i.e. more variables) are added into the memory units.\\
+The memory usage increases quite steadily throughout the execution of each user action (as can be seen in Figures \ref{fig:avg_memory_usage_app_start}, \ref{fig:avg_memory_usage_detail_view}, \ref{fig:avg_memory_usage_image_gallery} and \ref{fig:avg_memory_usage_scrolling}) as opposed to the CPU usage (Section \ref{section::cpu_usage}).
+When starting the application, a required amount of information is loaded into memory and, 
+as the use case is performed, more information (i.e. more variables) is added into the memory units.\\
 Flutter is less efficient in terms of its memory usage. Each use case consumes between 53.4 MiB\footnote{Mebibytes (MiB) are the base 2 equivalent (1,048,576) of Megabytes (MB) (1,000,000)} and 67.3 MiB of memory while the iOS baseline app only uses between 32.3 and 41.1 MiB of memory.
 Thereby, the clone app uses double the amount of memory on average (124.7\% additional usage).
-This may be explained by the fact, that the Flutter app contains its own rendering engine requiring additional space whereas the native rendering engine is built into the operating system itself.\\
-However, the additional memory utilization the Flutter app requires (32.9 MiB) equates to 0.6\% and 1.7\% of the total RAM capacity for the 12 Pro Max and 6s\footnote{The iPhone 12 Pro Max has 6GB RAM (\cite{GSMArena12ProMax2020}) capacity while the iPhone 6s has 2GB RAM (\cite{GSMArena2015}) capacity} respectively.\\
+This may be explained by Flutter containing its own rendering engine, which requires additional space. In contrast, the native rendering engine is built into the operating system itself.\\
+However, the additional memory utilization the required by the Flutter app (32.9 MiB) equates to 0.6\% and 1.7\% of the total RAM capacity for the 12 Pro Max and 6s\footnote{The iPhone 12 Pro Max has 6GB RAM (\cite{GSMArena12ProMax2020}) capacity while the iPhone 6s has 2GB RAM (\cite{GSMArena2015}) capacity}, respectively.\\
 Interestingly, the memory growth throughout each use case is smaller than on iOS (as can be seen in Figures \ref{fig:avg_memory_usage_app_start}, \ref{fig:avg_memory_usage_detail_view}, \ref{fig:avg_memory_usage_image_gallery} and \ref{fig:avg_memory_usage_scrolling}) indicating that Flutter efficiently scales memory during app runtime.
-In addition, the additional 23.7 MiB the Flutter app consumes on average is negliglible as it is 0.4\% of the iPhone 12 Pro Max (6 GB) and 1.2\% of the 
+Overall, the additional 23.7 MiB consumed by the Flutter app on average is a negliglible 0.4\% of the iPhone 12 Pro Max (6 GB) and 1.2\% of the 
 iPhone 6s (2 GB) RAM capacity.
 
 \begin{figure}[!h]
@@ -56,10 +56,10 @@ iPhone 6s (2 GB) RAM capacity.
 \end{figure}
 
 \subsection{GPU Usage}
-On average the Flutter app consumes 38\% more GPU than the Flutter application. The GPU usage lies between 18.7\% 21.9\% for Flutter and between 24.2\% and 37.4\% on iOS (averaged for each use case).
+On average the Flutter app consumes 38\% more GPU than the Flutter application. The GPU usage lies between 18.7\% and 21.9\% for Flutter and between 24.2\% and 37.4\% on iOS (averaged for each use case).
 The Skia engine of the Flutter app (see Section \ref{section::flutter_architecture}) may use the CPU for certain calculations like tree diffing (being a typical CPU task, Section \ref{subsection::rendering_ui_state}) while iOS is optimized to perform graphics related calculations on the GPU.
-This requirement inbalance may then also explain the additional CPU usage of the Flutter clone.\\
-Furthermore, throughout each use case the iOS app is subject to larger gradient variation than the Flutter application (see Figures \ref{fig:avg_gpu_usage_app_start}, \ref{fig:avg_gpu_usage_detail_view}, \ref{fig:avg_gpu_usage_image_gallery} and \ref{fig:avg_gpu_usage_scrolling}).
+This requirement imbalance may then also explain the additional CPU usage of the Flutter clone.\\
+Furthermore, throughout each use case the iOS app is subject to larger fluctuations than the Flutter application (see Figures \ref{fig:avg_gpu_usage_app_start}, \ref{fig:avg_gpu_usage_detail_view}, \ref{fig:avg_gpu_usage_image_gallery} and \ref{fig:avg_gpu_usage_scrolling}).
 This may be related to the fact that iOS demands more GPU usage at points in time where intensive graphical computations are required.
 
 \begin{figure}[!h]
@@ -75,7 +75,8 @@ In relation, the memory usage is significantly higher in the Flutter clone. Howe
 on iOS.
 
 \section{Usability Comparison} \label{section::usability_comparison}
-This section presents and contextualizes the results from the expert interview coding process (see Section \ref{section::interview_evaluation}).\\
+This section presents and contextualizes the results from the expert interview coding process (see Section \ref{section::interview_evaluation}).
+The transcriptions of the conducted interviews can be found in Appendix Chapter \ref{section::interview::transcriptions}.\\
 In most cases the expert interview participants did not prefer either of the two user experiences as can be seen in Table \ref{tab:interview_use_case_preferences}.
 Particularly, cases where no differences could be perceived include:
 \begin{itemize}

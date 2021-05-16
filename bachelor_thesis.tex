@@ -24,7 +24,7 @@
 \usepackage{pdflscape}
 \usepackage{afterpage}
 \usepackage{capt-of}% or use the larger `caption` package
-
+\usepackage{placeins}
 
 \hypersetup{
     hidelinks
@@ -75,14 +75,13 @@
 
 \lstset{frame=tb,
         language=swift,
-        basicstyle=\small\ttfamily,basicstyle=\linespread{0.8}\small\ttfamily,
+        basicstyle=\footnotesize\ttfamily,basicstyle=\linespread{0.8}\footnotesize\ttfamily,
         aboveskip=20pt,
         belowskip=20pt,
         stepnumber=1,
         showstringspaces=false,
         showspaces=false
         columns=flexible,
-        basicstyle={\small\ttfamily},
         numbers=left,
         numberstyle=\tiny\color{gray},
         keywordstyle=\color{blue},
@@ -90,7 +89,7 @@
         stringstyle=\color{mauve},
         breaklines=true,
         breakatwhitespace=false,
-        tabsize=3,
+        tabsize=4,
         literate=%
           {€}{\euro}1%
 }

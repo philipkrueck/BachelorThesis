@@ -1,8 +1,7 @@
 \chapter{Introduction}
 \label{section:introduction}
-Mobile platforms are dominated by two players - Apple and Google with their respective operating systems iOS and Android. 
-Cumulatively, they form a duopoly in the smartphone operating systems market with a combined usage share of 
-15.2\% for iOS and 84.8\% for Android in 2020 according to to the International Data Corporation (\cite{IDC2021}).
+Mobile platforms are dominated by Apple and Google. Their respective operating systems, iOS and Android form a duopoly in the smartphone operating systems market with a combined usage share of 
+15.2\% for iOS and 84.8\% for Android in 2020 (\cite{IDC2021}).
 \\To develop a mobile software application (\textit{app}) for both target platforms, the corresponding development environments and technologies 
 are utilized for each platform. This leads to a doubling of cost, development time, and 
 the need for knowledge of two different application development paradigms. 
@@ -39,24 +38,24 @@ the maximum number of potential customers with their app. Flutter could be utili
 both mobile platforms. 
 Worth noting are the benefits of serving smaller customers like startups which include higher growth potential for long-term cooperation
 and risk diversification in apploft's client portfolio.\\
-The possible upside of implementing Flutter exceeds the acquisition of small clients. Instead of focusing on platform customization with native tooling, more effort could 
-be directed into developing unique custom features.
+In addion, instead of focusing on platform customization with native tooling, more effort could 
+be directed into developing unique custom features including animations based on advanced motion design.
 Furthermore, infrastructure setup, package development and app updates would only be necessary for one codebase.\\
-Since the aforementioned economic incentives aren't necessarily company-specific, they are relevant for mobile application developers at large.
-Scientifically, this thesis may be the basis for future work on Flutter's architecture attributes and their contribution to runtime performance and UI rendering of frontend toolkits, in general.
+Since the aforementioned economic incentives are not necessarily company-specific, they are relevant for mobile application developers at large.
+As such, this thesis may contribute to future work on Flutter's architecture attributes and their implications on runtime performance and UI rendering of frontend toolkits.
 
 \section{Problem Statement}
-To the best of the author's knowledge, there are no peer reviewed articles comparing the performance or usability to native apps\footnote{A search for relevant articles has been conducted using Google Scholar, Sci-hub and IEEE Xplore.} since Flutter was first released in March 2018 (\cite{FlutterReleases2020}).
-This leaves an especially interesting gap in the literature, since both aspects are the topmost perceived challenges of cross-platform frameworks considered from an industry-perspective (\cite{BioernHansen2019}).
+To the best of the author's knowledge, there are no peer reviewed articles comparing the performance or usability to native apps\footnote{A search for relevant articles has been conducted using Google Scholar, Sci-hub and IEEE Xplore.}.
+This leaves a gap in the current literature as both aspects are known challenges of cross-platform frameworks (\cite{BioernHansen2019}) that must be addressed for Flutter specifically to determine in what capacity the framework may be used for building mobile applications.
 
 \section{Thesis Objective} \label{section::thesis_objective}
-This thesis will focus on comparing Flutter's framework technology to iOS specifically. The assumption made in this paper, is that mimicking Android-specific appearance and behavior should be rather straightforward as 
+This thesis will focus on comparing the (1) performance and (2) usability of Flutter's framework technology to iOS specifically. However, to make the comparison, it is assumed that mimicking Android-specific appearance and behavior is rather straightforward as 
 both Flutter and Android utilize Google's \textbf{Material design} (\cite{Google2021}) for their default components.
-Additionally, testing the framework against iOS is especially interesting as it seems less likely that Flutter would be 
-able exploit system specific properties for performance optimization in Apple's closed operating system.\\
-The aim of this thesis is derived based on the initially stated problems with cross-platform frameworks and the current lack of research on Flutter's marketing claims to solve those drawbacks.
-Specifically, Google's assertion that Flutter can match \textit{"native performance"} and the framework can be utilized for building \textit{"expressive and flexible UI"} (\cite{FlutterDev20})
-will both serve as inductively derived hypotheses that shall be empirically verified or falsified individually by this thesis:
+Additionally, testing the framework against iOS is of particular interest as Flutter is less likely
+to exploit system specific properties for performance optimization in Apple's closed operating system.\\
+The aims of this thesis are to address the initially stated problems with cross-platform frameworks and to independently validate Flutter's marketing claims.
+Specifically, Google's assertions that Flutter can match \textit{"native performance"} and the framework can be utilized for building \textit{"expressive and flexible UI"} (\cite{FlutterDev20}),
+which will serve as inductively derived hypotheses for empirical verification:
 
 \textbf{$H_P$}: The Flutter framework yields comparable \textbf{performance} to native iOS  app development frameworks for iPhone.
 
@@ -66,35 +65,35 @@ will both serve as inductively derived hypotheses that shall be empirically veri
 An archetypal native mobile app has been chosen as a case study for the evaluation of both hypotheses $H_P$ and $H_U$.
 Based on typical mobile application facets (explained in detail in Section \ref{section::facet_selection}), \textit{Kickdown} (\cite{Kickdown2021}) - an online car auction app - was chosen for this thesis. 
 The app has already been developed for iOS by apploft and released to the App Store in February of 2021 (\cite{Apple2021e}).
-For the purposes of comparison, a Flutter equivalent has been developed mimicking the relevant subset of UI and functionality of the original app (see Section \ref{subsection::clone_app_feature_reduction}). 
-Both the original and Flutter replica app are used for subsequent hypothesis testing.
+For the purposes of this thesis, a Flutter clone has been developed to mimick the relevant subset of UI and functionality found in the original app (see Section \ref{subsection::clone_app_feature_reduction}). 
+Both the original and Flutter clone app are used for subsequent hypothesis testing.
 
 
 \subsection{Performance comparison}
-The assessment of the performance hypothesis $H_P$ has been conducted by profiling specific performance metrics including CPU, GPU and memory usage 
+The assessment of the performance hypothesis ($H_P$) has been conducted by profiling specific performance metrics including CPU, GPU, and memory usage 
 for particular use case flows in the original and Flutter application. 
 The profiling results have been analyzed using common statistical techniques.
-A further explaination of the measurement process is detailled in Section~\ref{section::performance_comparison_design}.
+A further explanation of the measurement process is detailed in Section~\ref{section::performance_comparison_design}.
 
 \subsection{Usability comparison}
-The analysis of the usability hypothesis $H_U$ has been evaluated by the means of semi-structured expert interviews.
-Specifically, study participants have been be asked to evaluate both the Kickdown iOS and Flutter application clone along various metrics.
+The analysis of the more qualitative usability hypothesis ($H_U$) has been evaluated by the means of semi-structured expert interviews.
+Specifically, study participants have been asked to evaluate both the Kickdown iOS and the Flutter application clone along various metrics.
 
-A detailed explanation of the interview process is given in Section \ref{section::usability_comparison_design}.
+A detailed explanation of the interview process is provided in Section \ref{section::usability_comparison_design}.
 
 \section{Scope \& Limitations}
-The feature set of the implemented app is representative for most, but not every type of app (see Section \ref{section::facet_selection}). 
-Therefore the results cannot be generalized to every type of possible app. 
-However, they should be seen as indicators of Flutters value as a cross-platform framework for the 
-archetypal mobile app. 
-Furthermore, the deductively chosen methodology yields the potential of finding adjacent hypothesis which may be
-further explored by other researchers.\\
-Additionally, the usability study doesn't provide statistical significance due to its qualitative nature. Nevertheless, the depth of detail
-in expert interviews is much greater compared to quantitative methods, and unthought of considerations may be suggested by the interviewees.\\
-This research attribute is especially compelling given the current research state on the Flutter framework as mentioned above. 
+The feature set of the implemented app is considered to be representative for most, but not all types of apps (see Section \ref{section::facet_selection}). 
+Therefore, although the results cannot be generalized to all types of apps, they should be seen as representative indicators of Flutters value as a cross-platform framework. 
+Furthermore, the deductively chosen methodology yields the potential of finding adjacent hypothesis (mentioned in Chapter \ref{chapter::summary}) which may be
+explored in future research.\\
+Despite the qualitative nature of the usability study, the depth of detail gained from the expert interviews
+should not be neglected in favor of exclusively quantitative methods. Many previously overlooked considerations were suggested by the interviewees.\\
+Given the current research state on the Flutter framework, the insights provided by the subject matter  experts interviewed is especially compelling.
+
 
 \section{Thesis Structure}
 The ensuing chapters are structured as follows:
-In Chapter \ref{chapter::flutter}, the reader is given the necessary background knowledge on the Flutter framework in order to contextualize and understand this thesis. Chapter \ref{chapter::study_design} presents the chosen study methodology in order to evaluate the research goal. 
-Subsequently, in Chapter \ref{chapter::results} the results of the study are evaluated and discussed.
+In Chapter \ref{chapter::flutter}, the reader is given the necessary background knowledge on the Flutter framework to contextualize and understand this thesis. Chapter \ref{chapter::study_design} presents the methodology to evaluate the research goal. 
+Succeeding the methodological elaboration follows a discourse on the application design and implementation of the Flutter clone app (Chapter \ref{chapter::implementation})
+Chapter \ref{chapter::results} outlines and discusses the results of the study.
 Finally, key findings are summarized, related back to the research question and future research opportunities are proposed (Chapter \ref{chapter::summary}).

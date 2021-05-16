@@ -1,19 +1,16 @@
 \chapter{Methodology and Study Design} \label{chapter::study_design}
-This chapter explores the employed methodology for testing both the performance hypothesis $H_P$ and the usability hypothesis $H_U$ (defined in Section \ref{section::thesis_objective}). 
-The goal is to explicitly show the reasoning for the chosen methods as well as provide specific method implementation details to aid transparancy about the obtained results discussed in Chapter \ref{chapter::results}.\\
-Generally, the employed methodology to achieve the research objective (Section \ref{section::thesis_objective}) is to replicate a relevant subset of functionality of an existing iOS app using Flutter. Thereby, the \textbf{original app} acts as a baseline with which the \textbf{Flutter clone} 
-can be comparatively evaluated. Based in this comparison, the research question - whether the Flutter framework can match native performance and provide equivalent usability (Section \ref{section::thesis_objective}) - is answered.
-Instead of creating artificial use cases, taking advantage of an existing app provides realistic instances for performance as well as user interface testing.\\
-The first section in this chapter (Section \ref{section::facet_selection}) details the decision process for selecting the baseline testing app as well as its feature reduction for further comparison. 
+This chapter explores the methodology employed for testing both the performance hypothesis $H_P$ and the usability hypothesis $H_U$ (defined in Section \ref{section::thesis_objective}). 
+The goal is to explicitly show the reasoning for the chosen methods, as well as provide specific method implementation details applicable to the results discussed in Chapter \ref{chapter::results}.\\
+Generally, the methodology used to achieve the research objective (Section \ref{section::thesis_objective}) is to replicate a relevant subset of functionality of an existing iOS app using Flutter. Thereby, the \textbf{original app} acts as a baseline with which the \textbf{Flutter clone} 
+can be compared. Based in this comparison, the research question - whether the Flutter framework can match native performance and provide equivalent usability (Section \ref{section::thesis_objective}) - is answered.
+Instead of creating artificial use cases, an existing app provides realistic instances for performance as well as user interface testing.\\
+The first section in this chapter (Section \ref{section::facet_selection}) details the decision process for selecting the baseline testing app and the feature reduction for the comparison. 
 The subsequent two sections (Sections \ref{section::performance_comparison_design} and \ref{section::usability_comparison_design}) explore the specific methods and reasoning for the performance and 
 usability comparison respectively.
 
-
-
-
 \section{Baseline App Selection Process} \label{section::facet_selection}
-The procedure for choosing the case study app is based on a 4 step filtering process. Each step may be viewed as a constraint
-applied upon possible apps progressively reducing the number of potential baseline testing apps:
+The procedure for selecting the case study app is based on a 4 step filtering process. Each step may be viewed as a constraint
+applied upon possible apps that progressively reduces the number of potential baseline testing apps:
 \begin{enumerate}
     \item The app is built and maintained by apploft. \label{item::constraint_one}
     \item The app includes common application \textbf{facets}. \label{item::constraint_two}
@@ -22,52 +19,53 @@ applied upon possible apps progressively reducing the number of potential baseli
 \end{enumerate}
 The reasoning behind selecting the above filtering constraints is detailed in the following paragraphs.
 
-\subsection*{Creation and Maintainance by apploft}
-This constraint was imposed on the filtering process such that a contact person (apploft
-employee) is available for code specific questions.\\
-Having a reference to the original source code further provides the ability of implementing the Flutter replica similarly to facilitate comparability with the baseline app.
-E.g. a particular algorithm could be implemented similarly in the Flutter application. Thereby, equivalent time and space complexities are produced and 
+\subsection*{Creation and Maintenance by apploft}
+This constraint was imposed on the filtering process so that a contact person (apploft
+employee) would be available for code specific questions.\\
+Having access to the original source code allows the Flutter clone to be implemented in a similar manner and facilitates comparability with the baseline app.
+E.g. specific algorithms could be implemented correspondingly in the Flutter application. Thereby, equivalent time and space complexities are produced and 
 algorithm implementation can be retracted as a confounding variable.\\
-Furthermore, access to the original source code provides the ability to reduce unnecessary features which are irrevalent regarding the hypotheses evaluation. This reduces the complexity of the Flutter replica.
+Furthermore, access to the original source code provides the ability to reduce unnecessary features that are not revalent for the hypotheses evaluation. This reduces the complexity of the Flutter clone.
 
 \subsection*{Inclusion of Common Application Features}
 The goal of this thesis is to determine whether Flutter is comparable in terms of performance ($H_P$) and usability ($H_U$) for the archetypal mobile app (Section \ref{section::methods}). 
-Therefore, only facets commonly appearing in iOS apps are considered for finding the baseline testing app.\\
+Therefore, only facets that commonly appear in iOS apps are considered for baseline app testing.\\
 For the purposes of finding the baseline app, a \textbf{facet} is defined as either
 \begin{enumerate}[label=(\alph*)]
-    \item a generalizable UI component which is non-trivial, or \label{item::facet_ui}
+    \item a generalizable nont-trivial UI component, or \label{item::facet_ui}
     \item an underlying technical attribute influencing the user experience. \label{item::technical_attribute}
 \end{enumerate}
 
-Trivial UI components \ref{item::facet_ui} such as buttons or text weren't considered \textbf{facets} as they are omnipresent throughout every app.
-As for \ref{item::technical_attribute}, a technical attribute has to influence the user experience to be incorporated as the purpose of this thesis is testing Flutter's value as a UI framework (see Section \ref{section::thesis_objective}).
+Trivial UI components \ref{item::facet_ui} such as buttons or text were not considered \textbf{facets} as they are ubiquitous throughout every app.
+As for \ref{item::technical_attribute}, a technical attribute has to influence the user experience to be considered as a facet.
+Technical attributes not influencing the UI are not relevant as the purpose of this thesis is testing Flutter's value as a UI framework (see Section \ref{section::thesis_objective}).
 For example, networking can be viewed as a \textbf{facet} if fetched data is displayed via the UI, but is not a \textbf{facet} if the sole purpose of networking within 
 an app is to extract analytics data.
 
 \subsection*{Use of Modern iOS Frameworks}
-If this constraint were not applied on the filtering process, old iOS technology could be compared to a modernly built Flutter app. 
+If this constraint were not applied on the filtering process, old iOS technology could be compared a modernly built Flutter app.
 Therefore, constraining the baseline app to be built with modern iterations of iOS framework technology ensures a reasonable comparison 
-against the replica app.
+against the clone app.
 
 \subsection*{Conformance to Human Interface Guideline}
 Conforming to Apple's HIG ensures the original app looks native to the iOS platform.
-Since Flutter comes from Google, it probably implements the \textbf{Material Design} (\cite{Google2021}) rather well. Rebuilding an app that conforms to Apple's design guidelines is the more interesting case.\\
+Since Flutter is a product of Google, it is likely that the framework implements the \textbf{Material Design} (\cite{Google2021}) rather well. Rebuilding an app that conforms to Apple's design guidelines is the more interesting case.\\
 In addition, providing a recognizable UX for iOS users would keep participants in the usability study (detailed in Section \ref{section::usability_comparison_design}) focused on noticing differences instead of 
 being distracted by an ambiguous UI.
 \hfill \break
 
 Based on the above constraints, a small study was conducted looking at 15 apps developed by apploft (constraint \ref{item::constraint_one}) from 9 different iOS App Store categories. 
-The factes were extracted into Table \ref{tab::initial_table} by going through each user interface (constraint \ref{item::constraint_two}).
+The facets were extracted into Table \ref{tab::initial_table} by evaluating each user interface (constraint \ref{item::constraint_two}).
 Furthermore, a facet had to appear at least twice before being added as a result.\\
 Continuing the filtering process, as per constraint 2 uncommon facets - facets appearing
 in less than 50\% of observed apps - are excluded. This reduces the list of facets to the following:
 
 \begin{itemize}
     \item \textbf{Networking} - Interaction with a remote API.
-    \item \textbf{Login/Authentication} - User log in meachanism through a UI.
+    \item \textbf{Login/Authentication} - User log in mechanism through a UI.
     \item \textbf{Tab navigation} - UI component to quickly switch between different sections of an app (\cite{AppleHIGTabBar2021}).
     \item \textbf{Hierarchical navigation} - Screens opened on top of previous screens using a stack structure (\cite{AppleHIGNavigation2021}).
-    \item \textbf{Keyboard interaction} - UI for inputing text via a software keyboard.
+    \item \textbf{Keyboard interaction} - UI for inputting text via a software keyboard.
     \item \textbf{Vertically scrolling collections} - UI collection of items scrolling vertically.
     \item \textbf{Horizontally scrolling collections} - UI collection of items scrolling horizontally.
     \item \textbf{Webview component integration} - Integrated UI component for displaying web content (\cite{AppleHIGWebViews2021}).
@@ -75,16 +73,16 @@ in less than 50\% of observed apps - are excluded. This reduces the list of face
 
 Out of the 15 initially tested apps, 5 include all of the above \textbf{facets} (conforming to
 constraint 1 and 2) (see Table \ref{tab::filtered_table}). Kickdown (see Section \ref{section:kickdown_feature_presentation}) is chosen among the remaining 
-contestants for the baseline testing app. It was most recently released (Feb 2021) and is therefore built with modern iOS technologies (constraint \ref{item::constraint_three})
-and complies to the most recent iteration of the \textbf{Human Interface Guidelines} (constraint \ref{item::constraint_four}).
+candidates for the baseline testing app. It was most recently released (Feb 2021) and is known to indlude modern iOS technologies (constraint \ref{item::constraint_three}).
+Furthermore, Kickdown complies to the most recent iteration of the \textbf{Human Interface Guidelines} (constraint \ref{item::constraint_four}).
 
 \subsection{Clone Application Feature Reduction and Implementation} \label{subsection::clone_app_feature_reduction}
 The login and signup mechanism - although a common \textbf{facet} - is removed from the original
-app for baseline testing. This is due to the fact that textfield and button interaction as well
-as networking is already present in other parts of the app and would yield no further insight
+app for baseline testing. These exclusions were made as the textfield, button interaction and networking facets are already present in other parts of the app
+As such, the implementation of the login and signup mechanism would yield no further insight
 regarding the hypotheses evaluation.\\
 The Flutter app is implemented as closely as possible to the original application to avoid an
-asymmetrical comparison as detailed in Chapter \ref{chapter::implementation}.
+asymmetric comparison, as detailed in Chapter \ref{chapter::implementation}.
 
 \afterpage{
     \clearpage
@@ -149,9 +147,9 @@ asymmetrical comparison as detailed in Chapter \ref{chapter::implementation}.
 }
 
 \subsection{Kickdown App Feature Presentation} \label{section:kickdown_feature_presentation}
-\textit{Kickdown} is an online auctioning platform for buying and selling classic and vintag cars (\cite{Kickdown2021}).\\
+\textit{Kickdown} is an online auctioning platform for buying and selling classic and vintage cars (\cite{Kickdown2021}).\\
 The original iOS app was built by apploft based on a subset of functionality from the web application and its underlying internal API.
-The application is divided into two main sections via tab navigation: the overview and the more screen (see Figure \ref{fig:kickdown_overview_screen} and \ref{fig:kickdown_more_screen}).\\
+The application is divided into two main sections via tab navigation: the (1) overview and the (2) more screen (see Figure \ref{fig:kickdown_overview_screen} and \ref{fig:kickdown_more_screen}).\\
 On the overview, the user has the ability to scroll through all current offerings. Each offering is shown as a card with a hero image 
 and some basic information including the title, location, current price and remaining time.\\
 Tapping on a posting card brings up a detail view (Figure \ref{fig:kickdown_detail_screen}) for the respective posting.
@@ -203,21 +201,19 @@ The More screen lets the user login, turn on analytics tracking or open informat
 
 \section{Performance Comparison} \label{section::performance_comparison_design}
 The methodology chosen to empirically test the performance hypthesis $H_P$ (Section \ref{section::thesis_objective}) is a quantitative
-measurement of computational resources during app runtime. Measurements are performed for
-specific load conditions (i.e use cases). In the process, the original app acts as an empirical
-baseline for testing the Flutter replica against.\\
-Directly benchmarking system resources provides insight whether the Flutter framework consumes
-compute resources efficiently under typically imposed load settings. Furthermore, system
+measurement of computational resources employed during app runtime. Measurements are performed for
+specific load conditions (i.e use cases). 
+The measured performance of the original app serves as an empirical baseline for testing the Flutter replica.\\
+Directly benchmarking system resources provides an indication whether the Flutter framework consumes resources more or less efficiently under typical load settings. Furthermore, system
 benchmarking metrics are the underlying cause of more ephemeral measures for testing the
 system load itself, e.g. page load time. In addition, the chosen compute resources (explained
-in Section \ref{subsection::selected_measurement_variables}) are easily measured using software tooling (Section \ref{subsection::profiling_tooling}) which aids the
-objectivity, reliability and validity of this particular study methodology.
+in Section \ref{subsection::selected_measurement_variables}) are easily measured using software tooling (Section \ref{subsection::profiling_tooling}), which aids the
+objectivity, reliability, and validity of this particular study methodology.
 Finally, the data is statistically evaluated in order to make inferences about the hypothesis.
 
 \subsection{Selected Performance Measurement Variables} \label{subsection::selected_measurement_variables}
-The following paragraphs introduce the selected performance measurement variables. Concretely,
-a brief definition is given as well as the reasoning for including the particular metric in
-this study with regards to evalutating the performance hypothesis (Section \ref{section::thesis_objective}).
+The following paragraphs introduce the selected performance measurement variables. A brief definition is given and the rational for including the metric in
+evaluation of the performance hypothesis (Section \ref{section::thesis_objective}) is provided.
 
 \paragraph*{CPU Utilization}\label{paragraph::cpu_utilization}\hfill \break
 CPU utilization is defined as the CPU time (\cite{FSF1988}) of a task
@@ -228,20 +224,20 @@ Therefore, testing CPU utilization assesses whether Flutter's framework processi
 
 \paragraph*{GPU Utilization}\label{paragraph::fps}\hfill \break
 GPU utilization is the GPU equivalent of CPU utilization mentioned in \ref{paragraph::cpu_utilization}.
-The GPU is a specialized processing chip optimized graphics computation.
+The GPU is a specialized processing chip optimized for graphics computation.
 The CPU and GPU are tightly integrated on iPhones which make use of the System-on-a-Chip architecture (\cite{Martin2001}, \cite{WikiChip2020}).
-Therefore a strong correspondence between CPU and GPU usage should be observed in the study. 
+Therefore, a strong correspondence between CPU and GPU usage is expected in the study. 
 Nonetheless, testing GPU utilization by itself is a valuable metric for determining Flutter's graphic specific processing needs.
 
 \paragraph*{Memory Utilization}\label{paragraph::memory_utilization}\hfill \break
 Memory utilization is the percentage of available memory capacity used for a specific task. 
 A high level of memory usage negatively impacts performance of running tasks as well as interactive responsiveness (\cite{Ljubuncic2015}).
 
-\subsection{Measurment Process} \label{subsection::measurement_process}
+\subsection{Measurement Process} \label{subsection::measurement_process}
 To reduce measurement confounders, the device is restarted before each individual measurement to ensure that all
 irrelevant background processes are cancelled.\\
 The measurement process for the individual metrics is further split into specific user actions
-which are executed and tested on both the iOS and Flutter app separately. These were chosen
+which are executed and tested on both the iOS and Flutter app separately. These metrics were chosen
 to test all relevant facets of the app (see Section \ref{section:kickdown_feature_presentation}) and ensure a sufficient load on the system:
 \begin{itemize}
     \item \textbf{app start:} The app is freshly installed on the test device, opened and idle until the visible postings are loaded.
@@ -251,7 +247,7 @@ to test all relevant facets of the app (see Section \ref{section:kickdown_featur
 \end{itemize}
 For each \textbf{user action}, the average of all values over time is recorded. This process is then
 repeated 3 times and averaged. The exact number of experiment repetitions was chosen as a
-tradeoff between marginal accuracy increase and additional experiment execution time.\\
+trade-off between marginal accuracy increase and additional experiment execution time.\\
 Furthermore, 2 testing rounds are devised on separate devices. The iPhone 12 Pro and iPhone
 6s are chosen as the upper and lower bounds of hardware performance respectively. The lower
 bound is defined in this case as per Apples recommendation to set the deployment target to the
@@ -262,7 +258,7 @@ iPhone 6s as the oldest supported device (\cite{Apple2021}). iOS 13 is also the 
 \textbf{Xcode Instruments} (\cite{Apple2019}) - a part of the \textbf{Xcode} IDE tool set - are used for profiling the individual metrics. It provides multiple preconfigured
 profiling trace instruments.
 For the purposes of this thesis, the \textbf{Time Profiler} tool (see Figure \ref{fig:time_profiler_graph} and \ref{fig:time_profiler_table}) is used for CPU (see Paragraph \ref{paragraph::cpu_utilization}),
-the \textbf{Allocations} tool (see Figure \ref{fig:allocations_profiler_graph} and \ref{fig:allocations_profiler_table}) for memory usage (see Paragraph \ref{paragraph::memory_utilization}) and \textbf{Core Animation} tool (see Figure \ref{fig:core_animation_profiler_graph} and \ref{fig:core_animation_profiler_table}) for FPS (see Paragraph \ref{paragraph::fps}).
+the \textbf{Allocations} tool (see Figure \ref{fig:allocations_profiler_graph} and \ref{fig:allocations_profiler_table}) for memory usage (see Paragraph \ref{paragraph::memory_utilization}) and the \textbf{Core Animation} tool (see Figure \ref{fig:core_animation_profiler_graph} and \ref{fig:core_animation_profiler_table}) for FPS (see Paragraph \ref{paragraph::fps}).
 For each profiling tool a graph shows the particular metric quantified over time with an associated table showing the exact numeric values with time stamps.
 
 \begin{figure}[htbp]
@@ -334,14 +330,14 @@ reproducing native iOS application user experiences (see Section \ref{section::t
 
 %%% Problem with measuring UX and why performance results are used %%%
 Generally, as UX is built for other humans, any evaluation is prone to subjectivity and perception
-biases (\cite{Tversky1974}). Therefore, it is difficult to capture these impressions quantitatively in a reproducable manner.\\
-However, the user experience of an app is directly dependant upon sufficiently underlying performance (e.g. for scrolling
+biases (\cite{Tversky1974}). Therefore, it is difficult to capture these impressions quantitatively in a reproducible manner.\\
+However, the user experience of an app is directly dependent upon sufficiently underlying performance (e.g. for scrolling
 fluidity). Therefore the results of the performance comparison (Section \ref{section::performance_comparison}) form the basis of the evaluation of the usability hypothesis $H_U$.
 Utilizing a mixed approach as a study methodology combining both the quantitative performance comparison and a qualitative method will draw upon the strengths of both approaches. 
 
 %%% Why I'm using expert interviews %%%
 Specifically, \textit{semi structured interviews with subject matter experts} (see \cite{Liebold2009}) are conducted to evaluate the baseline application
-with the Flutter replica by asking the participants for differences between the two apps (further explained in Section \ref{subsection::interview_guideline}). This methodology has the
+with the Flutter clone by asking the participants for differences between the two apps (further explained in Section \ref{subsection::interview_guideline}). This methodology has the
 advantage of covering predetermined topics relevant to the research question while also allowing spontaneous discussion possibly leading to novel insights.\\
 Furthermore, expert interviews are an especially useful approach for scientific explorations
 with no or scant preexisting theory (see \cite{Experts2009}).
@@ -364,7 +360,7 @@ Both apps are blindly distributed to the participants as "Kickdown A" and "Kickd
 
 \subsection{Interview Guideline} \label{subsection::interview_guideline}
 %% Goal %%%
-The interview guideline (see Appendix \ref{section::interview_guideline}) is based on finding out perceptual differences between the iOS baseline and Flutter replica app.
+The interview guideline (see Appendix \ref{section::interview_guideline}) is based on finding out perceptual differences between the iOS baseline and Flutter clone app.
 
 %% Use Cases %%
 Just like the performance comparison, use cases associated with particular UI facets form the basis for the evaluation:

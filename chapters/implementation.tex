@@ -1,34 +1,34 @@
 \chapter{Application Design and Implementation} \label{chapter::implementation}
-The methodology utilized to achieve the research objective (see Section \ref{section::thesis_objective}) is to comparatively evaluate a Flutter replica application against an existing native iOS app (detailed in Chapter \ref{chapter::study_design}).
-Thus application design and implementation of the replica will be explored from a perspective of a necessary requirement to conduct both the performance and UX comparison (Sections \ref{section::performance_comparison_design} and \ref{section::usability_comparison_design}) in this chapter.\\
+The methodology utilized to achieve the research objective (see Section \ref{section::thesis_objective}) is to comparatively evaluate a Flutter clone application against an existing native iOS app (detailed in Chapter \ref{chapter::study_design}).
+Thus application design and implementation of the clone will be explored from a perspective of the minimum necessary requirements to conduct both the performance and UX comparison (Sections \ref{section::performance_comparison_design} and \ref{section::usability_comparison_design}).\\
 Naturally, software implementation complexity may impede performance if unscalable algorithms or memory-inefficient datastructures are chosen.
-Therefore, the goal from a development perspective is to implement the Flutter clone as closely as possible to the baseline application in order to facilitate a fair comparison between both apps.\\
-Consequently, this chapter does not aim to describe the implementation techniques utilized in both apps, but rather contrast selected parts which may affect the outcome of the performance and usability study\footnote{The inclined reader has the opportunity to read through the attached source code of both apps.}.
-Firstly, the specfic framework and programming language versions are mentioned.
-Secondly, \textbf{constant widget precompilation} is introduced as a performance optimization of the Flutter clone (see Section \ref{section::constant_widget_precompilation}).
-Finally, the reasoning behind using Cupertino package UI components and a selected deviation from this guideline are explored in Section \ref{section::flutter_ui_component_usage}.
+Therefore, from a development perspective, the objective is to implement a Flutter clone that closely mimics the baseline application to facilitate a fair comparison between both apps.\\
+Consequently, this chapter does not aim to describe the implementation techniques for both apps, but rather contrast selected parts that may affect the outcome of the performance and usability study\footnote{The inclined reader has the opportunity to read through the attached source code of both apps.}.
+Firstly, the specific framework and programming language versions are mentioned.
+Secondly, \textbf{constant widget pre-compilation} is introduced as a performance optimization of the Flutter clone (see Section \ref{section::constant_widget_precompilation}).
+Finally, the reasoning for using the Cupertino package UI components and a selected deviation from this guideline are explored in Section \ref{section::flutter_ui_component_usage}.
 
 \section{Framework and Programming Language Versions}
-Preliminarly, it is important to note that the clone app was built with Flutter version 1.22.6 and Dart 2.10.5 whereas the baseline app is built with iOS 13.0 UIKit and Swift 5.0.
-The underlying implementation of both frameworks and programming languages may potentially affect the system resource usage and therefore also the performance and usability of each app.
+First, it is important to note that the clone app was built with Flutter version 1.22.6 and Dart 2.10.5 whereas the baseline app is built with iOS 13.0 UIKit and Swift 5.0.
+The underlying implementation of both frameworks and programming languages may potentially affect the system resource usage and, therefore, the performance and usability of each app.
 
 \section{Flutter App Performance Optimizations}
-This section outlines 2 particularly interesting performance optimizations which were implemented in the Flutter application. Both optimizations
-do not correspond to the original app as they are Flutter specific.
+This section outlines two performance optimizations that were implemented in the Flutter clone application. Both optimizations are Flutter specific and 
+do not correspond to the original app.
 
 \subsection{Partial View Rebuilding}
-In order to minimize the amount of computation coordinated to the framework, the Flutter clone makes use of \textbf{Partial View Rebuilds}. 
+To minimize the amount of computation coordinated to the framework, the Flutter clone makes use of \textbf{Partial View Rebuilds}. 
 Instead of diffing the entire view tree, the framework only recomputes parts of the UI that are actually affected by the state change. 
 This can be achieved by pushing the state to the leaves of the tree (see \cite{StatefulWidgetPerformance2021}).
 For example, each Posting has an associated countdown label UI element (as seen on the app overview in Figure \ref{fig:kickdown_overview_screen}) which needs to calculate its remaining time based on an end date received from the \textit{Kickdown} API every second.
 By associating a state object - holding the remaining time - with the \textbf{CountdownLabel} widget itself rather than the entire or unnecessarily large parts of the view hierarchy, Flutter's internal diffing algorithm runs on a substantially smaller tree data structure.
 
 \subsection{Constant Widget Precompilation} \label{section::constant_widget_precompilation}
-As part of general performance optimization of the Flutter clone, Dart's \code{const} constructor is used where possible throughout the codebase.
-Marking instances with this keyword makes them into immutable compile-time constants.
+As part of general performance optimization of the Flutter clone, Dart's \code{const} constructor is used throughout the codebase, where possible.
+Marking instances with this keyword converts them into immutable compile-time constants.
 Thereby, \code{const} widgets are only built once if part of a \code{StatefulWidget} reducing build cycle times leading to higher frame rates (FPS).
-Furthermore, instances are \textbf{canonicalized} by the compiler making multiple instances the same underlying instance in order to save memory (see \cite{DartConstDocumentation}).\\
-Additionally, this reduces instance tracking and deallocation work for the \textbf{Dart garbage collector} (see \cite{DartGarbageCollector2021}).\\
+Furthermore, instances are \textbf{canonicalized} by the compiler making multiple instances the same underlying instance to save memory (see \cite{DartConstDocumentation}).\\
+This also reduces instance tracking and deallocation work for the \textbf{Dart garbage collector} (see \cite{DartGarbageCollector2021}).\\
 The process of marking appropriate instances as \code{const} was facilitated by using the \code{prefer\_const\_constructor} linter rule (see \cite{ConstLinterRule2021}) for the Dart Static Analyzer (\cite{DartCodeAnalysis2021}). 
 
 \section{Flutter UI Component Usage} \label{section::flutter_ui_component_usage}
@@ -38,51 +38,51 @@ Application elements such as the tab and navigation bar as well as switch contro
 The \textbf{More Screen}'s table view (see Fig. \ref{fig:kickdown_more_screen}) of the application could not be implemented as easily as in the baseline application as no equivalent Cupertino widgets are available at the time of writing.
 
 \subsection{More Screen Custom Widget Composition Implementation}
-The baseline iOS application uses a \code{UICollectionView} component of the UIKit framework in order to build out the More screen.
+The baseline iOS application uses a \code{UICollectionView} component of the UIKit framework to build out the More screen.
 It is an "[...] object that manages an ordered collection of data items and presents them using customizable layouts" (\cite{UICollectionView2021}).
 Thereby, the collection view component offers the ability to easily create rows and sections backed by a data source. 
 Furthermore, insets, dividers, detail icons as well as tap interaction UI feedback are easily implemented.\\
-Contrarily, using Flutter there is no equivalent widget for effortlessly creating the desired UI outcome and a custom implementation has been written instead.
+In contrast, using Flutter does not have an equivalent widget for creating the desired UI outcome and a custom implementation has been written instead.
 A simplified version of the code can be seen in Listing \ref{lst:fluttter_more_view_implementation}.
-A \code{SliverList} which is a scrollable UI area that places children in a linear array (see \cite{SliverList2021}) is used to layout the individual cells.
+A \code{SliverList}, which is a scrollable UI area that places children in a linear array (see \cite{SliverList2021}), is used to layout the individual cells.
 Each cell is represented by a \textbf{CupertinoListTile} which is responsible for adding text and a trailing widget to each cell as well as inserting appropriate dividers and section insets based on the original app specification.
-Furthermore, it implements a custom \code{GestureDetector} (see \cite{GestureDetector2021}) which highlights the cell when the user taps down on the cell and triggers an anonymous callback.
+Furthermore, it implements a custom \code{GestureDetector} (see \cite{GestureDetector2021}) that highlights the cell when the user taps down on the cell and triggers an anonymous callback.
 The callback is used to open webviews using a \code{SFSafariViewController} (\cite{SFSafariViewController2021}) platform method channel (see Section \ref{subsection::method_channels}).
 
 
 \begin{minipage}{\linewidth}
     \begin{lstlisting}[caption={Simplified Flutter More View Implementation}\label{lst:fluttter_more_view_implementation}]
-        SliverList(
-            delegate: SliverChildBuilderDelegate(
-                (BuildContext context, int index) {
-                    switch (index) {
-                    case 0:
-                        return CupertinoListTile(
-                            title: 'Mein Account',
-                            trailing: Button03(
-                                text: 'Anmelden',
-                                onPressed: () {
-                                    model.onTapLogin();
-                                },
-                            ),
-                            onTap: null,
-                            isStartOfSection: true,
-                            isEndOfSection: true,
-                        );
-                    case 1:
-                        return CupertinoListTile(
-                            title: 'About Kickdown',
-                            trailing: DetailIcon(),
-                            onTap: () async => model.onTapAboutKickdownTile(),
-                            isStartOfSection: true,
-                            isEndOfSection: false,
-                        );
-                    case 2:
-                        ...
-                    }
-                },
-                childCount: 6,
-            ),
-        );
+SliverList(
+    delegate: SliverChildBuilderDelegate(
+        (BuildContext context, int index) {
+            switch (index) {
+            case 0:
+                return CupertinoListTile(
+                    title: 'Mein Account',
+                    trailing: Button03(
+                        text: 'Anmelden',
+                        onPressed: () {
+                            model.onTapLogin();
+                        },
+                    ),
+                    onTap: null,
+                    isStartOfSection: true,
+                    isEndOfSection: true,
+                );
+            case 1:
+                return CupertinoListTile(
+                    title: 'About Kickdown',
+                    trailing: DetailIcon(),
+                    onTap: () async => model.onTapAboutKickdownTile(),
+                    isStartOfSection: true,
+                    isEndOfSection: false,
+                );
+            case 2:
+                ...
+            }
+        },
+        childCount: 6,
+    ),
+);
     \end{lstlisting}
 \end{minipage}
