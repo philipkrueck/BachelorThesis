@@ -142,16 +142,16 @@ with the increase of UI components on screen.
 \end{figure}
 
 \begin{figure}[htbp]
-    \begin{tabular}{p{0.45\textwidth}p{0.55\textwidth}}
-        \begin{minipage}{.45\textwidth}
+    \begin{tabular}{p{0.55\textwidth}p{0.45\textwidth}}
+        \begin{minipage}{.55\textwidth}
         \centering
         \includegraphics[width=\linewidth]{images/Kickdown_overview_info_ui_tree.eps}
         \caption{Widget Tree Structure Visualization of Code Snippet \ref{lst:code_snippet}}
         \label{fig:kickdown_overview_info_ui_tree}
         \end{minipage}
         &
-        \begin{minipage}{.55\textwidth}
-            \begin{lstlisting}[caption={Simplified Flutter Code for UI Layout shown in Fig. \ref{fig:kickdown_overview_info_ui}}\label{lst:code_snippet}]
+        \begin{minipage}{.45\textwidth}
+            \begin{lstlisting}[caption={Simplified Flutter Code for UI Layout shown in Fig. \ref{fig:kickdown_overview_info_ui}},label={lst:code_snippet}]
 Column(
     children: [
         Row(
@@ -188,7 +188,7 @@ Once the view hierarchy for the view controller is loaded into memory, the \code
 Subsequently, the label is added as a subview and centered horizontally and vertically in the view controller's view based on \textbf{Auto Layout} (\cite{AutoLayoutDocumentation2016}) constraints.\\
 
 \begin{minipage}{\linewidth}
-    \begin{lstlisting}[caption={iOS UIKit Example of Centering Text on a Screen}\label{lst:code_snippet_uikit_centering}]
+    \begin{lstlisting}[caption={iOS UIKit Example of Centering Text on a Screen},label={lst:code_snippet_uikit_centering}]
 import UIKit
 
 class InitialViewController: UIViewController {
@@ -211,7 +211,7 @@ class InitialViewController: UIViewController {
 \end{minipage}
 
 \begin{minipage}{\linewidth}
-    \begin{lstlisting}[caption={Flutter Example of Centering Text on a Screen}\label{lst:code_snippet_flutter_centering}]
+    \begin{lstlisting}[caption={Flutter Example of Centering Text on a Screen}, label={lst:code_snippet_flutter_centering}]
 import "package:flutter/widgets.dart";
 class InitialPage extends StatelessWidget {
     @override

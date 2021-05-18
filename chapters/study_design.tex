@@ -54,8 +54,8 @@ In addition, providing a recognizable UX for iOS users would keep participants i
 being distracted by an ambiguous UI.
 \hfill \break
 
-Based on the above constraints, a small study was conducted looking at 15 apps developed by apploft (constraint \ref{item::constraint_one}) from 9 different iOS App Store categories. 
-The facets were extracted into Table \ref{tab::initial_table} by evaluating each user interface (constraint \ref{item::constraint_two}).
+Based on the above constraints, a small study was conducted looking at 15 apps developed by apploft (Constraint \ref{item::constraint_one}) from 9 different iOS App Store categories. 
+The facets were extracted into Table \ref{tab::initial_table} by evaluating each user interface (Constraint \ref{item::constraint_two}).
 Furthermore, a facet had to appear at least twice before being added as a result.\\
 Continuing the filtering process, as per constraint 2 uncommon facets - facets appearing
 in less than 50\% of observed apps - are excluded. This reduces the list of facets to the following:
@@ -72,9 +72,9 @@ in less than 50\% of observed apps - are excluded. This reduces the list of face
 \end{itemize}
 
 Out of the 15 initially tested apps, 5 include all of the above \textbf{facets} (conforming to
-constraint 1 and 2) (see Table \ref{tab::filtered_table}). Kickdown (see Section \ref{section:kickdown_feature_presentation}) is chosen among the remaining 
-candidates for the baseline testing app. It was most recently released (Feb 2021) and is known to indlude modern iOS technologies (constraint \ref{item::constraint_three}).
-Furthermore, Kickdown complies to the most recent iteration of the \textbf{Human Interface Guidelines} (constraint \ref{item::constraint_four}).
+Constraint 1 and 2) (see Table \ref{tab::filtered_table}). Kickdown (see Section \ref{section:kickdown_feature_presentation}) is chosen among the remaining 
+candidates for the baseline testing app. It was most recently released (Feb 2021) and is known to indlude modern iOS technologies (Constraint \ref{item::constraint_three}).
+Furthermore, Kickdown complies to the most recent iteration of the \textbf{Human Interface Guidelines} (Constraint \ref{item::constraint_four}).
 
 \subsection{Clone Application Feature Reduction and Implementation} \label{subsection::clone_app_feature_reduction}
 The login and signup mechanism - although a common \textbf{facet} - is removed from the original
@@ -146,15 +146,15 @@ asymmetric comparison, as detailed in Chapter \ref{chapter::implementation}.
     \end{landscape}
 }
 
-\subsection{Kickdown App Feature Presentation} \label{section:kickdown_feature_presentation}
+\subsection{Kickdown App} \label{section:kickdown_feature_presentation}
 \textit{Kickdown} is an online auctioning platform for buying and selling classic and vintage cars (\cite{Kickdown2021}).\\
 The original iOS app was built by apploft based on a subset of functionality from the web application and its underlying internal API.
-The application is divided into two main sections via tab navigation: the (1) overview and the (2) more screen (see Figure \ref{fig:kickdown_overview_screen} and \ref{fig:kickdown_more_screen}).\\
+The application is divided into two main sections via tab navigation: (1) the overview and (2) the more screen (see Figure \ref{fig:kickdown_overview_screen} and \ref{fig:kickdown_more_screen}).\\
 On the overview, the user has the ability to scroll through all current offerings. Each offering is shown as a card with a hero image 
 and some basic information including the title, location, current price and remaining time.\\
 Tapping on a posting card brings up a detail view (Figure \ref{fig:kickdown_detail_screen}) for the respective posting.
 Besides inspecting detailed information about the particular posting, the user has the option of viewing additional photos in the image gallery (Figure \ref{fig:kickdown_gallery_view}) and placing a bid via a bottom sheet (Figure \ref{fig:kickdown_bid_preparation_screen}).\\
-The More screen lets the user login, turn on analytics tracking or open informational web views.
+The \emph{More screen} lets the user login, turn on analytics tracking or open informational web views.
 
 \begin{figure}[htbp]
     \begin{tabular}{p{0.33\textwidth}p{0.33\textwidth}p{0.33\textwidth}}
@@ -208,8 +208,9 @@ Directly benchmarking system resources provides an indication whether the Flutte
 benchmarking metrics are the underlying cause of more ephemeral measures for testing the
 system load itself, e.g. page load time. In addition, the chosen compute resources (explained
 in Section \ref{subsection::selected_measurement_variables}) are easily measured using software tooling (Section \ref{subsection::profiling_tooling}), which aids the
-objectivity, reliability, and validity of this particular study methodology.
-Finally, the data is statistically evaluated in order to make inferences about the hypothesis.
+objectivity, reliability, and validity of this particular study methodology.\\
+Finally, the data is statistically evaluated in order to make inferences about the hypothesis by examining the gathered data using exploratory data analysis (EDA) (\cite{Tukey1977}).
+To better understand the data gathered, it is subsequently examined using exploratory data
 
 \subsection{Selected Performance Measurement Variables} \label{subsection::selected_measurement_variables}
 The following paragraphs introduce the selected performance measurement variables. A brief definition is given and the rational for including the metric in
@@ -222,8 +223,8 @@ The CPU is partly responsible for rendering related calculations.
 For example, Flutter's tree diffing algorithm is handled on the CPU.
 Therefore, testing CPU utilization assesses whether Flutter's framework processing requirements for rendering related calculations can be fulfilled on the testing hardware (Section \ref{subsection::measurement_process}).
 
-\paragraph*{GPU Utilization}\label{paragraph::fps}\hfill \break
-GPU utilization is the GPU equivalent of CPU utilization mentioned in \ref{paragraph::cpu_utilization}.
+\paragraph*{GPU Utilization}\label{paragraph::gpu_utilitzation}\hfill \break
+GPU utilization is the GPU equivalent of CPU utilization.
 The GPU is a specialized processing chip optimized for graphics computation.
 The CPU and GPU are tightly integrated on iPhones which make use of the System-on-a-Chip architecture (\cite{Martin2001}, \cite{WikiChip2020}).
 Therefore, a strong correspondence between CPU and GPU usage is expected in the study. 
@@ -248,8 +249,7 @@ to test all relevant facets of the app (see Section \ref{section:kickdown_featur
 For each \textbf{user action}, the average of all values over time is recorded. This process is then
 repeated 3 times and averaged. The exact number of experiment repetitions was chosen as a
 trade-off between marginal accuracy increase and additional experiment execution time.\\
-Furthermore, 2 testing rounds are devised on separate devices. The iPhone 12 Pro and iPhone
-6s are chosen as the upper and lower bounds of hardware performance respectively. The lower
+Furthermore, 2 testing rounds are devised on separate devices. The iPhone 12~Pro and iPhone~6s are chosen as the upper and lower bounds of hardware performance respectively. The lower
 bound is defined in this case as per Apples recommendation to set the deployment target to the
 current operating system version (iOS 14 at time of writing) minus one (iOS 13) which lists the
 iPhone 6s as the oldest supported device (\cite{Apple2021}). iOS 13 is also the minimum deployment target for the Kickdown app.\\
@@ -258,7 +258,7 @@ iPhone 6s as the oldest supported device (\cite{Apple2021}). iOS 13 is also the 
 \textbf{Xcode Instruments} (\cite{Apple2019}) - a part of the \textbf{Xcode} IDE tool set - are used for profiling the individual metrics. It provides multiple preconfigured
 profiling trace instruments.
 For the purposes of this thesis, the \textbf{Time Profiler} tool (see Figure \ref{fig:time_profiler_graph} and \ref{fig:time_profiler_table}) is used for CPU (see Paragraph \ref{paragraph::cpu_utilization}),
-the \textbf{Allocations} tool (see Figure \ref{fig:allocations_profiler_graph} and \ref{fig:allocations_profiler_table}) for memory usage (see Paragraph \ref{paragraph::memory_utilization}) and the \textbf{Core Animation} tool (see Figure \ref{fig:core_animation_profiler_graph} and \ref{fig:core_animation_profiler_table}) for FPS (see Paragraph \ref{paragraph::fps}).
+the \textbf{Allocations} tool (see Figure \ref{fig:allocations_profiler_graph} and \ref{fig:allocations_profiler_table}) for memory usage (see Paragraph \ref{paragraph::memory_utilization}) and the \textbf{Core Animation} tool (see Figure \ref{fig:core_animation_profiler_graph} and \ref{fig:core_animation_profiler_table}) for GPU utilization (see Paragraph \ref{paragraph::gpu_utilitzation}).
 For each profiling tool a graph shows the particular metric quantified over time with an associated table showing the exact numeric values with time stamps.
 
 \begin{figure}[htbp]
@@ -314,12 +314,6 @@ For each profiling tool a graph shows the particular metric quantified over time
         \end{minipage}
     \end{tabular}
 \end{figure}
-
-
-
-\subsection{Evaluation Process} \label{subsection::evaluation_process}
-To better understand the data gathered, it is subsequently examined using exploratory data
-analysis (EDA) (\cite{Tukey1977}).
 
 
 \section{User Experience Comparison} \label{section::usability_comparison_design}

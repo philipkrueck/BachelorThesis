@@ -29,7 +29,7 @@ Marking instances with this keyword converts them into immutable compile-time co
 Thereby, \code{const} widgets are only built once if part of a \code{StatefulWidget} reducing build cycle times leading to higher frame rates (FPS).
 Furthermore, instances are \textbf{canonicalized} by the compiler making multiple instances the same underlying instance to save memory (see \cite{DartConstDocumentation}).\\
 This also reduces instance tracking and deallocation work for the \textbf{Dart garbage collector} (see \cite{DartGarbageCollector2021}).\\
-The process of marking appropriate instances as \code{const} was facilitated by using the \code{prefer\_const\_constructor} linter rule (see \cite{ConstLinterRule2021}) for the Dart Static Analyzer (\cite{DartCodeAnalysis2021}). 
+The process of marking appropriate instances as \code{const} was facilitated by using the linter rule \texttt{prefer\_const\_constructor} (see \cite{ConstLinterRule2021}) for the Dart Static Analyzer (\cite{DartCodeAnalysis2021}). 
 
 \section{Flutter UI Component Usage} \label{section::flutter_ui_component_usage}
 As mentioned in Section \ref{section::flutter_architecture}, Flutter uses the Cupertino package (\cite{CupertinoPackageDocumentation2021}) to resemble native iOS UI components from Apple's Human Interface Guidelines.
@@ -51,7 +51,7 @@ The callback is used to open webviews using a \code{SFSafariViewController} (\ci
 
 
 \begin{minipage}{\linewidth}
-    \begin{lstlisting}[caption={Simplified Flutter More View Implementation}\label{lst:fluttter_more_view_implementation}]
+    \begin{lstlisting}[caption={Simplified Flutter More View Implementation},label={lst:fluttter_more_view_implementation}]
 SliverList(
     delegate: SliverChildBuilderDelegate(
         (BuildContext context, int index) {

@@ -15,14 +15,14 @@ However, the iPhone 12 Pro Max has a considerably larger screen (6.7 inches vs. 
 
 
 \subsection{CPU usage} \label{section::cpu_usage}
-For both the Flutter and original iOS app, the iPhone 12 Pro Max uses more CPU power than the iPhone 6s. Furthermore, for every user action/iPhone combination, the 
+For both the Flutter and original iOS app, the iPhone 12 Pro Max uses more CPU power than the iPhone~6s. Furthermore, for every user action/iPhone combination, the 
 CPU usage is greater than 100\%. This doesn't mean that the processing unit is overloaded as the measured CPU usage is in relation to a single core.
-The iPhone 12 Pro Max has 2 high performance cores and 4 smaller battery optimized cores. Based on the task, the operating system delegates tasks to either a high performance or a 
+The iPhone~12 Pro Max has 2 high performance cores and 4 smaller battery optimized cores. Based on the task, the operating system delegates tasks to either a high performance or a 
 battery optimized core.
 The iPhone 6s simply has 2 equally clocked cores for typical parallel work.
 In terms of CPU usage, it would be incorrect to combine values from the two different phones into a single metric. Therefore, the following metrics are calculated for the two iPhones separately.\\
 Overall, the Flutter clone uses more CPU resources during every single test case when averaged over time (see Fig. \ref{fig:avg_cpu_usage_summary}) on both test hardware devices.
-On average, the Flutter clone uses 43\% more CPU power when testing on the iPhone 12 Pro Max while it uses 17\% more on the iPhone 6s.\\
+On average, the Flutter clone uses 43\% more CPU power when testing on the iPhone~12 Pro Max while it uses 17\% more on the iPhone~6s.\\
 During the \textit{detail view transition}, the Flutter clone has the most similar CPU performance with an additional 19\% (12 Pro Max) and 14\% (6s) respectively compared to the original iOS app.
 
 The standard deviation of the averaged CPU usage between the use cases lies between 6 and 17\% meaning that the CPU requirement for the typical use cases is similar.
@@ -37,7 +37,7 @@ This is mostly due to the fact that the CPU has different load requirements base
 \end{figure}
 
 \subsection{Memory Usage}
-The memory usage increases quite steadily throughout the execution of each user action (as can be seen in Figures \ref{fig:avg_memory_usage_app_start}, \ref{fig:avg_memory_usage_detail_view}, \ref{fig:avg_memory_usage_image_gallery} and \ref{fig:avg_memory_usage_scrolling}) as opposed to the CPU usage (Section \ref{section::cpu_usage}).
+The memory usage increases quite steadily throughout the execution of each user action (as can be seen in the Appendix Figures \ref{fig:avg_memory_usage_app_start}, \ref{fig:avg_memory_usage_detail_view}, \ref{fig:avg_memory_usage_image_gallery} and \ref{fig:avg_memory_usage_scrolling}) as opposed to the CPU usage (Section \ref{section::cpu_usage}).
 When starting the application, a required amount of information is loaded into memory and, 
 as the use case is performed, more information (i.e. more variables) is added into the memory units.\\
 Flutter is less efficient in terms of its memory usage. Each use case consumes between 53.4 MiB\footnote{Mebibytes (MiB) are the base 2 equivalent (1,048,576) of Megabytes (MB) (1,000,000)} and 67.3 MiB of memory while the iOS baseline app only uses between 32.3 and 41.1 MiB of memory.
@@ -56,7 +56,7 @@ iPhone 6s (2 GB) RAM capacity.
 \end{figure}
 
 \subsection{GPU Usage}
-On average the Flutter app consumes 38\% more GPU than the Flutter application. The GPU usage lies between 18.7\% and 21.9\% for Flutter and between 24.2\% and 37.4\% on iOS (averaged for each use case).
+On average the iOS app consumes 38\% more GPU than the Flutter application. The GPU usage lies between 18.7\% and 21.9\% for Flutter and between 24.2\% and 37.4\% on iOS (averaged for each use case).
 The Skia engine of the Flutter app (see Section \ref{section::flutter_architecture}) may use the CPU for certain calculations like tree diffing (being a typical CPU task, Section \ref{subsection::rendering_ui_state}) while iOS is optimized to perform graphics related calculations on the GPU.
 This requirement imbalance may then also explain the additional CPU usage of the Flutter clone.\\
 Furthermore, throughout each use case the iOS app is subject to larger fluctuations than the Flutter application (see Figures \ref{fig:avg_gpu_usage_app_start}, \ref{fig:avg_gpu_usage_detail_view}, \ref{fig:avg_gpu_usage_image_gallery} and \ref{fig:avg_gpu_usage_scrolling}).
@@ -136,11 +136,11 @@ The following sections explain the above categories in detail.
 One participant noticed that the Flutter app did not have dynamic type support. 
 Dynamic type is Apple's accessibility feature for users who need larger text for better readability based on their preferred system text size setting (\cite{Apple2021b}).
 According to Google, Flutter scales \textit{Text} widgets automatically based on the respective OS setting (\cite{Google2021a}).
-Upon further inspection, the Flutter app did scale its text, however the scaling factor seemed smaller than on iOS.
+Upon further inspection, the Flutter seems to use a smaller text scaling factor than iOS.
 
 \subsection{Detail Transition}
 The transition between the overview screen (Figure \ref{fig:kickdown_overview_screen}) and the detail screen (Figure \ref{fig:kickdown_detail_screen}) was implemented slightly differently in the Flutter application.
-The exact navigation stack push/pop transitions of iOS are not yet integrated into the Cupertino package of Flutter. Therefore a custom transition was written for this screen transition.
+The exact navigation stack push/pop transitions of iOS are not yet integrated in Flutter's Cupertino. Therefore a custom transition was written for this screen transition.
 One participant in the usability study noted that he could immediately detect the original app by this transition while two other participants actually preferred the transition in the Flutter clone.
 Flutter is currently not able to fully mimic the native iOS navigation animation concept. However, transitions that multiple interview participants described as pleasant can be created with Flutter's integrated animation library.
 
